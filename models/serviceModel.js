@@ -10,8 +10,6 @@ const serviceSchema = new mongoose.Schema({
         description:{type:String},
         startingAt:{type:String},
         turnaround:{type:String},
-
-
     }],
     icon: { type: String, required: true },
     meta_title: { type: String },

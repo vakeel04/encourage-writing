@@ -1,25 +1,17 @@
 const User = require("../models/userModel.js");
 
-// 🟢 Create user
+ 
 const createUser = async (req, res) => {
     try {
         const { email } = req.body;
-
-        // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).send({ status: false, message: "User already exists" });
         }
-
-        // Create user
         const user = await User.create(req.body);
-
-        // Generate JWT token
         const token = user.getSignedJwtToken();
         user.token = token;
-
         await user.save();
-
         return res.status(201).send({
             status: true,
             message: "User created successfully",
@@ -32,7 +24,7 @@ const createUser = async (req, res) => {
     }
 };
 
-// 🟡 Get all users
+ 
 const getAllUsers = async (req, res) => {
     try {
         const users = await User.find().sort({ createdAt: -1 });
@@ -45,7 +37,7 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// 🔵 Get user by ID
+ 
 const getUserById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -58,7 +50,7 @@ const getUserById = async (req, res) => {
     }
 };
 
-// 🟠 Update user
+ 
 const updateUser = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -71,7 +63,7 @@ const updateUser = async (req, res) => {
     }
 };
 
-// 🔴 Delete user
+ 
 const deleteUser = async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);

@@ -19,7 +19,6 @@ const getAchievements = async (req, res) => {
         const achievements = await Achievement.find().sort({ createdAt: -1 });
         if (achievements.length > 0)
             return res.status(200).send({ status: true, message: "Achievements fetched successfully", data: achievements });
-
         return res.status(404).send({ status: false, message: "No Achievements found" });
     } catch (error) {
         res.status(400).send({ status: false, message: error.message });

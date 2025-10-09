@@ -3,20 +3,33 @@ const HeroSection = require("../models/heroSectionModel.js");
  
 const createHeroSection = async (req, res) => {
     try {
-        // Handle multiple images upload
-        if (!req.files || !req.files['images']) {
-            return res.status(400).send({ status: false, message: "Images are required" });
-        }
-        req.body.images = req.files['images'].map(file => "uploads/" + file.filename);
-        const heroSection = await HeroSection.create(req.body);
-        if (heroSection)
-            return res.status(201).send({ status: true, message: "Hero Section created successfully", data: heroSection });
-
-        return res.status(400).send({ status: false, message: "Failed to create Hero Section" });
+      console.log(req.files);
+  
+      // Since upload.array() returns an array
+      if (!req.files || req.files.length === 0) {
+        return res.status(400).send({ status: false, message: "Images are required" });
+      }
+  
+      // Map image paths
+      req.body.images = req.files.map(file => "uploads/" + file.filename);
+  
+      const heroSection = await HeroSection.create(req.body);
+  
+      if (heroSection) {
+        return res.status(201).send({
+          status: true,
+          message: "Hero Section created successfully",
+          data: heroSection
+        });
+      }
+  
+      return res.status(400).send({ status: false, message: "Failed to create Hero Section" });
+  
     } catch (error) {
-        res.status(400).send({ status: false, message: error.message });
+      res.status(400).send({ status: false, message: error.message });
     }
-};
+  };
+  
 
  
 const getHeroSections = async (req, res) => {

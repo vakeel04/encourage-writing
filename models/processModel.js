@@ -1,9 +1,13 @@
 const mongoose = require("mongoose")
 
 const processSchema = new mongoose.Schema({
+    heading: { type: String, required: true },
+    subHeading: { type: String},
     title: { type: String, required: true },
     description: { type: String},
-    usedBy:{type:String,enum:["about-us","service"]},
+    icon: { type: String},
+    bgImg: { type: String},
+    usedBy:{type:String,enum:["about-us","service","blog_detail"],required:true},
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },

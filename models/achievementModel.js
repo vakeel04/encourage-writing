@@ -6,8 +6,6 @@ const achievementSchema = new mongoose.Schema({
     happy_clients: { type: Number, required: true },
     happy_serveds: { type: Number, required: true },
     expert_writers: { type: Number},
-    icons: [{type:String}],
-
     status: { type: Boolean, default: true }
 }, { timestamps: true })
  
