@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encourage Writing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <header id="main-header" class="px-6 md:px-10 py-4 fixed flex justify-between items-center top-0 left-0 w-full z-50 transition-all duration-300">
+    <!-- Logo -->
+    <a href="/">
+      <img class="w-[45px] md:w-[55px] rounded-full" src="./images/logo.jpg" alt="Logo">
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex font-medium gap-7">
+      <li><a href="/" class="hover:text-gray-600">Home</a></li>
+      <li><a href="/blog" class="hover:text-gray-600">Our Work</a></li>
+      <li><a href="/service" class="hover:text-gray-600">Services</a></li>
+      <li><a href="/about-us" class="hover:text-gray-600">About Us</a></li>
+      <li><a href="/contact" class="hover:text-gray-600">Contact</a></li>
+    </ul>
+
+    <!-- Right Side (Desktop) -->
+    <div class="hidden md:flex gap-4 items-center">
+      <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
+        <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
+      </button>
+      <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
+        Let's Talk
+      </a>
+    </div>
+
+    <!-- Hamburger Icon (Mobile) -->
+    <button id="menu-btn" class="md:hidden text-2xl">
+      <img class="w-[25px]" src="./images/menu.svg" alt="">
+    </button>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 md:hidden">
+      <ul class="flex flex-col gap-4 font-medium">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Our Work</a></li>
+        <li><a href="/service">Services</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+
+      <div class="flex gap-4 items-center mt-4">
+        <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
+          <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
+        </button>
+        <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
+          Let's Talk
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="lg:mt-20 mt-8 pt-[50px] lg:pb-[100px] pb-[75px]">
+
+    <div>
+      <h2 class="lg:text-[32px] text-[20px] hero-heading text-center font-semibold capitalize mx-auto ">About Us</h2>
+
+      <div class="lg:px-14 px-4">
+        <div class=" mt-3 relative">
+          <img class="lg:h-[500px] h-[300px] w-full object-cover rounded-[30px]" src="./images/a12.jpg" alt="">
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-black/60 to-transparent"></div>
+
+          <div class="absolute lg:bottom-12 bottom-6 lg:left-12 left-6">
+            <h3 class="lg:text-[20px] text-[18px] font-semibold text-white">Santorini Cliffside Retreat</h3>
+            <p class="font-medium w-[60%] lg:text-[15px] text-[12px] text-white leading-[20+-px]">Cultural stays immerse you in the heart of tradition and beauty.</p>
+            <a href="#" class="lg:px-6 px-4 rounded-full border-white border mr-1  bg-white text-black lg:text-[15px] text-[12px] font-medium py-2 lg:py-2.5 inline-block mt-3">Explore More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[10px]"></i></a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid lg:grid-cols-3 lg:gap-12 gap-2 lg:px-14 px-6 pt-3 lg:pt-5">
+      <div class="col-span-1">
+        <h2 class="lg:text-[36px] text-[22px] lg:leading-[40px] font-semibold hero-heading">We craft words that connect, inspire, and convert.</h2>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="text-[#141219] lg:text-[16px] text-[12px] font-medium">Our mission is simple: to deliver high-quality, engaging, and original content that resonates with your audience and drives results. From blog posts and articles to web content, social media copy, and marketing materials, we craft every piece with precision, creativity, and a deep understanding of your goals.
+          With years of experience in digital marketing, SEO, and storytelling, we don’t just write—we create content that connects, captivates, and converts. Your vision becomes our blueprint, and your success is our ultimate goal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lg:px-20 px-4 lg:py-12 py-10 bg-[#F4F4F4] ">
+    <div class="text-center">
+      <span class="bg-white border-white border text-black font-medium px-8 inline-block py-1.5 rounded-full lg:text-[14px] text-[13px]">Our Purpose</span>
+
+      <h2 class="lg:text-[40px] mt-1.5 lg:mt-0 text-[20px] font-semibold">Vision & Mission</h2>
+      <p class="lg:text-[18px] text-[12px] font-medium ">Guided by clear principles and unwavering commitment to educational equality</p>
+    </div>
+
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-14 gap-4 lg:mt-10 mt-6">
+      <div class="col-span-1 bg-[url('./images/a13.png')] rounded-2xl px-7 py-6 w-fullno-repeat">
+        <h2 class="lg:text-[28px] text-[20px] font-medium">Our Vision </h2>
+
+        <p class="font-medium mt-1 lg:text-[17px] text-[13px]">Babla Burman Memorial Trust (BBMT) was founded with a simple yet powerful belief — that every child, no matter their background, deserves the chance to learn, grow, and dream big. What began as a small initiative to help a few students pay their school fees has today grown </p>
+      </div>
+
+      <div class="col-span-1 bg-[url('./images/a14.png')] text-white bg-center bg-cover rounded-2xl px-7 py-6 w-fullno-repeat">
+        <h2 class="lg:text-[28px] text-[20px] font-medium">Our Mission </h2>
+
+        <p class=" mt-1 lg:text-[17px] text-[13px]">Babla Burman Memorial Trust (BBMT) was founded with a simple yet powerful belief — that every child, no matter their background, deserves the chance to learn, grow, and dream big. What began as a small initiative to help a few students pay their school fees has today grown </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lg:px-20 px-4 py-8  lg:py-12 ">
+    <div class="text-center">
+      <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">Our Purpose</span>
+
+      <h2 class="lg:text-[40px] text-[20px] font-semibold">Why Choose Encourages Writing?</h2>
+      <p class="lg:text-[18px] text-[12px] ">We deliver high-quality, SEO-optimized content quickly and affordably, with a team of experts across 20+ industries</p>
+    </div>
+
+    <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6  lg:mt-10">
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery.png" alt="">
+        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Fast Delivery</h3>
+        <p class="lg:text-[14px] text-[11px] font-medium lg:leading-[18px]">We deliver high-quality content quickly, often within 48 hours, so your projects stay on schedule.</p>
+      </div>
+
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 2.png" alt="">
+        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Affordable Pricing</h3>
+        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Top-notch content at prices that suit businesses of all sizes.</p>
+      </div>
+
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 3.png" alt="">
+        <h3 class="font-semibold lg:text-[18px]  text-[16px]">SEO Expertise</h3>
+        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Our content is crafted to rank well on search engines and engage your audience effectively.</p>
+      </div>
+
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 4.png" alt="">
+        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Team of 100+ Writers:</h3>
+        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Our content is crafted to rank well on search engines and engage your audience effectively.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="lg:pl-14 pl-4 lg:py-20 py-10 relative">
+
+    <div class="flex items-end pr-10 ">
+      <h2 class="lg:text-[26px] text-[20px] font-medium w-[85%] lg:w-[32%]">Our Seamless 4-Step Process to Crafting Powerful Content</h2>
+
+      <span class="bg-black h-[1px] w-full flex-1 inline-block mb-2"></span>
+    </div>
+
+    <div id="process-slider" class="swiper pb-10 h-[420px] lg:h-[450px] !overflow-hidden mt-10">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide ">
+          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
+            <div>
+              <h2 class="lg:text-[28px] text-[20px] font-medium text-white">01.</h2>
+              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Understanding Client Needs</p>
+            </div>
+            <div class="mt-32">
+              <p class="text-white lg:text-[15px] text-[13px]">We begin by carefully listening to your requirements, goals, and target audience. This helps us tailor the content strategy to align perfectly with your brand’s voice and objectives.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
+            <div>
+              <h2 class="lg:text-[28px] text-[20px] font-medium text-white">02.</h2>
+              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Research & Drafting</p>
+            </div>
+            <div class="mt-32">
+              <p class="text-white lg:text-[15px] text-[13px]">Our team conducts in-depth research on your industry, competitors, and keywords. Based on these insights, we create a well-structured draft that balances creativity with SEO-driven content.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide ">
+          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
+            <div>
+              <h2 class="text-[28px] font-medium text-white">03.</h2>
+              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Editing & Proofreading</p>
+            </div>
+            <div class="mt-32">
+              <p class="text-white lg:text-[15px] text-[13px]">Every draft goes through a rigorous quality check by expert editors. We refine tone, grammar, and clarity, ensuring your content is polished, professional, and error-free.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide ">
+          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
+            <div>
+              <h2 class="text-[28px] font-medium text-white">04.</h2>
+              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Final Delivery</p>
+            </div>
+            <div class="mt-32">
+              <p class="text-white lg:text-[15px] text-[13px]">Every draft goes through a rigorous quality check by expert editors. We refine tone, grammar, and clarity, ensuring your content is polished, professional, and error-free.</p>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <!-- Arrows bottom aligned & close together -->
+      <div class="flex absolute bottom-8  right-20">
+        <div class="swiper-button-prev prev-process  -ml-2 cursor-pointer h-[45px] min-w-[45px] border-black border rounded-full">
+          <i class="fa-solid fa-arrow-right text-black text-lg"></i>
+        </div>
+        <div class="swiper-button-next next-process cursor-pointer h-[45px] min-w-[45px] border-black border rounded-full">
+          <i class="fa-solid fa-arrow-left text-black text-lg "></i>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="lg:px-12 px-4   pb-20">
+    <div class="text-center">
+      <h2 class="lg:text-[40px] text-[20px] font-semibold">Dynamic Team</h2>
+      <p class="lg:text-[18px] text-[12px] font-medium">Get to know our dynamic and energetic professionals who drive our innovations</p>
+    </div>
+
+    <div class="grid grid-cols-3 lg:mt-12 mt-8">
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[200px] w-[80px] mx-auto" src="./images/member-1.png" alt="">
+        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CTO</p>
+        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">John kenson</h3>
+
+        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[200px] w-[80px] mx-auto" src="./images/member-2.png" alt="">
+        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CEO</p>
+        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Harry Maguire</h3>
+
+        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 text-center">
+        <img class="lg:w-[200px] w-[80px] mx-auto" src="./images/member-3.png" alt="">
+        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">Head HR</p>
+        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Sophie Moore</h3>
+
+        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:mt-12 mt-8 text-center">
+        <img class="lg:w-[200px] w-[80px]  mx-auto" src="./images/member-4.png" alt="">
+        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CMO</p>
+        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Edgar Davids</h3>
+        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:mt-12 mt-8 text-center">
+        <img class="lg:w-[200px] w-[80px]  mx-auto" src="./images/member-5.png" alt="">
+        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CFO</p>
+        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">James Anderson</h3>
+
+        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1  lg:mt-12 mt-8 text-center">
+        <img class="lg:w-[200px] w-[80px]  mx-auto" src="./images/member-6.png" alt="">
+        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">VP Design</p>
+        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Ashley Cook</h3>
+
+        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
+          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lg:py-14 px-4 lg:px-0 py-10 bg-[#F0F0F0] text-center lg:mt-20 ">
+    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]">Ready to boost your brand with powerful content?</h2>
+
+    <p class="font-medium lg:text-[17px] text-[14px]">Let’s work together to create words that convert and stories that inspire.</p>
+
+    <a href="#" class="bg-black rounded-md py-2 px-8 text-white font-medium inline-block lg:mt-5 mt-3 text-[14px] lg:text-[16px]">Hire Us Today</a>
+  </section>
+
+   <footer class="lg:pt-8 pt-6 bg-black text-white">
+     <div class="grid lg:grid-cols-6 lg:px-14 px-7  lg:mb-20 mb-10 lg:gap-12 gap-7">
+       <div class="col-span-2">
+         <img src="./images/logo.jpg" alt="" class="w-[120px] -ml-8">
+
+         <p class="text-white lg:text-[14px] text-[13px] lg:pr-10 -mt-8">Powerful words, impactful stories. We craft SEO-friendly content that builds trust and drives growth.</p>
+       </div>
+
+       <div class="col-span-1 lg:mt-5 mt-3">
+         <h2 class="font-medium lg:text-[17px] text-[15px]">Quick Links</h2>
+
+         <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+           <li>
+             <a href="/about-us.html">About Us</a>
+           </li>
+
+           <li>
+             <a href="/services.html">Services</a>
+           </li>
+
+
+           <li>
+             <a href="/blogs.html">Blog</a>
+           </li>
+
+
+           <li>
+             <a href="/contact.html">Contact Us</a>
+           </li>
+         </ul>
+       </div>
+
+       <div class="col-span-1 lg:mt-5 mt-3">
+         <h2 class="font-medium lg:text-[17px] text-[15px]">Services</h2>
+
+         <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+           <li>
+             <a href="/service-details.html">Blog & Article Writing</a>
+           </li>
+
+           <li>
+             <a href="/service-details.html">Website Content</a>
+           </li>
+
+
+           <li>
+             <a href="/service-details.html">SEO Content</a>
+           </li>
+
+
+           <li>
+             <a href="/service-details.html">Copywriting</a>
+           </li>
+         </ul>
+       </div>
+
+       <div class="col-span-2 lg:mt-5 mt-3 lg:pl-10">
+         <h2 class="font-medium lg:text-[17px] text-[15px]">Get in Touch</h2>
+
+         <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+           <li>
+             <a href="#"><i class="fa-solid fa-envelope"></i> info@contentwhale.com</a>
+           </li>
+
+           <li>
+             <a href="#"><i class="fa-solid fa-phone text-[13px] lg:text-[15px]"></i> +91 98765 43210</a>
+           </li>
+
+
+           <li>
+             <a href="#"><i class="fa-solid fa-location-dot text-[13px] lg:text-[15px]"></i> Jaipur, Rajasthan, India</a>
+           </li>
+
+
+
+         </ul>
+
+         <ul class="mt-4 flex gap-3">
+           <li>
+             <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-facebook-f text-[13px] lg:text-[16px] text-black"></i></a>
+           </li>
+
+           <li>
+             <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-twitter text-[13px] lg:text-[16px] text-black"></i></a>
+           </li>
+           <li>
+             <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-instagram text-[13px] lg:text-[16px] text-black"></i></a>
+           </li>
+         </ul>
+       </div>
+     </div>
+
+     <div class="bottom-footer border-t-[rgba(255,255,255,.3)] py-7 border-t ">
+       <p class="text-[#FFFFFF78] text-[14px] text-center ">© 2025 ContentWhale. All rights reserved.</p>
+     </div>
+   </footer>
+
+
+
+  <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    const processSwiper = new Swiper('#process-slider', {
+      loop: true,
+      slidesPerView: 3, // ek time par 3 cards
+      spaceBetween: 20,
+      slidesPerGroup: 1,
+      navigation: {
+        nextEl: '#process-slider .swiper-button-next',
+        prevEl: '#process-slider .swiper-button-prev',
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1.3
+        }, // Mobile
+        768: {
+          slidesPerView: 2
+        }, // Tablet
+        1024: {
+          slidesPerView: 3.8
+        } // Desktop
+      }
+    });
+  </script>
+
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
+  <script>
+    const header = document.getElementById("main-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 30) {
+        header.classList.add("bg-white", "shadow", );
+      } else {
+        header.classList.remove("bg-white", "shadow");
+      }
+    });
+  </script>
+</body>
+
+</html>

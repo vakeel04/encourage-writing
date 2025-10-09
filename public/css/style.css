@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Lexend:wght@100..900&family=Manrope:wght@200..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Lexend:wght@100..900&family=Manrope:wght@200..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
+.fa,
+.fas,
+.far,
+.fal,
+.fab {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important; /* solid icons ke liye */
+}
+
+.fab {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Jost", sans-serif !important;
+}
+
+#reviewSwiper .swiper-button-next::after {
+  content: "";
+}
+
+.faq-content {
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+button.active svg {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none !important;
+}
+
+.nextStep {
+  position: relative;
+}
+
+.nextStep::after {
+  content: "";
+  height: 100%;
+  width: 1px;
+  border: 1px dashed black;
+  position: absolute;
+  bottom: -100%;
+  left: 50%;
+  z-index: -99;
+}

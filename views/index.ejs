@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encourage Writing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Default Swiper arrows hide */
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      display: none !important;
+      content: "" !important;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="main-header" class="px-6 md:px-10 py-4 fixed flex justify-between items-center top-0 left-0 w-full z-50 transition-all duration-300">
+    <!-- Logo -->
+    <a href="/index.html">
+      <img class="w-[45px] md:w-[55px] rounded-full" src="./images/logo.jpg" alt="Logo">
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex font-medium gap-7">
+      <li><a href="/" class="hover:text-gray-600">Home</a></li>
+      <li><a href="/blog" class="hover:text-gray-600">Our Work</a></li>
+      <li><a href="/service" class="hover:text-gray-600">Services</a></li>
+      <li><a href="/about-us" class="hover:text-gray-600">About Us</a></li>
+      <li><a href="/contact" class="hover:text-gray-600">Contact</a></li>
+    </ul>
+
+    <!-- Right Side (Desktop) -->
+    <div class="hidden md:flex gap-4 items-center">
+      <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
+        <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
+      </button>
+      <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
+        Let's Talk
+      </a>
+    </div>
+
+    <!-- Hamburger Icon (Mobile) -->
+    <button id="menu-btn" class="md:hidden text-2xl">
+      <img class="w-[25px]" src="./images/menu.svg" alt="">
+    </button>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 md:hidden">
+      <ul class="flex flex-col gap-4 font-medium">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Our Work</a></li>
+        <li><a href="/service">Services</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+
+      <div class="flex gap-4 items-center mt-4">
+        <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
+          <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
+        </button>
+        <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
+          Let's Talk
+        </a>
+      </div>
+    </div>
+  </header>
+  <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[100px] mt-20 px-4 lg:px-0">
+    <div class="text-center">
+      <h2 class="lg:text-[44px] text-[20px] font-medium capitalize lg:w-[57%] mx-auto lg:leading-[50px] hero-heading">Your Trusted partner for high-quality content that inspires, engages & converts</h2>
+
+      <p class="font-medium lg:text-[17px] text-[12px] lg:w-[39%] mx-auto">From blogs to website copy, our expert writers create content that strengthens your brand and fuels business success</p>
+
+      <div class="lg:mt-7 mt-3">
+        <a href="#" class="px-6 rounded-full border-black border mr-1  bg-black text-white lg:text-[15px] text-[12px] font-medium py-1.5 lg:py-2.5">Get Stated
+          <i class="fa-solid fa-arrow-right icon text-[10px] lg:text-[12px]"></i>
+        </a>
+
+        <a href="#" class="px-6 rounded-full border-black border text-black lg:text-[15px] text-[12px] font-medium py-1.5 lg:py-2.5">Hire Us </a>
+      </div>
+    </div>
+  </section>
+
+  <section class=" -mt-10">
+
+    <div class="grid lg:grid-cols-4 grid-cols-2 lg:auto-rows-[400px] auto-rows-[240px] gap-2 ">
+      <div class="col-span-1 h-full ">
+        <img class="w-full h-full object-cover rounded-xl" src="../images/1.jpg" alt="">
+      </div>
+
+      <div class="col-span-1 h-full ">
+        <div class="lg:h-[15%] h-[18%] lg:pt-1 flex gap-2 items-center">
+          <ul class="flex ">
+            <li class="border-white  border rounded-full">
+              <img class="lg:w-9 w-7 object-cover lg:h-9 h-7 rounded-full " src="./images/man.jpg" alt="">
+            </li>
+
+            <li class="-ml-3 border-white border rounded-full">
+              <img class="lg:w-9 w-7 object-cover lg:h-9 h-7 rounded-full " src="./images/man2.jpg" alt="">
+            </li>
+
+            <li class="-ml-3 border-white  border rounded-full">
+              <img class="lg:w-9 w-7 object-cover lg:h-9 h-7 rounded-full " src="./images/woman.jpg" alt="">
+            </li>
+          </ul>
+
+          <p class="font-medium lg:text-[16px] text-[12px]">100+ Client Served</p>
+        </div>
+        <img class="w-full lg:h-[85%] h-[82%] object-cover rounded-xl" src="../images/2.jpg" alt="">
+      </div>
+
+      <div class="col-span-1 h-full ">
+        <img class="w-full h-full object-cover rounded-xl" src="../images/3.jpg" alt="">
+      </div>
+
+      <div class="col-span-1 h-full ">
+        <div class="lg:h-[15%] h-[18%] lg:pt-4 pt-2 pl-3 ">
+          <ul class="flex gap-2">
+            <li>
+              <a href="#" class="bg-[#f3f3f3] lg:h-[30px] h-[25px] w-[25px] lg:w-[30px] rounded-full flex justify-center items-center">
+                <i class="fa-brands fa-facebook-f lg:text-[13px] text-[11px]"></i>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="#" class="bg-[#f3f3f3] lg:h-[30px] h-[25px] w-[25px] lg:w-[30px] rounded-full flex justify-center items-center">
+                <i class="fa-brands fa-twitter lg:text-[13px] text-[11px]"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="bg-[#f3f3f3] lg:h-[30px] h-[25px] w-[25px] lg:w-[30px] rounded-full flex justify-center items-center">
+                <i class="fa-brands fa-instagram lg:text-[13px] text-[11px]"></i>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        <img class="w-full lg:h-[85%] h-[82%] object-cover rounded-xl" src="../images/4.jpg" alt="">
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-12 lg:px-14 px-4 lg:mb-8">
+    <div class="text-center">
+      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
+        <div class="flex items-center gap-2 text-[12px]">
+          <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
+          <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
+        </div>
+      </div>
+
+
+      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Transparent Pricing Made Simple</h2>
+      <p class="lg:text-[18px] text-[12px] font-medium">Quickly calculate your content cost in seconds — no hidden fees, no surprises.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 border-[#C7C7C7] border rounded-[20px] mt-10 lg:px-8 px-4 lg:py-6 py-4">
+      <div class="col-span-1">
+        <h2 class="lg:text-[22px] text-[18px] font-medium">Calculate your pricing for content</h2>
+        <div class="mt-4">
+          <label class="font-medium lg:text-[17px] text-[15px]">Content Type</label>
+
+          <div class="relative w-full">
+            <select class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
+              <option value="">Service Type</option>
+
+            </select>
+
+            <!-- Custom Icon -->
+            <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+              <i class="fa-solid fa-angle-down text-[15px] text-gray-500"></i>
+            </span>
+          </div>
+
+          <div class="mt-4">
+            <label class="font-medium lg:text-[17px] text-[15px]">Quantity</label>
+            <input value="500" type="text" class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
+          </div>
+
+          <div class="mt-4">
+            <p class="font-medium lg:text-[17px] text-[15px]">Your Price</p>
+            <p class="font-medium lg:text-[36px] text-[26px]">₹ 0.00 <span class="lg:text-[16px] text-[13px]">Rupees</span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:pl-16 mt-5 lg:mt-0">
+        <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4  lg:py-6 rounded-xl">
+          <h3 class="lg:text-[22px] text-[18px] font-medium">What’s Included</h3>
+
+          <ul class="mt-4 space-y-2.5">
+            <li class="flex items-center gap-2.5">
+              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
+              <span class="font-medium lg:text-[16px] text-[14px]">SEO-Optimization</span>
+            </li>
+
+            <li class="flex items-center gap-2.5">
+              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
+              <span class="font-medium lg:text-[16px] text-[14px]">0% Plagiarism [With Report]</span>
+            </li>
+
+            <li class="flex items-center gap-2.5">
+              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
+              <span class="font-medium lg:text-[16px] text-[14px]">100% AI-free content</span>
+            </li>
+
+            <li class="flex items-center gap-2.5">
+              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
+              <span class="font-medium lg:text-[16px] text-[14px]">Free revisions</span>
+            </li>
+
+            <li class="flex items-center gap-2.5">
+              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
+              <span class="font-medium lg:text-[16px] text-[14px]">48 hours delivery</span>
+            </li>
+          </ul>
+
+          <div class="mt-4">
+            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">Get Started</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="lg:py-12 py-10 bg-black lg:px-14 px-4">
+    <div class="text-center">
+      <div class="border-[#fff] border bg-white  lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
+        <div class="flex items-center gap-2 text-[12px] ">
+          <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
+          <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
+        </div>
+      </div>
+
+
+      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2 text-white">Our Achievements</h2>
+      <p class="lg:text-[18px] text-[12px] font-medium text-white">Trusted by businesses worldwide, we deliver impactful content backed by results and numbers.</p>
+    </div>
+
+    <div class="grid grid-cols-3 lg:gap-10 gap-2 lg:mt-10 mt-5">
+      <div class="col-span-1 bg-[#F5F5F5] py-6 text-center rounded-xl">
+        <h2 class="font-medium lg:text-[38px] text-[24px]">150+</h2>
+        <p class="text-gray-600 font-medium lg:text-[15px] text-[13px]">Happy Clients</p>
+      </div>
+
+      <div class="col-span-1 bg-[#F5F5F5] py-6 text-center rounded-xl">
+        <h2 class="font-medium lg:text-[38px] text-[24px]">100+</h2>
+        <p class="text-gray-600 font-medium lg:text-[15px] text-[13px]">Client Served</p>
+      </div>
+
+      <div class="col-span-1 bg-[#F5F5F5] py-6 text-center rounded-xl">
+        <h2 class="font-medium lg:text-[38px] text-[24px]">4.8/5 </h2>
+        <p class="text-gray-600 font-medium lg:text-[15px] text-[13px]">Expert Writers</p>
+      </div>
+    </div>
+
+    <div class="mt-12 lg:px-12 px-4">
+      <img src="./images/Clients.png" alt="">
+    </div>
+  </section>
+
+
+  <section class="lg:py-12 py-10  lg:px-14 px-4 ">
+    <div class="text-center">
+      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
+        <div class="flex items-center gap-2 text-[12px]">
+          <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
+          <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
+        </div>
+      </div>
+
+      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Our Services</h2>
+      <p class="lg:text-[18px] text-[12px] font-medium">End-to-end content solutions for every stage of the funnel.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 grid-cols-2 gap-4 mt-10">
+      <div class="col-span-1 rounded-b-[20px] shadow-lg">
+        <div class="relative">
+          <img src="./images/service1.png" class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" alt="">
+          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+          </div>
+        </div>
+
+        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium">Blog Writing</h3>
+          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
+
+          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 rounded-b-[20px] shadow-lg">
+        <div class="relative">
+          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service2.png" alt="">
+          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+          </div>
+        </div>
+
+        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium">Article Writing</h3>
+          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
+
+          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 rounded-b-[20px] shadow-lg">
+        <div class="relative">
+          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service3.png" alt="">
+          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+          </div>
+        </div>
+
+        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium">SEO Content Writing</h3>
+          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
+
+          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:mt-2 rounded-b-[20px] shadow-lg">
+        <div class="relative">
+          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service4.png" alt="">
+          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+          </div>
+        </div>
+
+        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium">Case Study Writing</h3>
+          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
+
+          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 mt-2 rounded-b-[20px] shadow-lg">
+        <div class="relative">
+          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service5.png" alt="">
+          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+          </div>
+        </div>
+
+        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium">Website Content Writing</h3>
+          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
+
+          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
+        </div>
+      </div>
+
+      <div class="col-span-1 mt-2 rounded-b-[20px] shadow-lg">
+        <div class="relative">
+          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service6.png" alt="">
+          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+          </div>
+        </div>
+
+        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium">Ebook Writing</h3>
+          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
+
+          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7 ">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div class="col-span-1">
+        <!-- Slider main container -->
+        <div class="swiper auto-swiper ">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+          </div>
+
+
+        </div>
+
+        <!-- Slider main container -->
+        <div class="swiper auto-swiper2 mt-5">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
+          </div>
+
+
+        </div>
+
+        <!-- Slider main container -->
+        <div class="swiper auto-swiper3 mt-5 ">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
+            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:pl-10">
+        <p class="lg:text-[14px]  text-[12px]">Trusted by Leading Brands</p>
+        <h2 class="lg:text-[32px] text-[20px] font-semibold">A Trusted Content Partner</h2>
+        <p class="lg:text-[16px] text-[13px] font-medium">Join 500+ businesses worldwide who rely on us for impactful, SEO-driven content delivered with quality and consistency.</p>
+
+        <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">Work With US</a>
+      </div>
+  </section>
+
+  <section class="lg:py-14 py-8 ">
+    <div class="text-center">
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">What our Customer says</h2>
+    </div>
+
+
+
+    <div class="lg:pl-12 pl-4 pr-2  relative">
+
+      <!-- Custom Navigation -->
+      <div class="hidden lg:block">
+        <div class="swiper-button-next absolute !text-black !-top-8 !right-5">
+          <i class="fa-solid fa-arrow-right text-2xl"></i>
+        </div>
+        <div class="swiper-button-prev absolute !text-black  !-top-8 !left-10">
+          <i class="fa-solid fa-arrow-left text-2xl"></i>
+        </div>
+      </div>
+      <!-- Swiper Container -->
+      <div id="reviewSwiper" class="swiper mySwiper lg:mt-10 mt-6">
+        <div class="swiper-wrapper">
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+            <div class="flex justify-between items-center">
+              <div class="flex gap-3 items-center">
+                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
+                <div>
+                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
+                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-star"></i>
+                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
+              </div>
+
+            </div>
+
+            <p class="text-[#00000066] font-medium text-[13px] mt-5">
+              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
+            </p>
+
+
+          </div>
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+            <div class="flex justify-between items-center">
+              <div class="flex gap-3 items-center">
+                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
+                <div>
+                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
+                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-star"></i>
+                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
+              </div>
+
+            </div>
+
+            <p class="text-[#00000066] font-medium text-[13px] mt-5">
+              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
+            </p>
+
+
+          </div>
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+            <div class="flex justify-between items-center">
+              <div class="flex gap-3 items-center">
+                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
+                <div>
+                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
+                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-star"></i>
+                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
+              </div>
+
+            </div>
+
+            <p class="text-[#00000066] font-medium text-[13px] mt-5">
+              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
+            </p>
+
+
+          </div>
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+            <div class="flex justify-between items-center">
+              <div class="flex gap-3 items-center">
+                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
+                <div>
+                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
+                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-star"></i>
+                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
+              </div>
+
+            </div>
+
+            <p class="text-[#00000066] font-medium text-[13px] mt-5">
+              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
+            </p>
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="lg:py-20 py-10 mt-8  bg-[#F8F8F8] px-4 lg:px-20">
+    <div class="text-center">
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">Insights & Ideas</h2>
+      <p class="lg:text-[18px] text-[13px] font-medium">Stay ahead with expert tips on SEO, content strategy, and digital growth.</p>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="swiper myInsightSwiper lg:mt-10 mt-6">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide col-span-1">
+          <div class="relative">
+            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+              <img src="./images/share.png" alt="">
+            </div>
+          </div>
+          <div class="py-1">
+            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
+            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
+            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide col-span-1">
+          <div class="relative">
+            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+              <img src="./images/share.png" alt="">
+            </div>
+          </div>
+          <div class="py-1">
+            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
+            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
+            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
+          </div>
+        </div>
+        <div class="swiper-slide col-span-1">
+          <div class="relative">
+            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+              <img src="./images/share.png" alt="">
+            </div>
+          </div>
+          <div class="py-1">
+            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
+            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
+            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
+          </div>
+        </div>
+        <div class="swiper-slide col-span-1">
+          <div class="relative">
+            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+              <img src="./images/share.png" alt="">
+            </div>
+          </div>
+          <div class="py-1">
+            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
+            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
+            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
+          </div>
+        </div>
+        <div class="swiper-slide col-span-1">
+          <div class="relative">
+            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+              <img src="./images/share.png" alt="">
+            </div>
+          </div>
+          <div class="py-1">
+            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
+            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
+            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </section>
+
+  <section class="px-4 lg:px-20 lg:py-14 py-8">
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">Frequently Asked Questions</h2>
+      <p class="text-gray-500 mt-1 lg:text-[15px] text-[11px] lg:w-[60%] font-medium mx-auto">
+        As we couldn't find anything on the market that checked those boxes, we decided to build our own recruiting software. Our tool is easy to set up.
+      </p>
+    </div>
+
+    <!-- FAQ Grid -->
+    <div class="grid md:grid-cols-1 lg:gap-6 gap-3">
+      <div class="lg:flex items-baseline gap-6">
+        <!-- Item 1 -->
+        <div class="border rounded-lg shadow-sm  cursor-pointer   flex-1">
+          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+            What industries do you specialize in?
+            <span class="ml-2 transform transition-transform">&#9662;</span>
+          </button>
+          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+            We work across multiple industries providing tailored solutions to each client’s needs.
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="border rounded-lg cursor-pointer mt-3 lg:mt-0 shadow-sm flex-1">
+          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+            How involved will I be in the process?
+            <span class="ml-2 transform transition-transform">&#9662;</span>
+          </button>
+          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+            We value collaboration. You’ll be involved in key decisions, reviews, and approvals, while we manage execution.
+          </div>
+        </div>
+      </div>
+      <div class="lg:flex items-baseline gap-6">
+        <!-- Item 3 -->
+        <div class="border rounded-lg shadow-sm cursor-pointer flex-1">
+          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+            Do you handle content creation as well?
+            <span class="ml-2 transform transition-transform">&#9662;</span>
+          </button>
+          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+            Yes, we offer complete content creation services including copywriting, graphic design, video production, and photography.
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="border rounded-lg shadow-sm mt-3 lg:mt-0 cursor-pointer flex-1">
+          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+            How long does it take to see results?
+            <span class="ml-2 transform transition-transform">&#9662;</span>
+          </button>
+          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+            Timelines vary, but most clients start seeing measurable results within 3-6 months.
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:flex items-baseline gap-6">
+        <!-- Item 5 -->
+        <div class="border flex-1 rounded-lg shadow-sm cursor-pointer">
+          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+            Do you offer free consultations?
+            <span class="ml-2 transform transition-transform">&#9662;</span>
+          </button>
+          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+            Yes, we provide a free initial consultation to understand your needs and suggest the best solutions.
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="border flex-1 mt-3 lg:mt-0 rounded-lg shadow-sm !cursor-pointer">
+          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+            What’s your pricing model?
+            <span class="ml-2 transform transition-transform">&#9662;</span>
+          </button>
+          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+            Our pricing is flexible depending on the project scope — we offer hourly, retainer, and package-based models.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <footer class="lg:pt-8 pt-6 bg-black text-white">
+    <div class="grid lg:grid-cols-6 lg:px-14 px-7  lg:mb-20 mb-10 lg:gap-12 gap-7">
+      <div class="col-span-2">
+        <img src="./images/logo.jpg" alt="" class="w-[120px] -ml-8">
+
+        <p class="text-white lg:text-[14px] text-[13px] lg:pr-10 -mt-8">Powerful words, impactful stories. We craft SEO-friendly content that builds trust and drives growth.</p>
+      </div>
+
+      <div class="col-span-1 lg:mt-5 mt-3">
+        <h2 class="font-medium lg:text-[17px] text-[15px]">Quick Links</h2>
+
+        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+          <li>
+            <a href="/about-us.html">About Us</a>
+          </li>
+
+          <li>
+            <a href="/services.html">Services</a>
+          </li>
+
+
+          <li>
+            <a href="/blogs.html">Blog</a>
+          </li>
+
+
+          <li>
+            <a href="/contact.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-1 lg:mt-5 mt-3">
+        <h2 class="font-medium lg:text-[17px] text-[15px]">Services</h2>
+
+        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+          <li>
+            <a href="/service-details.html">Blog & Article Writing</a>
+          </li>
+
+          <li>
+            <a href="/service-details.html">Website Content</a>
+          </li>
+
+
+          <li>
+            <a href="/service-details.html">SEO Content</a>
+          </li>
+
+
+          <li>
+            <a href="/service-details.html">Copywriting</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-2 lg:mt-5 mt-3 lg:pl-10">
+        <h2 class="font-medium lg:text-[17px] text-[15px]">Get in Touch</h2>
+
+        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+          <li>
+            <a href="#"><i class="fa-solid fa-envelope"></i> info@contentwhale.com</a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa-solid fa-phone text-[13px] lg:text-[15px]"></i> +91 98765 43210</a>
+          </li>
+
+
+          <li>
+            <a href="#"><i class="fa-solid fa-location-dot text-[13px] lg:text-[15px]"></i> Jaipur, Rajasthan, India</a>
+          </li>
+
+
+
+        </ul>
+
+        <ul class="mt-4 flex gap-3">
+          <li>
+            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-facebook-f text-[13px] lg:text-[16px] text-black"></i></a>
+          </li>
+
+          <li>
+            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-twitter text-[13px] lg:text-[16px] text-black"></i></a>
+          </li>
+          <li>
+            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-instagram text-[13px] lg:text-[16px] text-black"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-footer border-t-[rgba(255,255,255,.3)] py-7 border-t ">
+      <p class="text-[#FFFFFF78] text-[14px] text-center ">© 2025 ContentWhale. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+  </script>
+  <script>
+    const swiper = new Swiper('.auto-swiper', {
+      loop: true, // infinite loop
+      spaceBetween: 20,
+      autoplay: {
+        delay: 2000, // 2 sec per slide
+      },
+      slidesPerView: 3.8, // ek time par 3 images dikhe
+      slidesPerGroup: 1, // ek slide me 1 hi image move ho
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+    });
+  </script>
+
+  <script>
+    const swiper2 = new Swiper('.auto-swiper2', {
+      loop: true,
+      spaceBetween: 20,
+
+      autoplay: {
+        delay: 2000,
+        reverseDirection: true
+      },
+      slidesPerView: 3.4,
+      slidesPerGroup: 1,
+    });
+  </script>
+
+  <script>
+    const swiper3 = new Swiper('.auto-swiper3', {
+      loop: true,
+      spaceBetween: 20,
+      autoplay: {
+        delay: 2000,
+      },
+      slidesPerView: 3.6,
+      slidesPerGroup: 1,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+    });
+  </script>
+
+  <script>
+    new Swiper("#reviewSwiper", {
+      slidesPerView: 1, // default (mobile)
+      spaceBetween: 20,
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: { // tablet
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: { // medium devices
+          slidesPerView: 2,
+          spaceBetween: 25,
+        },
+        1024: { // desktop
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+      },
+    });
+  </script>
+
+
+  <script>
+    const insightSwiper = new Swiper(".myInsightSwiper", {
+      slidesPerView: 4,
+      spaceBetween: 50,
+      loop: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 15
+        }, // mobile
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        }, // tablet
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 25
+        }, // small desktop
+        1280: {
+          slidesPerView: 4,
+          spaceBetween: 50
+        }, // large desktop
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      },
+    });
+  </script>
+
+  <script>
+    function toggleFAQ(button) {
+      const content = button.nextElementSibling;
+      const arrow = button.querySelector("span");
+
+      if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        arrow.classList.add("rotate-180");
+      } else {
+        content.classList.add("hidden");
+        arrow.classList.remove("rotate-180");
+      }
+    }
+  </script>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
+  <script>
+    const header = document.getElementById("main-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("bg-white", "shadow");
+      } else {
+        header.classList.remove("bg-white", "shadow");
+      }
+    });
+  </script>
+
+</body>
+
+</html>
