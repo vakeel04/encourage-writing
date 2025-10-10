@@ -4,7 +4,7 @@ const contactUsSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: Number,},
-    service_type: { type: String,enum:[""]},
+    service_type: { type: String,enum:["Digital Marketing","UI/UX Design","Web Development"]},
     message: { type:String,},
     meta_title: { type: String },
     meta_description: { type: String },

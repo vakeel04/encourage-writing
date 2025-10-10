@@ -3,13 +3,27 @@ const Team = require("../models/teamModel.js");
  
 const createTeam = async (req, res) => {
     try {
-        const team = await Team.create(req.body);
-        if (team)
-            return res.status(201).send({ status: true, message: "Team member created successfully", data: team });
+        console.log(req.files);  // For debugging
 
-        return res.status(400).send({ status: false, message: "Failed to create team member" });
+        // Set image paths if files were uploaded
+        if (req.files) {
+            if (req.files.image && req.files.image.length > 0) {
+                req.body.image = "uploads/" + req.files.image[0].filename;
+            }
+            if (req.files.og_image && req.files.og_image.length > 0) {
+                req.body.og_image = "uploads/" + req.files.og_image[0].filename;
+            }
+        }
+
+        if (!req.body.image) {
+            return res.status(400).json({ status: false, message: "Icon is required" });
+        }
+
+        const team = await Team.create(req.body);
+        return res.status(201).json({ status: true, message: "Team member created successfully", data: team });
+
     } catch (error) {
-        res.status(400).send({ status: false, message: error.message });
+        res.status(400).json({ status: false, message: error.message });
     }
 };
 

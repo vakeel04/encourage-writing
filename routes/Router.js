@@ -11,6 +11,15 @@ const purposeRouter = require("./purposeRouter")
 const serviceRouter = require("./serviceRouter")
 const teamRouter = require("./teamRouter")
 const userRouter = require("./userRouter")
+const visionMissionRouter = require("./visionMissionRouter")
+const ideasRouter = require("./ideasRouter")
+const bottomRouter = require("./bottomRouter")
+const partnerRouter = require("./partnerRouter")
+const contentPricingRouter = require("./contentPricingRouter")
+
+ 
+
+
 
  
 const Router = express()
@@ -27,6 +36,11 @@ Router.use("/purpose",purposeRouter)
 Router.use("/service",serviceRouter)
 Router.use("/team",teamRouter)
 Router.use("/user",userRouter)
+Router.use("/vision-mission",visionMissionRouter)
+Router.use("/ideas",ideasRouter)
+Router.use("/bottom",bottomRouter)
+Router.use("/partner",partnerRouter)
+Router.use("/content-pricing",contentPricingRouter)
 
  
 module.exports = Router

@@ -1,12 +1,14 @@
 const mongoose = require("mongoose")
 
 const ideasSchema = new mongoose.Schema({
-    heading: { type: String, required: true },
-    subHeading: { type: String},
+    title: { type: String, required: true },
+    subTitle: { type: String},
     detail:[{
         title: { type: String, required: true },
         description: { type: String},
-        image: { type: String},}
+        image: { type: String},
+        date: { type: String},
+      }
     ],
     meta_title: { type: String },
     meta_description: { type: String },

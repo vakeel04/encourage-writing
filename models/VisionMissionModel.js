@@ -3,8 +3,8 @@ const mongoose = require("mongoose")
 const VisionMissionSchema = new mongoose.Schema({
     heading: { type: String, required: true },
     subHeading: { type: String, required: true },
-    title: { type: String},
-    description: {type:String},
+    OurVision: { type: String},
+    OurMission: {type:String},
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },
