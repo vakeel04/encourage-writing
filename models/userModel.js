@@ -1,24 +1,23 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require('dotenv').config()
 
 const userSchemas = new mongoose.Schema({
   fullName: { type: String },
   email: {
     type: String,
     unique: true,
-    required: function() { return this.loginType === "email" || this.loginType === "google"; },
   },
   number: {
     type: String,
     validate: {
       validator: v => /^\d{10}$/.test(v),
-      message: props => `${props.value} is not a valid 10-digit phone number!`
     },
   },
   password: {
     type: String,
-    required: function() { return this.loginType === "email"; }
+   
   },
     address: { type: String, required: false },
     is_delete: { type: Boolean, default: false },

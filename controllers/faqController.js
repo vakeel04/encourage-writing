@@ -7,7 +7,6 @@ const createFAQ = async (req, res) => {
     if (req.files && req.files['og_image']) {
       req.body.og_image = "uploads/" + req.files['og_image'][0].filename;
     }
-
     const faq = await FAQ.create(req.body);
     if (faq)
       return res.status(201).send({ status: true, message: "FAQ created successfully", data: faq });

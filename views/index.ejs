@@ -73,9 +73,9 @@
   </header>
   <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[100px] mt-20 px-4 lg:px-0">
     <div class="text-center">
-      <h2 class="lg:text-[44px] text-[20px] font-medium capitalize lg:w-[57%] mx-auto lg:leading-[50px] hero-heading">Your Trusted partner for high-quality content that inspires, engages & converts</h2>
+      <h2 class="lg:text-[44px] text-[20px] font-medium capitalize lg:w-[57%] mx-auto lg:leading-[50px] hero-heading"><%= data?.heroSection[0]?.title %></h2>
 
-      <p class="font-medium lg:text-[17px] text-[12px] lg:w-[39%] mx-auto">From blogs to website copy, our expert writers create content that strengthens your brand and fuels business success</p>
+      <p class="font-medium lg:text-[17px] text-[12px] lg:w-[39%] mx-auto"><%= data?.heroSection[0]?.subTitle %></p>
 
       <div class="lg:mt-7 mt-3">
         <a href="#" class="px-6 rounded-full border-black border mr-1  bg-black text-white lg:text-[15px] text-[12px] font-medium py-1.5 lg:py-2.5">Get Stated
@@ -86,66 +86,21 @@
       </div>
     </div>
   </section>
-
-  <section class=" -mt-10">
-
-    <div class="grid lg:grid-cols-4 grid-cols-2 lg:auto-rows-[400px] auto-rows-[240px] gap-2 ">
-      <div class="col-span-1 h-full ">
-        <img class="w-full h-full object-cover rounded-xl" src="../images/1.jpg" alt="">
-      </div>
-
-      <div class="col-span-1 h-full ">
-        <div class="lg:h-[15%] h-[18%] lg:pt-1 flex gap-2 items-center">
-          <ul class="flex ">
-            <li class="border-white  border rounded-full">
-              <img class="lg:w-9 w-7 object-cover lg:h-9 h-7 rounded-full " src="./images/man.jpg" alt="">
-            </li>
-
-            <li class="-ml-3 border-white border rounded-full">
-              <img class="lg:w-9 w-7 object-cover lg:h-9 h-7 rounded-full " src="./images/man2.jpg" alt="">
-            </li>
-
-            <li class="-ml-3 border-white  border rounded-full">
-              <img class="lg:w-9 w-7 object-cover lg:h-9 h-7 rounded-full " src="./images/woman.jpg" alt="">
-            </li>
-          </ul>
-
-          <p class="font-medium lg:text-[16px] text-[12px]">100+ Client Served</p>
-        </div>
-        <img class="w-full lg:h-[85%] h-[82%] object-cover rounded-xl" src="../images/2.jpg" alt="">
-      </div>
-
-      <div class="col-span-1 h-full ">
-        <img class="w-full h-full object-cover rounded-xl" src="../images/3.jpg" alt="">
-      </div>
-
-      <div class="col-span-1 h-full ">
-        <div class="lg:h-[15%] h-[18%] lg:pt-4 pt-2 pl-3 ">
-          <ul class="flex gap-2">
-            <li>
-              <a href="#" class="bg-[#f3f3f3] lg:h-[30px] h-[25px] w-[25px] lg:w-[30px] rounded-full flex justify-center items-center">
-                <i class="fa-brands fa-facebook-f lg:text-[13px] text-[11px]"></i>
-              </a>
-            </li>
-
-
-            <li>
-              <a href="#" class="bg-[#f3f3f3] lg:h-[30px] h-[25px] w-[25px] lg:w-[30px] rounded-full flex justify-center items-center">
-                <i class="fa-brands fa-twitter lg:text-[13px] text-[11px]"></i>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="bg-[#f3f3f3] lg:h-[30px] h-[25px] w-[25px] lg:w-[30px] rounded-full flex justify-center items-center">
-                <i class="fa-brands fa-instagram lg:text-[13px] text-[11px]"></i>
-              </a>
-            </li>
-          </ul>
-
-        </div>
-        <img class="w-full lg:h-[85%] h-[82%] object-cover rounded-xl" src="../images/4.jpg" alt="">
-      </div>
-
+  <section class="-mt-10">
+    <div class="grid lg:grid-cols-4 grid-cols-2 lg:auto-rows-[400px] auto-rows-[240px] gap-2">
+  
+      <% if (data && data.heroSection && data.heroSection.length > 0 && data.heroSection[0].images && data.heroSection[0].images.length > 0) { %>
+  
+        <% data.heroSection[0].images.forEach((img) => { %>
+          <div class="col-span-1 h-full">
+            <img class="w-full h-full object-cover rounded-xl" src="<%= img %>" alt="Hero Image">
+          </div>
+        <% }) %>
+  
+      <% } else { %>
+        <p class="col-span-4 text-center text-gray-400">No images available.</p>
+      <% } %>
+  
     </div>
   </section>
 
@@ -159,8 +114,8 @@
       </div>
 
 
-      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Transparent Pricing Made Simple</h2>
-      <p class="lg:text-[18px] text-[12px] font-medium">Quickly calculate your content cost in seconds — no hidden fees, no surprises.</p>
+      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2"><%= data?.contentPricing?.heading %></h2>
+      <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.contentPricing?.subHeading %></p>
     </div>
 
     <div class="grid lg:grid-cols-2 border-[#C7C7C7] border rounded-[20px] mt-10 lg:px-8 px-4 lg:py-6 py-4">
@@ -195,42 +150,30 @@
       </div>
 
       <div class="col-span-1 lg:pl-16 mt-5 lg:mt-0">
-        <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4  lg:py-6 rounded-xl">
-          <h3 class="lg:text-[22px] text-[18px] font-medium">What’s Included</h3>
-
+        <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4 lg:py-6 rounded-xl">
+          <h3 class="lg:text-[22px] text-[18px] font-medium"><%= data.contentPricing.title %></h3>
+      
           <ul class="mt-4 space-y-2.5">
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">SEO-Optimization</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">0% Plagiarism [With Report]</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">100% AI-free content</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">Free revisions</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">48 hours delivery</span>
-            </li>
+            <% if (data.contentPricing && data.contentPricing && data.contentPricing.detail) { %>
+              <% data.contentPricing.detail.forEach(item => { %>
+                <li class="flex items-center gap-2.5">
+                  <img class="lg:w-[24px] w-[20px]" src="/images/check.png" alt="check">
+                  <span class="font-medium lg:text-[16px] text-[14px]"><%= item %></span>
+                </li>
+              <% }) %>
+            <% } else { %>
+              <p class="text-gray-400 text-sm">No items available.</p>
+            <% } %>
           </ul>
-
+      
           <div class="mt-4">
-            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">Get Started</a>
-
+            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">
+              Get Started
+            </a>
           </div>
         </div>
       </div>
+      
 
     </div>
   </section>
@@ -245,23 +188,23 @@
       </div>
 
 
-      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2 text-white">Our Achievements</h2>
-      <p class="lg:text-[18px] text-[12px] font-medium text-white">Trusted by businesses worldwide, we deliver impactful content backed by results and numbers.</p>
+      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2 text-white"><%= data.achievement.title %></h2>
+      <p class="lg:text-[18px] text-[12px] font-medium text-white"><%= data.achievement.subTitle %></p>
     </div>
 
     <div class="grid grid-cols-3 lg:gap-10 gap-2 lg:mt-10 mt-5">
       <div class="col-span-1 bg-[#F5F5F5] py-6 text-center rounded-xl">
-        <h2 class="font-medium lg:text-[38px] text-[24px]">150+</h2>
+        <h2 class="font-medium lg:text-[38px] text-[24px]"><%= data.achievement.happy_clients %></h2>
         <p class="text-gray-600 font-medium lg:text-[15px] text-[13px]">Happy Clients</p>
       </div>
 
       <div class="col-span-1 bg-[#F5F5F5] py-6 text-center rounded-xl">
-        <h2 class="font-medium lg:text-[38px] text-[24px]">100+</h2>
+        <h2 class="font-medium lg:text-[38px] text-[24px]"><%= data.achievement.happy_serveds %></h2>
         <p class="text-gray-600 font-medium lg:text-[15px] text-[13px]">Client Served</p>
       </div>
 
       <div class="col-span-1 bg-[#F5F5F5] py-6 text-center rounded-xl">
-        <h2 class="font-medium lg:text-[38px] text-[24px]">4.8/5 </h2>
+        <h2 class="font-medium lg:text-[38px] text-[24px]"><%= data.achievement.expert_writers %></h2>
         <p class="text-gray-600 font-medium lg:text-[15px] text-[13px]">Expert Writers</p>
       </div>
     </div>
@@ -383,358 +326,208 @@
       </div>
     </div>
   </section>
-
-  <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7 ">
+ 
+  <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      
       <div class="col-span-1">
-        <!-- Slider main container -->
-        <div class="swiper auto-swiper ">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+        <% if (data.partner && data.partner.images && data.partner.images.length > 0) { %>
+  
+          <!-- First Slider -->
+          <div class="swiper auto-swiper">
+            <div class="swiper-wrapper">
+              <% data.partner.images.forEach(img => { %>
+                <div class="swiper-slide">
+                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="<%= img %>" alt="Brand Logo">
+                </div>
+              <% }) %>
+            </div>
           </div>
-
-
-        </div>
-
-        <!-- Slider main container -->
-        <div class="swiper auto-swiper2 mt-5">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
+  
+          <!-- Second Slider -->
+          <div class="swiper auto-swiper2 mt-5">
+            <div class="swiper-wrapper">
+              <% data.partner.images.forEach(img => { %>
+                <div class="swiper-slide">
+                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
+                </div>
+              <% }) %>
+            </div>
           </div>
-
-
-        </div>
-
-        <!-- Slider main container -->
-        <div class="swiper auto-swiper3 mt-5 ">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+  
+          <!-- Third Slider -->
+          <div class="swiper auto-swiper3 mt-5">
+            <div class="swiper-wrapper">
+              <% data.partner.images.forEach(img => { %>
+                <div class="swiper-slide">
+                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
+                </div>
+              <% }) %>
+            </div>
           </div>
-        </div>
+  
+        <% } else { %>
+          <p class="text-gray-400 text-center">No partner logos available.</p>
+        <% } %>
       </div>
-
+  
       <div class="col-span-1 lg:pl-10">
-        <p class="lg:text-[14px]  text-[12px]">Trusted by Leading Brands</p>
-        <h2 class="lg:text-[32px] text-[20px] font-semibold">A Trusted Content Partner</h2>
-        <p class="lg:text-[16px] text-[13px] font-medium">Join 500+ businesses worldwide who rely on us for impactful, SEO-driven content delivered with quality and consistency.</p>
-
-        <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">Work With US</a>
+        <p class="lg:text-[14px] text-[12px]"><%= data.partner.title %></p>
+        <h2 class="lg:text-[32px] text-[20px] font-semibold"><%= data.partner.subtitle %></h2>
+        <p class="lg:text-[16px] text-[13px] font-medium"><%= data.partner.description %></p>
+  
+        <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">
+          Work With Us
+        </a>
       </div>
-  </section>
-
-  <section class="lg:py-14 py-8 ">
-    <div class="text-center">
-      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">What our Customer says</h2>
     </div>
+  </section>
+  
 
-
-
-    <div class="lg:pl-12 pl-4 pr-2  relative">
-
+  <section class="lg:py-14 py-8">
+    <div class="text-center">
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2">What our Customers say</h2>
+    </div>
+  
+    <div class="lg:pl-12 pl-4 pr-2 relative">
+  
       <!-- Custom Navigation -->
       <div class="hidden lg:block">
         <div class="swiper-button-next absolute !text-black !-top-8 !right-5">
           <i class="fa-solid fa-arrow-right text-2xl"></i>
         </div>
-        <div class="swiper-button-prev absolute !text-black  !-top-8 !left-10">
+        <div class="swiper-button-prev absolute !text-black !-top-8 !left-10">
           <i class="fa-solid fa-arrow-left text-2xl"></i>
         </div>
       </div>
+  
       <!-- Swiper Container -->
       <div id="reviewSwiper" class="swiper mySwiper lg:mt-10 mt-6">
         <div class="swiper-wrapper">
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
+  
+          <% if (data && data.customer && data.customer.length > 0) { %>
+            <% data.customer.forEach((review) => { %>
+              <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+                <div class="flex justify-between items-center">
+                  <div class="flex gap-3 items-center">
+                    <img 
+                      class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" 
+                      src="<%= review.image %>" 
+                      alt="<%= review.name %>" 
+                    />
+                    <div>
+                      <h3 class="text-[14px] font-medium"><%= review.name %></h3>
+                      <h3 class="text-[13px] font-medium"><%= review.desination %></h3>
+                    </div>
+                  </div>
+  
+                  <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <p class="font-medium lg:text-[16px] text-[13px]"><%= review.rating %>/5</p>
+                  </div>
                 </div>
+  
+                <p class="text-[#00000066] font-medium text-[13px] mt-5">
+                  <%= review.content %>
+                </p>
               </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
+            <% }) %>
+          <% } else { %>
+            <p class="text-center text-gray-400">No testimonials available.</p>
+          <% } %>
+  
         </div>
-
       </div>
     </div>
   </section>
+  
 
-
-  <section class="lg:py-20 py-10 mt-8  bg-[#F8F8F8] px-4 lg:px-20">
+  <section class="lg:py-20 py-10 mt-8 bg-[#F8F8F8] px-4 lg:px-20">
     <div class="text-center">
-      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">Insights & Ideas</h2>
-      <p class="lg:text-[18px] text-[13px] font-medium">Stay ahead with expert tips on SEO, content strategy, and digital growth.</p>
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2"><%= data.ideas.title %></h2>
+      <p class="lg:text-[18px] text-[13px] font-medium"><%= data.ideas.subTitle %></p>
     </div>
-
+  
     <!-- Swiper Container -->
     <div class="swiper myInsightSwiper lg:mt-10 mt-6">
       <div class="swiper-wrapper">
-
-        <!-- Slide 1 -->
-        <div class="swiper-slide col-span-1">
-          <div class="relative">
-            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
-              <img src="./images/share.png" alt="">
+  
+        <% if (data.ideas.detail && data.ideas.detail.length > 0) { %>
+          <% data.ideas.detail.forEach((item) => { %>
+            <div class="swiper-slide col-span-1">
+              <div class="relative">
+                <img src="/<%= item.image %>" alt="<%= item.title %>" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+                  <img src="/images/share.png" alt="Share">
+                </div>
+              </div>
+              <div class="py-1">
+                <h3 class="text-[14px] font-bold"><%= item.title %></h3>
+                <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1"><%= item.description %></p>
+                <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold"><i class="fa-solid fa-calendar"></i> <%= item.date %></p>
+              </div>
             </div>
-          </div>
-          <div class="py-1">
-            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
-            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
-            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
-          </div>
-        </div>
-
-        <div class="swiper-slide col-span-1">
-          <div class="relative">
-            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
-              <img src="./images/share.png" alt="">
-            </div>
-          </div>
-          <div class="py-1">
-            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
-            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
-            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
-          </div>
-        </div>
-        <div class="swiper-slide col-span-1">
-          <div class="relative">
-            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
-              <img src="./images/share.png" alt="">
-            </div>
-          </div>
-          <div class="py-1">
-            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
-            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
-            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
-          </div>
-        </div>
-        <div class="swiper-slide col-span-1">
-          <div class="relative">
-            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
-              <img src="./images/share.png" alt="">
-            </div>
-          </div>
-          <div class="py-1">
-            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
-            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
-            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
-          </div>
-        </div>
-        <div class="swiper-slide col-span-1">
-          <div class="relative">
-            <img src="./images/11.jpg" alt="" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
-              <img src="./images/share.png" alt="">
-            </div>
-          </div>
-          <div class="py-1">
-            <h3 class="text-[14px] font-bold ">Pack Like a Pro</h3>
-            <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1">Essential packing tips to keep your journey light and hassle-free.</p>
-            <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold "><i class="fa-solid fa-calendar"></i> May 29, 2025</p>
-          </div>
-        </div>
-
-
+          <% }) %>
+        <% } else { %>
+          <p class="text-center text-gray-500 col-span-1">No insights available.</p>
+        <% } %>
+  
       </div>
-
-
     </div>
   </section>
-
+  
   <section class="px-4 lg:px-20 lg:py-14 py-8">
     <!-- Heading -->
     <div class="text-center mb-10">
-      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">Frequently Asked Questions</h2>
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2">
+        <%= data.faq.heading %>
+      </h2>
       <p class="text-gray-500 mt-1 lg:text-[15px] text-[11px] lg:w-[60%] font-medium mx-auto">
-        As we couldn't find anything on the market that checked those boxes, we decided to build our own recruiting software. Our tool is easy to set up.
+        <%= data.faq.subHeading %>
       </p>
     </div>
-
+  
     <!-- FAQ Grid -->
     <div class="grid md:grid-cols-1 lg:gap-6 gap-3">
-      <div class="lg:flex items-baseline gap-6">
-        <!-- Item 1 -->
-        <div class="border rounded-lg shadow-sm  cursor-pointer   flex-1">
-          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
-            What industries do you specialize in?
-            <span class="ml-2 transform transition-transform">&#9662;</span>
-          </button>
-          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
-            We work across multiple industries providing tailored solutions to each client’s needs.
-          </div>
+      <% for (let i = 0; i < data.faq.detail.length; i += 2) { %>
+        <div class="lg:flex items-baseline gap-6">
+          <% if (data.faq.detail[i]) { %>
+            <div class="border rounded-lg shadow-sm cursor-pointer flex-1">
+              <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+                <%= data.faq.detail[i].question %>
+                <span class="ml-2 transform transition-transform">&#9662;</span>
+              </button>
+              <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+                <%= data.faq.detail[i].answer %>
+              </div>
+            </div>
+          <% } %>
+  
+          <% if (data?.faq?.detail[i+1]) { %>
+            <div class="border rounded-lg shadow-sm cursor-pointer flex-1 mt-3 lg:mt-0">
+              <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
+                <%= data.faq.detail[i+1].question %>
+                <span class="ml-2 transform transition-transform">&#9662;</span>
+              </button>
+              <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
+                <%= data.faq.detail[i+1].answer %>
+              </div>
+            </div>
+          <% } %>
         </div>
-
-        <!-- Item 2 -->
-        <div class="border rounded-lg cursor-pointer mt-3 lg:mt-0 shadow-sm flex-1">
-          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
-            How involved will I be in the process?
-            <span class="ml-2 transform transition-transform">&#9662;</span>
-          </button>
-          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
-            We value collaboration. You’ll be involved in key decisions, reviews, and approvals, while we manage execution.
-          </div>
-        </div>
-      </div>
-      <div class="lg:flex items-baseline gap-6">
-        <!-- Item 3 -->
-        <div class="border rounded-lg shadow-sm cursor-pointer flex-1">
-          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
-            Do you handle content creation as well?
-            <span class="ml-2 transform transition-transform">&#9662;</span>
-          </button>
-          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
-            Yes, we offer complete content creation services including copywriting, graphic design, video production, and photography.
-          </div>
-        </div>
-
-        <!-- Item 4 -->
-        <div class="border rounded-lg shadow-sm mt-3 lg:mt-0 cursor-pointer flex-1">
-          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
-            How long does it take to see results?
-            <span class="ml-2 transform transition-transform">&#9662;</span>
-          </button>
-          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
-            Timelines vary, but most clients start seeing measurable results within 3-6 months.
-          </div>
-        </div>
-      </div>
-
-      <div class="lg:flex items-baseline gap-6">
-        <!-- Item 5 -->
-        <div class="border flex-1 rounded-lg shadow-sm cursor-pointer">
-          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
-            Do you offer free consultations?
-            <span class="ml-2 transform transition-transform">&#9662;</span>
-          </button>
-          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
-            Yes, we provide a free initial consultation to understand your needs and suggest the best solutions.
-          </div>
-        </div>
-
-        <!-- Item 6 -->
-        <div class="border flex-1 mt-3 lg:mt-0 rounded-lg shadow-sm !cursor-pointer">
-          <button class="w-full flex justify-between items-center px-3 lg:text-[16px] text-[13px] lg:px-5 lg:py-4 py-2 text-left font-medium text-gray-800" onclick="toggleFAQ(this)">
-            What’s your pricing model?
-            <span class="ml-2 transform transition-transform">&#9662;</span>
-          </button>
-          <div class="lg:px-5 px-3 pb-4 lg:text-[16px] text-[12px] text-gray-600 hidden">
-            Our pricing is flexible depending on the project scope — we offer hourly, retainer, and package-based models.
-          </div>
-        </div>
-      </div>
+      <% } %>
     </div>
-
   </section>
+  
+  <script>
+    function toggleFAQ(btn) {
+      const content = btn.nextElementSibling;
+      const arrow = btn.querySelector("span");
+      content.classList.toggle("hidden");
+      arrow.classList.toggle("rotate-180");
+    }
+  </script>
+  
 
 
   <footer class="lg:pt-8 pt-6 bg-black text-white">

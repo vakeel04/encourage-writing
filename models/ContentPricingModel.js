@@ -3,8 +3,9 @@ const mongoose = require("mongoose")
 const contentPricingSchema = new mongoose.Schema({
     heading: { type: String, required: true },
     subHeading: { type: String, required: true },
-    title: { type: Number,},
+    title: { type: String,},
     detail: [{ type: String,}],
+    usedBy: {type:String,enum:["home","service","service-detail"]},
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },

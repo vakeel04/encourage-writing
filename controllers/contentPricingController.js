@@ -2,11 +2,12 @@ const ContentPricing = require("../models/ContentPricingModel");
 
  
 const createContentPricing = async (req, res) => {
+ 
     try {
+        console.log(req.body);
+        
         const contentPricing = await ContentPricing.create(req.body);
-        if (contentPricing)
-            return res.status(201).send({ status: true, message: "Content Pricing created successfully", data: contentPricing });
-
+        if (contentPricing)return res.status(201).send({ status: true, message: "Content Pricing created successfully", data: contentPricing });
         return res.status(400).send({ status: false, message: "Failed to create content pricing" });
     } catch (error) {
         res.status(400).send({ status: false, message: error.message });

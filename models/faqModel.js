@@ -2,8 +2,10 @@ const mongoose = require("mongoose")
 
 const faqSchema = new mongoose.Schema({
     usedBy: { type: String,enum:["home","service_detail"], required: true },
-    question: { type: String, required: true },
-    answer: { type: String,required: true},
+    heading: { type: String, required: true },
+    subHeading: { type: String, required: true },
+    detail:[{question: { type: String, required: true },
+    answer: { type: String,required: true},}],
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },

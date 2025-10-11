@@ -16,12 +16,6 @@ const ideasRouter = require("./ideasRouter")
 const bottomRouter = require("./bottomRouter")
 const partnerRouter = require("./partnerRouter")
 const contentPricingRouter = require("./contentPricingRouter")
-
- 
-
-
-
- 
 const Router = express()
 
 Router.use("/about-us",aboutUsRouter)

@@ -4,6 +4,8 @@ const serviceSchema = new mongoose.Schema({
     name: { type: String, required: true },
     image: { type: String, required: true },
     description: { type: String,},
+    heading:{String},
+    subHeading:{String},
     specialization: [{
         title:{type:String},
         icon:{type:String},
@@ -11,7 +13,6 @@ const serviceSchema = new mongoose.Schema({
         startingAt:{type:String},
         turnaround:{type:String},
     }],
-    icon: { type: String, required: true },
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },

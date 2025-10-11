@@ -21,7 +21,7 @@ const ideasSchema = new mongoose.Schema({
     status: { type: Boolean, default: true }
 }, { timestamps: true })
  
-const Ideas = mongoose.model("ideas", ideasSchema)
+const Ideas = mongoose.models.ideas || mongoose.model("ideas", ideasSchema)
 module.exports = Ideas 
 
 

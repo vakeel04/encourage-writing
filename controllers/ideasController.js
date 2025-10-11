@@ -4,11 +4,9 @@ const Ideas = require("../models/IdeasModel");
 const createIdea = async (req, res) => {
   try {
     const body = req.body;
-
-    // 🧩 Build details array
     const details = [];
 
-    // Collect text fields like detail[0].title, detail[0].description
+    // 1️⃣ Collect detail text fields
     Object.keys(body).forEach((key) => {
       const match = key.match(/^detail\[(\d+)\]\.(.+)$/);
       if (match) {
@@ -19,31 +17,28 @@ const createIdea = async (req, res) => {
       }
     });
 
-    // Attach images from files
-    if (req.files) {
-      Object.keys(req.files).forEach((field) => {
-        if (field.startsWith("detail[")) {
-          const match = field.match(/^detail\[(\d+)\]\.image$/);
+    // 2️⃣ Attach images from files
+    if (req.files && req.files.length > 0) {
+      req.files.forEach((file) => {
+        if (file.fieldname === "og_image") {
+          body.og_image = "uploads/" + file.filename;
+        } else {
+          const match = file.fieldname.match(/^detail\[(\d+)\]\.image$/);
           if (match) {
             const index = parseInt(match[1]);
             if (!details[index]) details[index] = {};
-            details[index].image = "uploads/" + req.files[field][0].filename;
+            details[index].image = "uploads/" + file.filename;
           }
         }
       });
-
-      // Main og_image
-      if (req.files.og_image) {
-        body.og_image = "uploads/" + req.files.og_image[0].filename;
-      }
     }
 
-    if (details.length > 0) {
-      body.detail = details;
-    }
+    if (details.length > 0) body.detail = details;
 
+    // 3️⃣ Save to database
     const idea = await Ideas.create(body);
     return res.status(201).json({ status: true, message: "Idea created successfully", data: idea });
+
   } catch (error) {
     console.error("Create Idea Error:", error);
     return res.status(500).json({ status: false, message: error.message });
