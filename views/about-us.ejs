@@ -73,12 +73,12 @@
 
       <div class="lg:px-14 px-4">
         <div class=" mt-3 relative">
-          <img class="lg:h-[500px] h-[300px] w-full object-cover rounded-[30px]" src="./images/a12.jpg" alt="">
+          <img class="lg:h-[500px] h-[300px] w-full object-cover rounded-[30px]" src="<%=data?.aboutUs?.image  %>" alt="">
           <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-black/60 to-transparent"></div>
 
           <div class="absolute lg:bottom-12 bottom-6 lg:left-12 left-6">
-            <h3 class="lg:text-[20px] text-[18px] font-semibold text-white">Santorini Cliffside Retreat</h3>
-            <p class="font-medium w-[60%] lg:text-[15px] text-[12px] text-white leading-[20+-px]">Cultural stays immerse you in the heart of tradition and beauty.</p>
+            <h3 class="lg:text-[20px] text-[18px] font-semibold text-white"><%= data?.aboutUs?.heading  %></h3>
+            <p class="font-medium w-[60%] lg:text-[15px] text-[12px] text-white leading-[20+-px]"><%= data?.aboutUs?.subHeading  %></p>
             <a href="#" class="lg:px-6 px-4 rounded-full border-white border mr-1  bg-white text-black lg:text-[15px] text-[12px] font-medium py-2 lg:py-2.5 inline-block mt-3">Explore More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[10px]"></i></a>
 
           </div>
@@ -89,12 +89,11 @@
 
     <div class="grid lg:grid-cols-3 lg:gap-12 gap-2 lg:px-14 px-6 pt-3 lg:pt-5">
       <div class="col-span-1">
-        <h2 class="lg:text-[36px] text-[22px] lg:leading-[40px] font-semibold hero-heading">We craft words that connect, inspire, and convert.</h2>
+        <h2 class="lg:text-[36px] text-[22px] lg:leading-[40px] font-semibold hero-heading"><%= data?.aboutUs?.title  %></h2>
       </div>
 
       <div class="lg:col-span-2">
-        <p class="text-[#141219] lg:text-[16px] text-[12px] font-medium">Our mission is simple: to deliver high-quality, engaging, and original content that resonates with your audience and drives results. From blog posts and articles to web content, social media copy, and marketing materials, we craft every piece with precision, creativity, and a deep understanding of your goals.
-          With years of experience in digital marketing, SEO, and storytelling, we don’t just write—we create content that connects, captivates, and converts. Your vision becomes our blueprint, and your success is our ultimate goal.</p>
+        <p class="text-[#141219] lg:text-[16px] text-[12px] font-medium"><%= data?.aboutUs?.description %></p>
       </div>
     </div>
   </section>
@@ -103,8 +102,8 @@
     <div class="text-center">
       <span class="bg-white border-white border text-black font-medium px-8 inline-block py-1.5 rounded-full lg:text-[14px] text-[13px]">Our Purpose</span>
 
-      <h2 class="lg:text-[40px] mt-1.5 lg:mt-0 text-[20px] font-semibold">Vision & Mission</h2>
-      <p class="lg:text-[18px] text-[12px] font-medium ">Guided by clear principles and unwavering commitment to educational equality</p>
+      <h2 class="lg:text-[40px] mt-1.5 lg:mt-0 text-[20px] font-semibold"><%= data?.visionMission?.heading %></h2>
+      <p class="lg:text-[18px] text-[12px] font-medium "><%= data?.visionMission?.subHeading %></p>
     </div>
 
 
@@ -112,51 +111,53 @@
       <div class="col-span-1 bg-[url('./images/a13.png')] rounded-2xl px-7 py-6 w-fullno-repeat">
         <h2 class="lg:text-[28px] text-[20px] font-medium">Our Vision </h2>
 
-        <p class="font-medium mt-1 lg:text-[17px] text-[13px]">Babla Burman Memorial Trust (BBMT) was founded with a simple yet powerful belief — that every child, no matter their background, deserves the chance to learn, grow, and dream big. What began as a small initiative to help a few students pay their school fees has today grown </p>
+        <p class="font-medium mt-1 lg:text-[17px] text-[13px]"><%= data?.visionMission?.OurVision %></p>
       </div>
 
       <div class="col-span-1 bg-[url('./images/a14.png')] text-white bg-center bg-cover rounded-2xl px-7 py-6 w-fullno-repeat">
         <h2 class="lg:text-[28px] text-[20px] font-medium">Our Mission </h2>
 
-        <p class=" mt-1 lg:text-[17px] text-[13px]">Babla Burman Memorial Trust (BBMT) was founded with a simple yet powerful belief — that every child, no matter their background, deserves the chance to learn, grow, and dream big. What began as a small initiative to help a few students pay their school fees has today grown </p>
+        <p class=" mt-1 lg:text-[17px] text-[13px]"><%= data?.visionMission?.OurMission %></p>
       </div>
     </div>
   </section>
 
-  <section class="lg:px-20 px-4 py-8  lg:py-12 ">
+  <section class="lg:px-20 px-4 py-8 lg:py-12">
+    <!-- Heading -->
     <div class="text-center">
-      <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">Our Purpose</span>
-
-      <h2 class="lg:text-[40px] text-[20px] font-semibold">Why Choose Encourages Writing?</h2>
-      <p class="lg:text-[18px] text-[12px] ">We deliver high-quality, SEO-optimized content quickly and affordably, with a team of experts across 20+ industries</p>
+      <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">
+        Our Purpose
+      </span>
+  
+      <h2 class="lg:text-[40px] text-[20px] font-semibold">
+        <%= data?.purpose?.heading %>
+      </h2>
+  
+      <p class="lg:text-[18px] text-[12px]">
+        <%= data?.purpose?.subHeading %>
+      </p>
     </div>
-
-    <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6  lg:mt-10">
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Fast Delivery</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium lg:leading-[18px]">We deliver high-quality content quickly, often within 48 hours, so your projects stay on schedule.</p>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 2.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Affordable Pricing</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Top-notch content at prices that suit businesses of all sizes.</p>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 3.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">SEO Expertise</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Our content is crafted to rank well on search engines and engage your audience effectively.</p>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 4.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Team of 100+ Writers:</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Our content is crafted to rank well on search engines and engage your audience effectively.</p>
-      </div>
+  
+    <!-- Dynamic Grid -->
+    <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6 lg:mt-10">
+      <% data?.purpose?.details?.forEach(function(item) { %>
+        <div class="col-span-1 text-center">
+          <img class="lg:w-[90px] w-[70px] mx-auto"
+               src="<%= item.icon %>"
+               alt="<%= item.title %>">
+  
+          <h3 class="font-semibold lg:text-[18px] text-[16px]">
+            <%= item?.title %>
+          </h3>
+  
+          <p class="lg:text-[14px] text-[11px] font-medium lg:leading-[18px]">
+            <%= item?.description %>
+          </p>
+        </div>
+      <% }) %>
     </div>
   </section>
+  
 
 
   <section class="lg:pl-14 pl-4 lg:py-20 py-10 relative">
