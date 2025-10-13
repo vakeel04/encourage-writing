@@ -11,19 +11,16 @@ const FAQ = require("../../models/faqModel")
 
 
 const homePageController = async (req, res) => {
-  const heroSection = await HeroSection.find({}).sort({createdAt:-1})
-  const contentPricing = await ContentPricing.findOne({usedBy:"home"}).sort({createdAt:-1})
-  const achievement = await Achievement.findOne().sort({createdAt:-1})
-  const partner = await Partner.findOne().sort({createdAt:-1})
-  const customer = await Customer.find().sort({createdAt:-1})
-  const ideas = await Ideas.findOne().sort({createdAt:-1})
-  const faq = await FAQ.findOne({usedBy:"home"}).sort({createdAt:-1})
-
-console.log(faq);
-
-
- 
     try {
+      const heroSection = await HeroSection.find({}).sort({createdAt:-1})
+      const contentPricing = await ContentPricing.findOne({usedBy:"home"}).sort({createdAt:-1})
+      const achievement = await Achievement.findOne().sort({createdAt:-1})
+      const partner = await Partner.findOne({usedBy:"home"}).sort({createdAt:-1})
+      const customer = await Customer.find().sort({createdAt:-1})
+      const ideas = await Ideas.findOne().sort({createdAt:-1})
+      const faq = await FAQ.findOne({usedBy:"home"}).sort({createdAt:-1})
+    
+    console.log(faq);
       res.render("index", {
         status: true,
         message: "home page successfully loaded",

@@ -6,4 +6,4 @@ blogRouter.get('/',blogPageController)
 blogRouter.get('/:id',blogDetailPageController)
 
 
-module.exports = blogRouter
+module.exports = blogRouter    

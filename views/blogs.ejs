@@ -70,32 +70,29 @@
 
     <div class="text-center ">
       <h2 class="lg:text-[32px] text-[20px] hero-heading font-semibold capitalize ">Our Blog</h2>
-      <p class="lg:text-[20px] mt-1 lg:mt-0 text-[13px] font-medium -mt-2">Insights, strategies, and tips on SEO, content marketing, and digital growth.</p>
+      <p class="lg:text-[20px] mt-1 lg:mt-0 text-[13px] font-medium -mt-2"><%= data?.top?.heading %></p>
     </div>
+
     <div class="lg:px-14 py-7">
-      <form class="lg:flex items-center justify-between">
+      <form class="lg:flex items-center justify-between">          
         <div class=" lg:w-[420px] relative">
           <input type="text" class="border-0 h-[48px] text-[15px]  w-full font-medium py-3 outline-0 bg-[#F5F5F5] px-10 rounded-lg" placeholder="Search Article">
           <i class="fa-solid fa-magnifying-glass left-4 top-[16px] absolute text-[#979797] text-[14px]"></i>
         </div>
+<!-- Category Buttons -->
+<ul class="flex flex-wrap gap-3 mt-4 lg:mt-0 justify-center">
+  <% ["All","Education","Content-Writing","Blog-Article"].forEach(cat => { 
+       const isActive = (category && category === cat) || (!category && cat === "All"); 
+  %>
+    <li>
+      <a href="/blog?<%= cat!=="All" ? "category="+cat : "" %>" 
+         class="h-[48px] border <%= isActive ? 'bg-black text-white' : 'border-[#B5B5B5] text-black' %> lg:text-[16px] text-[14px] lg:px-8 px-6 rounded-lg flex items-center">
+        <span><%= cat %></span>
+      </a>
+    </li>
+  <% }) %>
+</ul>
 
-        <ul class="flex flex-wrap gap-3 mt-4 lg:mt-0 justify-center">
-          <li>
-            <a href=" #" class=" h-[48px] border lg:text-[16px] text-[14px] lg:px-8 px-6  rounded-lg bg-black text-white flex items-center"><span>All</span></a>
-          </li>
-
-          <li>
-            <a href="#" class=" h-[48px] border-[#B5B5B5] border lg:text-[16px] text-[14px] lg:px-8 px-6  rounded-lg  flex items-center"><span>Education</span></a>
-          </li>
-
-          <li>
-            <a href="#" class=" h-[48px] border-[#B5B5B5] border lg:text-[16px] text-[14px] lg:px-8 px-6  rounded-lg  flex items-center"><span>Content Writing</span></a>
-          </li>
-
-          <li>
-            <a href="#" class=" h-[48px] border-[#B5B5B5] border lg:text-[16px] text-[14px] lg:px-8 px-6  rounded-lg  flex items-center"><span>Blog Article</span></a>
-          </li>
-        </ul>
       </form>
     </div>
 
@@ -104,179 +101,50 @@
   <section class="lg:px-14 px-4">
     <h3 class="lg:text-[24px] text-[20px] font-medium">Featured Article</h3>
 
-    <div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-8 gap-4 mt-5">
-      <div class="block col-span-1">
-        <div class="rounded-b-[20px] shadow-lg">
-          <img src="./images/service2.png" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover" alt="">
-          <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium">How to scale content with AI + human editors</h3>
-            <p class="lg:text-[14px] text-[10px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-            <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
-              <p class="font-medium lg:text-[13px] text-[9px]">October 1, 2025 • Jane Smith</p>
-              <a href="/blog-details.html" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
-                Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-              </a>
-            </div>
+<!-- Blogs Grid -->
+<div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-8 gap-4 mt-5">
+  <% data?.blogs?.forEach(blog => { %>
+    <div class="block col-span-1">
+      <div class="rounded-b-[20px] shadow-lg">
+        <img src="<%= blog?.image %>" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover w-full" alt="">
+        <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
+          <h3 class="lg:text-[20px] text-[13px] font-medium"><%= blog?.title %></h3>
+          <p class="lg:text-[14px] text-[10px] font-medium mt-1"><%= blog?.subTitle %></p>
+          <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
+            <p class="font-medium lg:text-[13px] text-[9px]"><%= blog?.date %> • <%= blog?.author_name %></p>
+            <a href="/blog/<%= blog?._id %>" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
+              Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
+            </a>
           </div>
         </div>
-
-
       </div>
-      <div class="block col-span-1">
-        <div class="rounded-b-[20px] shadow-lg">
-          <img src="./images/service2.png" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover" alt="">
-          <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium">How to scale content with AI + human editors</h3>
-            <p class="lg:text-[14px] text-[10px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-            <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
-              <p class="font-medium lg:text-[13px] text-[9px]">October 1, 2025 • Jane Smith</p>
-              <a href="/blog-details.html" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
-                Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="block col-span-1">
-        <div class="rounded-b-[20px] shadow-lg">
-          <img src="./images/service2.png" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover" alt="">
-          <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium">How to scale content with AI + human editors</h3>
-            <p class="lg:text-[14px] text-[10px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-            <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
-              <p class="font-medium lg:text-[13px] text-[9px]">October 1, 2025 • Jane Smith</p>
-              <a href="/blog-details.html" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
-                Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="block col-span-1">
-        <div class="rounded-b-[20px] shadow-lg">
-          <img src="./images/service2.png" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover" alt="">
-          <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium">How to scale content with AI + human editors</h3>
-            <p class="lg:text-[14px] text-[10px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-            <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
-              <p class="font-medium lg:text-[13px] text-[9px]">October 1, 2025 • Jane Smith</p>
-              <a href="/blog-details.html" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
-                Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="block col-span-1">
-        <div class="rounded-b-[20px] shadow-lg">
-          <img src="./images/service2.png" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover" alt="">
-          <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium">How to scale content with AI + human editors</h3>
-            <p class="lg:text-[14px] text-[10px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-            <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
-              <p class="font-medium lg:text-[13px] text-[9px]">October 1, 2025 • Jane Smith</p>
-              <a href="/blog-details.html" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
-                Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="block col-span-1">
-        <div class="rounded-b-[20px] shadow-lg">
-          <img src="./images/service2.png" class="lg:h-[200px] h-[110px] rounded-t-[20px] object-cover" alt="">
-          <div class="lg:pt-4 pt-3 lg:pb-7 pb-4 lg:px-5 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium">How to scale content with AI + human editors</h3>
-            <p class="lg:text-[14px] text-[10px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-            <div class="lg:mt-4 mt-2 lg:flex items-center justify-between">
-              <p class="font-medium lg:text-[13px] text-[9px]">October 1, 2025 • Jane Smith</p>
-              <a href="/blog-details.html" class="text-[#7E7979] font-medium lg:text-[15px] text-[11px]">
-                Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-
     </div>
+  <% }) %>
+</div>
   </section>
 
   <section class="px-14 py-20 hidden lg:block">
     <h3 class="text-[24px] font-medium">Latest Blogs</h3>
-
     <div class="grid grid-cols-3 gap-10 mt-5">
       <div class="col-span-2">
         <div class="grid grid-cols-2 gap-6">
-          <div class="col-span-1">
-            <div class="rounded-b-[20px] shadow-lg">
-              <img src="./images/service2.png" class="h-[200px] rounded-t-[20px] object-cover" alt="">
-              <div class="pt-4 pb-7 px-5">
-                <h3 class="text-[20px] font-medium">How to scale content with AI + human editors</h3>
-                <p class="text-[14px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <p class="font-medium text-[13px]">October 1, 2025 • Jane Smith</p>
-                  <a href="/blog-details.html" class="text-[#7E7979] font-medium text-[15px]">
-                    Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                  </a>
+          <% data?.latest?.forEach(blog => { %>
+            <div class="col-span-1">
+              <div class="rounded-b-[20px] shadow-lg">
+                <img src="<%= blog.image %>" class="h-[200px] rounded-t-[20px] object-cover w-full" alt="">
+                <div class="pt-4 pb-7 px-5">
+                  <h3 class="text-[20px] font-medium"><%= blog?.title %></h3>
+                  <p class="text-[14px] font-medium mt-1"><%= blog?.subTitle %></p>
+                  <div class="mt-4 flex items-center justify-between">
+                    <p class="font-medium text-[13px]"><%= blog?.date %> • <%= blog.author_name %></p>
+                    <a href="/blog/<%= blog._id %>" class="text-[#7E7979] font-medium text-[15px]">
+                      Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-span-1">
-            <div class="rounded-b-[20px] shadow-lg">
-              <img src="./images/service2.png" class="h-[200px] rounded-t-[20px] object-cover" alt="">
-              <div class="pt-4 pb-7 px-5">
-                <h3 class="text-[20px] font-medium">How to scale content with AI + human editors</h3>
-                <p class="text-[14px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <p class="font-medium text-[13px]">October 1, 2025 • Jane Smith</p>
-                  <a href="/blog-details.html" class="text-[#7E7979] font-medium text-[15px]">
-                    Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-1">
-            <div class="rounded-b-[20px] shadow-lg">
-              <img src="./images/service2.png" class="h-[200px] rounded-t-[20px] object-cover" alt="">
-              <div class="pt-4 pb-7 px-5">
-                <h3 class="text-[20px] font-medium">How to scale content with AI + human editors</h3>
-                <p class="text-[14px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <p class="font-medium text-[13px]">October 1, 2025 • Jane Smith</p>
-                  <a href="/blog-details.html" class="text-[#7E7979] font-medium text-[15px]">
-                    Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-1">
-            <div class="rounded-b-[20px] shadow-lg">
-              <img src="./images/service2.png" class="h-[200px] rounded-t-[20px] object-cover" alt="">
-              <div class="pt-4 pb-7 px-5">
-                <h3 class="text-[20px] font-medium">How to scale content with AI + human editors</h3>
-                <p class="text-[14px] font-medium mt-1">A pragmatic approach to combining AI drafts with human editing for SEO and quality.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <p class="font-medium text-[13px]">October 1, 2025 • Jane Smith</p>
-                  <a href="/blog-details.html" class="text-[#7E7979] font-medium text-[15px]">
-                    Read More <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <% }) %>
         </div>
       </div>
       <div class="col-span-1">
@@ -285,62 +153,15 @@
         </div>
 
         <div class="mt-6 space-y-4">
-          <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a>
-
-          <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a>
-          <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a> <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a> <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a>
-          <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a>
-
-          <a href="/blog-details.html" class="flex gap-4 items-center">
-            <img class="w-[130px] h-[80px] object-cover rounded-sm " src="./images/blog-2.png" alt="">
-
-            <div>
-              <h2 class="text-[17px] leading-[22px] font-medium">How to scale content with AI + human editors</h2>
-              <p class="font-medium text-[13px] mt-1">September 25, 2025 • John Doe</p>
-            </div>
-          </a>
+          <% data?.popular?.forEach(blog => { %>
+            <a href="/blog/<%= blog?._id %>" class="flex gap-4 items-center">
+              <img class="w-[130px] h-[80px] object-cover rounded-sm" src="<%= blog?.image %>" alt="">
+              <div>
+                <h2 class="text-[17px] leading-[22px] font-medium"><%= blog?.title %></h2>
+                <p class="font-medium text-[13px] mt-1"><%= blog.date %> • <%= blog?.author_name %></p>
+              </div>
+            </a>
+          <% }) %>
         </div>
       </div>
 
@@ -348,9 +169,9 @@
   </section>
 
   <section class="lg:py-14 px-4 lg:px-0 py-10 bg-[#F0F0F0] text-center lg:mt-20 mt-12">
-    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]">Ready to boost your brand with powerful content?</h2>
+    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]"><%= data?.bottom?.title %></h2>
 
-    <p class="font-medium lg:text-[17px] text-[14px]">Let’s work together to create words that convert and stories that inspire.</p>
+    <p class="font-medium lg:text-[17px] text-[14px]"><%= data?.bottom?.subTitle %></p>
 
     <a href="#" class="bg-black rounded-md py-2 px-8 text-white font-medium inline-block lg:mt-5 mt-3 text-[14px] lg:text-[16px]">Hire Us Today</a>
   </section>

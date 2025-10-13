@@ -191,7 +191,7 @@
               <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Research & Drafting</p>
             </div>
             <div class="mt-32">
-              <p class="text-white lg:text-[15px] text-[13px]">Our team conducts in-depth research on your industry, competitors, and keywords. Based on these insights, we create a well-structured draft that balances creativity with SEO-driven content.</p>
+              <p class="text-white lg:text-[15px] text-[13px]">Our data?.team? conducts in-depth research on your industry, competitors, and keywords. Based on these insights, we create a well-structured draft that balances creativity with SEO-driven content.</p>
             </div>
           </div>
         </div>
@@ -240,84 +240,48 @@
 
   </section>
 
-  <section class="lg:px-12 px-4   pb-20">
+  <section class="lg:px-12 px-4 pb-20">
     <div class="text-center">
-      <h2 class="lg:text-[40px] text-[20px] font-semibold">Dynamic Team</h2>
-      <p class="lg:text-[18px] text-[12px] font-medium">Get to know our dynamic and energetic professionals who drive our innovations</p>
+      <h2 class="lg:text-[40px] text-[20px] font-semibold"><%= data?.team?.title %></h2>
+      <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.team?.subTitle %></p>
     </div>
-
-    <div class="grid grid-cols-3 lg:mt-12 mt-8">
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[200px] w-[80px] mx-auto" src="./images/member-1.png" alt="">
-        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CTO</p>
-        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">John kenson</h3>
-
-        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
+  
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:mt-12 mt-8 gap-6">
+      <% data?.team?.info.forEach((member) => { %>
+        <div class="text-center">
+          <img class="lg:w-[200px] w-[100px] mx-auto rounded-full object-cover rounded-full"
+               src="<%= member?.image %>" alt="<%= member?.name %>">
+  
+          <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2"><%= member?.desination %></p>
+          <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1"><%= member?.name?.trim() %></h3>
+  
+          <div class="flex justify-center gap-2 lg:mt-3 mt-2">
+            <!-- X / Twitter -->
+            <a href="<%= member?.links && member.links[0] ? member.links[0] : '#' %>"
+               target="_blank"
+               class="lg:h-[35px] lg:w-[35px] h-[28px] w-[28px] bg-black flex justify-center items-center rounded-full hover:bg-gray-800 transition">
+              <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px] text-white"></i>
+            </a>
+  
+            <!-- LinkedIn -->
+            <a href="<%= member?.links && member.links[1] ? member.links[1] : '#' %>"
+               target="_blank"
+               class="lg:h-[35px] lg:w-[35px] h-[28px] w-[28px] bg-black flex justify-center items-center rounded-full hover:bg-gray-800 transition">
+              <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px] text-white"></i>
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[200px] w-[80px] mx-auto" src="./images/member-2.png" alt="">
-        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CEO</p>
-        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Harry Maguire</h3>
-
-        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[200px] w-[80px] mx-auto" src="./images/member-3.png" alt="">
-        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">Head HR</p>
-        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Sophie Moore</h3>
-
-        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 lg:mt-12 mt-8 text-center">
-        <img class="lg:w-[200px] w-[80px]  mx-auto" src="./images/member-4.png" alt="">
-        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CMO</p>
-        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Edgar Davids</h3>
-        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 lg:mt-12 mt-8 text-center">
-        <img class="lg:w-[200px] w-[80px]  mx-auto" src="./images/member-5.png" alt="">
-        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">CFO</p>
-        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">James Anderson</h3>
-
-        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1  lg:mt-12 mt-8 text-center">
-        <img class="lg:w-[200px] w-[80px]  mx-auto" src="./images/member-6.png" alt="">
-        <p class="lg:text-[14px] text-[12px] lg:mt-4 mt-2">VP Design</p>
-        <h3 class="font-medium lg:text-[16px] text-[13px] -mt-1">Ashley Cook</h3>
-
-        <div class="flex justify-center gap-2 lg:mt-2 mt-1.5">
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-x-twitter lg:text-[13px] text-[11px]  text-white"></i></a>
-          <a href="#" class="lg:h-[35px] lg:min-w-[35px] h-[28px] min-w-[28px] bg-black  flex justify-center items-center rounded-full"> <i class="fa-brands fa-linkedin-in lg:text-[13px] text-[11px]  text-white"></i></a>
-        </div>
-      </div>
+      <% }) %>
     </div>
   </section>
+  
+  
+  
 
   <section class="lg:py-14 px-4 lg:px-0 py-10 bg-[#F0F0F0] text-center lg:mt-20 ">
-    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]">Ready to boost your brand with powerful content?</h2>
+    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]"><%= data?.bottom?.title %></h2>
 
-    <p class="font-medium lg:text-[17px] text-[14px]">Let’s work together to create words that convert and stories that inspire.</p>
+    <p class="font-medium lg:text-[17px] text-[14px]"><%= data?.bottom?.subTitle %></p>
 
     <a href="#" class="bg-black rounded-md py-2 px-8 text-white font-medium inline-block lg:mt-5 mt-3 text-[14px] lg:text-[16px]">Hire Us Today</a>
   </section>

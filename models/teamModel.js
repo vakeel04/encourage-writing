@@ -6,7 +6,7 @@ const teamSchema = new mongoose.Schema({
     info:[{    name: { type: String, required: true },
         image: { type: String, required: true },
         desination: { type: String,},
-        links: [{ type: String,}],}],
+        links: [String],}],
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },

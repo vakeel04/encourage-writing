@@ -12,38 +12,60 @@ const createTeam = async (req, res) => {
       fileMap[file.fieldname].push(file);
     });
 
-    // 🧩 Validate: Main image required
-    if (!fileMap["image"] || fileMap["image"].length === 0) {
-      return res.status(400).json({
-        status: false,
-        message: "Main image is required",
-      });
-    }
+    // 🧩 Build info array (team members)
+    const info = [];
 
-    // 🧩 Assign main image
-    req.body.image = "uploads/" + fileMap["image"][0].filename;
+    Object.keys(req.body).forEach((key) => {
+      const match = key.match(/^info\[(\d+)\]\.(.+)$/);
+      if (match) {
+        const index = parseInt(match[1]);
+        const field = match[2];
+        if (!info[index]) info[index] = {};
+        info[index][field] = req.body[key];
+      }
+    });
+
+    // 🧩 Attach uploaded images
+    req.files.forEach((file) => {
+      const match = file.fieldname.match(/^info\[(\d+)\]\.image$/);
+      if (match) {
+        const index = parseInt(match[1]);
+        if (!info[index]) info[index] = {};
+        info[index].image = "uploads/" + file.filename;
+      }
+    });
+ 
+// 🧩 Convert member.links → clean array even if sent like: "https://a.com/","https://b.com/"
+info.forEach((member) => {
+  if (member.links && typeof member.links === "string") {
+    member.links = member.links
+      .replace(/(^"|"$)/g, "")   // remove starting & ending extra quotes
+      .split(",")                // split by comma
+      .map((link) => link.replace(/(^"|"$)/g, "").trim()) // clean inner quotes + trim
+      .filter((link) => link);   // remove empty links
+  } else if (!Array.isArray(member.links)) {
+    member.links = [];
+  }
+});
+
 
     // 🧩 OG image (optional)
     if (fileMap["og_image"] && fileMap["og_image"].length > 0) {
       req.body.og_image = "uploads/" + fileMap["og_image"][0].filename;
     }
 
-    // 🧩 Convert social links (if stringified array)
-    if (req.body.links) {
-      try {
-        req.body.links = JSON.parse(req.body.links);
-      } catch {
-        req.body.links = [req.body.links];
-      }
+    // 🧩 Save info array
+    if (info.length > 0) {
+      req.body.info = info;
     }
 
-    // 🧩 Save Team Member
-    const teamMember = await Team.create(req.body);
+    // 🧩 Save to DB
+    const team = await Team.create(req.body);
 
     return res.status(201).json({
       status: true,
-      message: "Team member created successfully",
-      data: teamMember,
+      message: "Team created successfully",
+      data: team,
     });
   } catch (error) {
     console.error("Create Team Error:", error);
@@ -53,6 +75,7 @@ const createTeam = async (req, res) => {
     });
   }
 };
+
 
 // 🧩 Get All Teams
 const getAllTeams = async (req, res) => {

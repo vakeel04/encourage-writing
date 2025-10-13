@@ -16,6 +16,7 @@ const ideasRouter = require("./ideasRouter")
 const bottomRouter = require("./bottomRouter")
 const partnerRouter = require("./partnerRouter")
 const contentPricingRouter = require("./contentPricingRouter")
+const topRouter = require("./topRouter")
 const Router = express()
 
 Router.use("/about-us",aboutUsRouter)
@@ -35,6 +36,8 @@ Router.use("/ideas",ideasRouter)
 Router.use("/bottom",bottomRouter)
 Router.use("/partner",partnerRouter)
 Router.use("/content-pricing",contentPricingRouter)
+Router.use("/top",topRouter)
+
 
  
 module.exports = Router

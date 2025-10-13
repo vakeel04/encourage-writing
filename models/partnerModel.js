@@ -6,6 +6,7 @@ const partnerSchema = new mongoose.Schema({
     description: { type: String,},
     images: [{ type: String,}],
     meta_title: { type: String },
+    usedBy:{type:String,enum:["home","service"]},
     meta_description: { type: String },
     keywords: { type: String },
     og_title: { type: String },

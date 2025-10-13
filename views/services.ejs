@@ -72,9 +72,9 @@
       <h2 class="lg:text-[32px] text-[22px] hero-heading text-center font-semibold capitalize  mx-auto ">Services</h2>
 
       <div class="lg:px-14 px-4 text-center">
-        <h2 class="lg:text-[32px] text-[22px] hero-heading  font-semibold capitalize lg:w-[65%] w-[80%] mx-auto lg:leading-[58px]">AI + SEO Services That Drive Results</h2>
+        <h2 class="lg:text-[32px] text-[22px] hero-heading  font-semibold capitalize lg:w-[65%] w-[80%] mx-auto lg:leading-[58px]"><%=  data?.top?.heading %></h2>
 
-        <p class="lg:text-[20px] text-[12px]  font-medium">Blend cutting-edge AI technology with expert human creativity to deliver optimized content, higher rankings, and measurable business growth.</p>
+        <p class="lg:text-[20px] text-[12px]  font-medium"><%=  data?.top?.subHeading %></p>
         <a href="#" class="lg:mt-5 mt-3 font-medium bg-black text-white px-7 lg:py-2.5 py-1.5 lg:text-[16px] text-[12px] inline-block  rounded-full">Contact us</a>
       </div>
 
@@ -83,71 +83,74 @@
     <div class="lg:px-14 px-4 mt-5">
       <div class="grid lg:grid-cols-3 bg-[url('./images/banner-10.png')]  rounded-[40px] ">
         <div class="lg:col-span-2 lg:py-10 py-8  px-7 lg:px-16">
-          <h2 class="text-white lg:text-[34px] text-[20px] lg:w-[65%] lg:leading-[45px]">Smart SEO + AI-Powered Content That Ranks & Converts</h2>
-          <p class="text-white lg:w-[60%] lg:text-[16px] text-[12px] mt-1">Leverage AI insights and human expertise for content that boosts visibility and drives growth.</p>
+          <h2 class="text-white lg:text-[34px] text-[20px] lg:w-[65%] lg:leading-[45px]"><%=  data?.top?.title %></h2>
+          <p class="text-white lg:w-[60%] lg:text-[16px] text-[12px] mt-1"><%=  data?.top?.subTitle %></p>
 
           <a href="#" class="text-[15px] lg:mt-5 mt-3 font-medium bg-white text-black px-7 lg:py-2.5 py-1.5 inline-block lg:text-[16px] text-[12px]  rounded-full">Get Started Today</a>
         </div>
 
         <div class="col-span-1 p-5">
-          <img src="./images/graph.png" alt="">
+          <img src="<%= data?.top?.image %>" alt="">
         </div>
       </div>
     </div>
 
   </section>
 
-  <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10  ">
+  <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      
       <div class="col-span-1">
-        <!-- Slider main container -->
-        <div class="swiper auto-swiper ">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+        <% if (data?.partner && data?.partner?.images && data?.partner?.images?.length > 0) { %>
+  
+          <!-- First Slider -->
+          <div class="swiper auto-swiper">
+            <div class="swiper-wrapper">
+              <% data?.partner?.images.forEach(img => { %>
+                <div class="swiper-slide">
+                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="<%= img %>" alt="Brand Logo">
+                </div>
+              <% }) %>
+            </div>
           </div>
-
-
-        </div>
-
-        <!-- Slider main container -->
-        <div class="swiper auto-swiper2 mt-5">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
+  
+          <!-- Second Slider -->
+          <div class="swiper auto-swiper2 mt-5">
+            <div class="swiper-wrapper">
+              <% data?.partner?.images.forEach(img => { %>
+                <div class="swiper-slide">
+                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
+                </div>
+              <% }) %>
+            </div>
           </div>
-
-
-        </div>
-
-        <!-- Slider main container -->
-        <div class="swiper auto-swiper3 mt-5 ">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/10.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/13.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/14.png" alt=""></div>
-            <div class="swiper-slide"><img class="lg:h-[55px] h-[30px] w-full object-cover" src="./images/11.png" alt=""></div>
+  
+          <!-- Third Slider -->
+          <div class="swiper auto-swiper3 mt-5">
+            <div class="swiper-wrapper">
+              <% data?.partner?.images.forEach(img => { %>
+                <div class="swiper-slide">
+                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
+                </div>
+              <% }) %>
+            </div>
           </div>
-        </div>
+  
+        <% } else { %>
+          <p class="text-gray-400 text-center">No partner logos available.</p>
+        <% } %>
       </div>
-
+  
       <div class="col-span-1 lg:pl-10">
-        <p class="lg:text-[14px]  text-[12px]">Trusted by Leading Brands</p>
-        <h2 class="lg:text-[32px] text-[20px] font-semibold">A Trusted Content Partner</h2>
-        <p class="lg:text-[16px] text-[13px] font-medium">Join 500+ businesses worldwide who rely on us for impactful, SEO-driven content delivered with quality and consistency.</p>
-
-        <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">Work With US</a>
+        <p class="lg:text-[14px] text-[12px]"><%= data?.partner?.title %></p>
+        <h2 class="lg:text-[32px] text-[20px] font-semibold"><%= data?.partner?.subtitle %></h2>
+        <p class="lg:text-[16px] text-[13px] font-medium"><%= data?.partner?.description %></p>
+  
+        <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">
+          Work With Us
+        </a>
       </div>
+    </div>
   </section>
 
   <section class="lg:py-12 py-10  lg:px-14 px-4 ">
@@ -272,8 +275,8 @@
       </div>
 
 
-      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Transparent Pricing Made Simple</h2>
-      <p class="lg:text-[18px] text-[12px] font-medium">Quickly calculate your content cost in seconds — no hidden fees, no surprises.</p>
+      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2"><%= data?.contentPricing?.heading %></h2>
+      <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.contentPricing?.subHeading %></p>
     </div>
 
     <div class="grid lg:grid-cols-2 border-[#C7C7C7] border rounded-[20px] mt-10 lg:px-8 px-4 lg:py-6 py-4">
@@ -308,42 +311,30 @@
       </div>
 
       <div class="col-span-1 lg:pl-16 mt-5 lg:mt-0">
-        <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4  lg:py-6 rounded-xl">
-          <h3 class="lg:text-[22px] text-[18px] font-medium">What’s Included</h3>
-
+        <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4 lg:py-6 rounded-xl">
+          <h3 class="lg:text-[22px] text-[18px] font-medium"><%= data.contentPricing.title %></h3>
+      
           <ul class="mt-4 space-y-2.5">
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">SEO-Optimization</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">0% Plagiarism [With Report]</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">100% AI-free content</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">Free revisions</span>
-            </li>
-
-            <li class="flex items-center gap-2.5">
-              <img class="lg:w-[24px] w-[20px]" src="./images/check.png" alt="">
-              <span class="font-medium lg:text-[16px] text-[14px]">48 hours delivery</span>
-            </li>
+            <% if (data.contentPricing && data.contentPricing && data.contentPricing.detail) { %>
+              <% data.contentPricing.detail.forEach(item => { %>
+                <li class="flex items-center gap-2.5">
+                  <img class="lg:w-[24px] w-[20px]" src="/images/check.png" alt="check">
+                  <span class="font-medium lg:text-[16px] text-[14px]"><%= item %></span>
+                </li>
+              <% }) %>
+            <% } else { %>
+              <p class="text-gray-400 text-sm">No items available.</p>
+            <% } %>
           </ul>
-
+      
           <div class="mt-4">
-            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">Get Started</a>
-
+            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">
+              Get Started
+            </a>
           </div>
         </div>
       </div>
+      
 
     </div>
   </section>
