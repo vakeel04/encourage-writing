@@ -48,6 +48,7 @@ userSchemas.methods.getSignedJwtToken = function () {
         expiresIn: process.env.JWT_EXPIRE,
     });
 };
+userSchemas.index({ createdAt: -1 });
 
 const User = mongoose.model('user', userSchemas);
 

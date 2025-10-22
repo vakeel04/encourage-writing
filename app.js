@@ -7,6 +7,7 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const path = require("path")
 const indexRouter = require("./routes/webRouter/indexRouter")
+const dsRouter = require("./routes/dsRouter/ds_router")
 
 //Env config
 require('dotenv').config()
@@ -34,6 +35,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //Router
 app.use("/api",Router)
 app.use(indexRouter)
+app.use("/dashboard",dsRouter)
+
 
 //Dynamic Files Setup
 app.use('/files', express.static(path.join(__dirname, 'files')));

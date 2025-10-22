@@ -1,70 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encourage Writing</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="./css/style.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-  <header id="main-header" class="px-6 md:px-10 py-4 fixed flex justify-between items-center top-0 left-0 w-full z-50 transition-all duration-300">
-    <!-- Logo -->
-    <a href="/">
-      <img class="w-[45px] md:w-[55px] rounded-full" src="./images/logo.jpg" alt="Logo">
-    </a>
-
-    <!-- Desktop Menu -->
-    <ul class="hidden md:flex font-medium gap-7">
-      <li><a href="/" class="hover:text-gray-600">Home</a></li>
-      <li><a href="/blog" class="hover:text-gray-600">Blog</a></li>
-      <li><a href="/service" class="hover:text-gray-600">Services</a></li>
-      <li><a href="/about-us" class="hover:text-gray-600">About Us</a></li>
-      <li><a href="/contact" class="hover:text-gray-600">Contact</a></li>
-    </ul>
-
-    <!-- Right Side (Desktop) -->
-    <div class="hidden md:flex gap-4 items-center">
-      <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
-        <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
-      </button>
-      <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
-        Let's Talk
-      </a>
-    </div>
-
-    <!-- Hamburger Icon (Mobile) -->
-    <button id="menu-btn" class="md:hidden text-2xl">
-      <img class="w-[25px]" src="./images/menu.svg" alt="">
-    </button>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 md:hidden">
-      <ul class="flex flex-col gap-4 font-medium">
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/service">Services</a></li>
-        <li><a href="/about-us">About Us</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-
-      <div class="flex gap-4 items-center mt-4">
-        <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
-          <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
-        </button>
-        <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
-          Let's Talk
-        </a>
-      </div>
-    </div>
-  </header>
+<%-include('partials/header')%>
   <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[80px] mt-8 lg:mt-20">
     <div class="container mx-auto lg:px-14 px-4">
       <h1 class="text-center font-bold lg:text-[25px] text-[22px] mb-3 lg:mb-[30px]">Contact us</h1>
@@ -106,7 +40,7 @@
 
         <!-- Right Column (Form) -->
         <div class="lg:w-1/2 bg-white p-8 rounded-xl border border-[#C6C6C6] p-4 text-black">
-          <form class="space-y-4">
+          <form id="contactForm" class="space-y-4">
             <!-- Name -->
             <div class="flex flex-col">
               <label class="mb-1 font-semibold" for="name">Name*</label>
@@ -157,122 +91,49 @@
     </div>
   </section>
 
- <footer class="lg:pt-8 pt-6 bg-black text-white">
-   <div class="grid lg:grid-cols-6 lg:px-14 px-7  lg:mb-20 mb-10 lg:gap-12 gap-7">
-     <div class="col-span-2">
-       <img src="./images/logo.jpg" alt="" class="w-[120px] -ml-8">
-
-       <p class="text-white lg:text-[14px] text-[13px] lg:pr-10 -mt-8">Powerful words, impactful stories. We craft SEO-friendly content that builds trust and drives growth.</p>
-     </div>
-
-     <div class="col-span-1 lg:mt-5 mt-3">
-       <h2 class="font-medium lg:text-[17px] text-[15px]">Quick Links</h2>
-
-       <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-         <li>
-           <a href="/about-us.html">About Us</a>
-         </li>
-
-         <li>
-           <a href="/services.html">Services</a>
-         </li>
+ 
+  <%-include('partials/footer')%>
 
 
-         <li>
-           <a href="/blogs.html">Blog</a>
-         </li>
+<script>
+  const form = document.getElementById("contactForm");
 
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent default form submission
 
-         <li>
-           <a href="/contact.html">Contact Us</a>
-         </li>
-       </ul>
-     </div>
+    // Get form values
+    const data = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      service: document.getElementById("services").value,
+      message: document.getElementById("message").value
+    };
+    console.log(data);
+    
+    try {
+      const response = await fetch("/api/contact-us", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
 
-     <div class="col-span-1 lg:mt-5 mt-3">
-       <h2 class="font-medium lg:text-[17px] text-[15px]">Services</h2>
+      const result = await response.json();
 
-       <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-         <li>
-           <a href="/service-details.html">Blog & Article Writing</a>
-         </li>
-
-         <li>
-           <a href="/service-details.html">Website Content</a>
-         </li>
-
-
-         <li>
-           <a href="/service-details.html">SEO Content</a>
-         </li>
-
-
-         <li>
-           <a href="/service-details.html">Copywriting</a>
-         </li>
-       </ul>
-     </div>
-
-     <div class="col-span-2 lg:mt-5 mt-3 lg:pl-10">
-       <h2 class="font-medium lg:text-[17px] text-[15px]">Get in Touch</h2>
-
-       <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-         <li>
-           <a href="#"><i class="fa-solid fa-envelope"></i> info@contentwhale.com</a>
-         </li>
-
-         <li>
-           <a href="#"><i class="fa-solid fa-phone text-[13px] lg:text-[15px]"></i> +91 98765 43210</a>
-         </li>
-
-
-         <li>
-           <a href="#"><i class="fa-solid fa-location-dot text-[13px] lg:text-[15px]"></i> Jaipur, Rajasthan, India</a>
-         </li>
-
-
-
-       </ul>
-
-       <ul class="mt-4 flex gap-3">
-         <li>
-           <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-facebook-f text-[13px] lg:text-[16px] text-black"></i></a>
-         </li>
-
-         <li>
-           <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-twitter text-[13px] lg:text-[16px] text-black"></i></a>
-         </li>
-         <li>
-           <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-instagram text-[13px] lg:text-[16px] text-black"></i></a>
-         </li>
-       </ul>
-     </div>
-   </div>
-
-   <div class="bottom-footer border-t-[rgba(255,255,255,.3)] py-7 border-t ">
-     <p class="text-[#FFFFFF78] text-[14px] text-center ">© 2025 ContentWhale. All rights reserved.</p>
-   </div>
- </footer>
-
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  </script>
-
-  <script>
-    const header = document.getElementById("main-header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 30) {
-        header.classList.add("bg-white", "shadow", );
+      if (response.ok) {
+        alert("Your message has been sent successfully!");
+        form.reset();
       } else {
-        header.classList.remove("bg-white", "shadow");
+        alert(result.message || "Something went wrong. Please try again.");
       }
-    });
-  </script>
-</body>
 
-</html>
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to send message. Please try again later.");
+    }
+  });
+</script>
+
+ 

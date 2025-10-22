@@ -9,5 +9,6 @@ const achievementSchema = new mongoose.Schema({
     status: { type: Boolean, default: true }
 }, { timestamps: true })
  
+achievementSchema.index({ createdAt: -1 });
 const Achievement= mongoose.model("achievement", achievementSchema)
 module.exports = Achievement

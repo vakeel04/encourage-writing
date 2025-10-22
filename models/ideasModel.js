@@ -20,7 +20,8 @@ const ideasSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+ideasSchema.index({ createdAt: -1 });
+
 const Ideas = mongoose.models.ideas || mongoose.model("ideas", ideasSchema)
 module.exports = Ideas 
 

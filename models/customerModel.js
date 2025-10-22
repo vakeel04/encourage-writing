@@ -6,6 +6,7 @@ const customerSchema = new mongoose.Schema({
     rating: { type: Number,},
     content: { type: String,},
     desination: { type:String,},
+    usedBy:{type:String,enum:["home","service"]},
     meta_title: { type: String },
     meta_description: { type: String },
     keywords: { type: String },
@@ -16,6 +17,7 @@ const customerSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
+customerSchema.index({ createdAt: -1 });
  
 const Customer = mongoose.model("customer", customerSchema)
 module.exports = Customer 

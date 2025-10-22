@@ -16,6 +16,6 @@ const partnerSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+partnerSchema.index({ createdAt: -1 });
 const Partner = mongoose.model("partner", partnerSchema)
 module.exports = Partner 

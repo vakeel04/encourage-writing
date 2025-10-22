@@ -1,70 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encourage Writing</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="./css/style.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-  <header id="main-header" class="px-6 md:px-10 py-4 fixed flex justify-between items-center top-0 left-0 w-full z-50 transition-all duration-300">
-    <!-- Logo -->
-    <a href="/">
-      <img class="w-[45px] md:w-[55px] rounded-full" src="./images/logo.jpg" alt="Logo">
-    </a>
-
-    <!-- Desktop Menu -->
-    <ul class="hidden md:flex font-medium gap-7">
-      <li><a href="/" class="hover:text-gray-600">Home</a></li>
-      <li><a href="/blog" class="hover:text-gray-600">Blog</a></li>
-      <li><a href="/service" class="hover:text-gray-600">Services</a></li>
-      <li><a href="/about-us" class="hover:text-gray-600">About Us</a></li>
-      <li><a href="/contact" class="hover:text-gray-600">Contact</a></li>
-    </ul>
-
-    <!-- Right Side (Desktop) -->
-    <div class="hidden md:flex gap-4 items-center">
-      <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
-        <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
-      </button>
-      <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
-        Let's Talk
-      </a>
-    </div>
-
-    <!-- Hamburger Icon (Mobile) -->
-    <button id="menu-btn" class="md:hidden text-2xl">
-      <img class="w-[25px]" src="./images/menu.svg" alt="">
-    </button>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 md:hidden">
-      <ul class="flex flex-col gap-4 font-medium">
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/service">Services</a></li>
-        <li><a href="/about-us">About Us</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-
-      <div class="flex gap-4 items-center mt-4">
-        <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
-          <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
-        </button>
-        <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
-          Let's Talk
-        </a>
-      </div>
-    </div>
-  </header>
+<%-include('partials/header')%>
 
   <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[80px] lg:mt-20 mt-10">
 
@@ -153,115 +87,39 @@
     </div>
   </section>
 
-  <section class="lg:py-12 py-10  lg:px-14 px-4 ">
+  <section class="lg:py-12 py-10 lg:px-14 px-4">
     <div class="text-center">
-      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
+      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full inline-block lg:py-2 py-1.5">
         <div class="flex items-center gap-2 text-[12px]">
           <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
           <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
         </div>
       </div>
-
+  
       <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Our Services</h2>
       <p class="lg:text-[18px] text-[12px] font-medium">End-to-end content solutions for every stage of the funnel.</p>
     </div>
-
+  
     <div class="grid lg:grid-cols-3 grid-cols-2 gap-4 mt-10">
-      <div class="col-span-1 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img src="./images/service1.png" class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+      <% data?.service?.forEach(service => { %>
+        <div class="col-span-1 rounded-b-[20px] shadow-lg">
+          <div class="relative">
+            <img src="<%= service.image %>" class="h-[100px] lg:h-auto object-cover rounded-t-[20px]" alt="<%= service.name %>">
+            <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+              <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+            </div>
+          </div>
+  
+          <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+            <h3 class="lg:text-[20px] text-[13px] font-medium"><%= service.name %></h3>
+            <p class="lg:text-[14px] text-[9px] font-medium mt-1"><%= service.title %></p>
+  
+            <a href="service/<%= service?._id  %>" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">
+              Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i>
+            </a>
           </div>
         </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Blog Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service2.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Article Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service3.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">SEO Content Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 lg:mt-2 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service4.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Case Study Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 mt-2 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service5.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Website Content Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 mt-2 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service6.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Ebook Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
+      <% }) %>
     </div>
   </section>
 
@@ -339,374 +197,152 @@
     </div>
   </section>
 
-  <section class="lg:px-20 px-4 py-8  lg:py-12 ">
+  <section class="lg:px-20 px-4 py-8 lg:py-12">
     <div class="text-center">
-      <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">Our Purpose</span>
-
-      <h2 class="lg:text-[40px] text-[20px] font-semibold">Why Choose Encourages Writing?</h2>
-      <p class="lg:text-[18px] text-[12px] ">We deliver high-quality, SEO-optimized content quickly and affordably, with a team of experts across 20+ industries</p>
+      <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">
+        Our Purpose
+      </span>
+  
+      <h2 class="lg:text-[40px] text-[20px] font-semibold">
+        <%= data?.purpose?.heading %>
+      </h2>
+  
+      <p class="lg:text-[18px] text-[12px]">
+        <%= data?.purpose?.subHeading %>
+      </p>
     </div>
-
-    <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6  lg:mt-10">
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Fast Delivery</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium lg:leading-[18px]">We deliver high-quality content quickly, often within 48 hours, so your projects stay on schedule.</p>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 2.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Affordable Pricing</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Top-notch content at prices that suit businesses of all sizes.</p>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 3.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">SEO Expertise</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Our content is crafted to rank well on search engines and engage your audience effectively.</p>
-      </div>
-
-      <div class="col-span-1 text-center">
-        <img class="lg:w-[90px] w-[70px] mx-auto" src="./images/fast-delivery 4.png" alt="">
-        <h3 class="font-semibold lg:text-[18px]  text-[16px]">Team of 100+ Writers:</h3>
-        <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]">Our content is crafted to rank well on search engines and engage your audience effectively.</p>
-      </div>
+  
+    <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6 lg:mt-10">
+      <% data?.purpose?.details?.forEach((item, index) => { %>
+        <div class="col-span-1 text-center">
+          <img 
+            class="lg:w-[90px] w-[70px] mx-auto" 
+            src="<%= item.icon %>" 
+            alt="<%= item.title %>"
+          >
+          <h3 class="font-semibold lg:text-[18px] text-[16px]"><%= item.title %></h3>
+          <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]"><%= item.description %></p>
+        </div>
+      <% }) %>
     </div>
   </section>
+  
 
   <section class="lg:px-14 px-4 lg:py-14 py-8">
     <div class="grid grid-cols-3 lg:py-16 py-8 bg-white rounded-2xl shadow-xl">
       <div class="col-span-1  border-r-[rgba(0,0,0,.1)] border-r  text-center">
-        <h2 class="font-medium lg:text-[36px] text-[22px]">500+</h2>
+        <h2 class="font-medium lg:text-[36px] text-[22px]"> <%= data?.purpose?.projectsDelivered %></h2>
         <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Projects Delivered</p>
       </div>
 
       <div class="col-span-1 border-r-[rgba(0,0,0,.1)] border-r  text-center">
-        <h2 class="font-medium  lg:text-[36px] text-[22px]">2M+</h2>
+        <h2 class="font-medium  lg:text-[36px] text-[22px]"> <%= data?.purpose?.wordsWritten %></h2>
         <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Words Written</p>
       </div>
 
 
       <div class="col-span-1 text-center">
-        <h2 class="font-medium  lg:text-[36px] text-[22px]">150%</h2>
+        <h2 class="font-medium  lg:text-[36px] text-[22px]"> <%= data?.purpose?.avgTrafficGrowth %></h2>
         <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Avg. Traffic Growth</p>
       </div>
     </div>
   </section>
 
-  <section class="lg:pl-14 pl-4 lg:py-20 pt-16 relative">
 
-    <div class="flex items-end pr-10 ">
-      <h2 class="lg:text-[26px] text-[20px] font-medium w-[85%] lg:w-[32%]">Our Seamless 4-Step Process to Crafting Powerful Content</h2>
-
-      <span class="bg-black h-[1px] w-full flex-1 inline-block mb-2"></span>
+  <section class="lg:px-14 px-4 lg:py-[80px] py-7">
+    <div class="lg:w-[48%] text-center lg:text-left">
+      <h2 class="lg:text-[40px] text-[20px] font-semibold"><%= data?.process?.heading  %></h2>
+      <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.process?.subHeading %></p>
     </div>
-
-    <div id="process-slider" class="swiper pb-10 h-[420px] lg:h-[450px] !overflow-hidden mt-10">
-      <div class="swiper-wrapper">
-        <!-- Slide 1 -->
-        <div class="swiper-slide ">
-          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
-            <div>
-              <h2 class="lg:text-[28px] text-[20px] font-medium text-white">01.</h2>
-              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Understanding Client Needs</p>
+  
+    <div class="grid lg:grid-cols-2 lg:gap-14 gap-5 mt-7">
+      <div class="col-span-1">
+        <% data?.process?.details?.forEach((step, index) => { %>
+          <div class="flex gap-3 items-center mt-<%= index === 0 ? '0' : '10' %>">
+            <div class="lg:min-w-[62px] min-w-[50px] <%= index != data?.process?.details?.length-1 ? "nextStep" : " "; %> h-[50px] lg:h-[62px] rounded-full bg-black flex justify-center items-center">
+              <img src="/<%= step.icon %>" alt="" class="lg:w-[32px] w-[27px]" style=" filter: invert(1)">
             </div>
-            <div class="mt-32">
-              <p class="text-white lg:text-[15px] text-[13px]">We begin by carefully listening to your requirements, goals, and target audience. This helps us tailor the content strategy to align perfectly with your brand’s voice and objectives.</p>
+  
+            <div>
+              <h3 class="lg:text-[18px] text-[15px] font-medium"><%= (index + 1) %>. <%= step.title %></h3>
+              <p class="text-[#666666] lg:text-[15px] text-[12px] font-medium"><%= step.description %></p>
             </div>
           </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="swiper-slide">
-          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
-            <div>
-              <h2 class="lg:text-[28px] text-[20px] font-medium text-white">02.</h2>
-              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Research & Drafting</p>
-            </div>
-            <div class="mt-32">
-              <p class="text-white lg:text-[15px] text-[13px]">Our team conducts in-depth research on your industry, competitors, and keywords. Based on these insights, we create a well-structured draft that balances creativity with SEO-driven content.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="swiper-slide ">
-          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
-            <div>
-              <h2 class="text-[28px] font-medium text-white">03.</h2>
-              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Editing & Proofreading</p>
-            </div>
-            <div class="mt-32">
-              <p class="text-white lg:text-[15px] text-[13px]">Every draft goes through a rigorous quality check by expert editors. We refine tone, grammar, and clarity, ensuring your content is polished, professional, and error-free.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="swiper-slide ">
-          <div class="px-4 h-[339px] lg:h-auto bg-[url('./images/a20.png')] py-8 bg-cover bg-center rounded-3xl">
-            <div>
-              <h2 class="text-[28px] font-medium text-white">04.</h2>
-              <p class="font-medium lg:text-[20px] text-[17px] text-white -mt-1.5">Final Delivery</p>
-            </div>
-            <div class="mt-32">
-              <p class="text-white lg:text-[15px] text-[13px]">Every draft goes through a rigorous quality check by expert editors. We refine tone, grammar, and clarity, ensuring your content is polished, professional, and error-free.</p>
-            </div>
-          </div>
-        </div>
-
-
-
+        <% }) %>
       </div>
-
-      <!-- Arrows bottom aligned & close together -->
-      <div class="flex absolute bottom-8  right-20">
-        <div class="swiper-button-prev prev-process  -ml-2 cursor-pointer h-[45px] min-w-[45px] border-black border rounded-full">
-          <i class="fa-solid fa-arrow-right text-black text-lg"></i>
-        </div>
-        <div class="swiper-button-next next-process cursor-pointer h-[45px] min-w-[45px] border-black border rounded-full">
-          <i class="fa-solid fa-arrow-left text-black text-lg "></i>
-        </div>
+  
+      <div class="col-span-1">
+        <img class="w-full lg:h-[440px] h-[300px] object-cover rounded-[8px] lg:rounded-[30px]" src="/<%= data?.process?.bgImg %>" alt="Blog Writing Process">
       </div>
-
     </div>
-
   </section>
 
-  <section class="lg:py-14 py-8 ">
+  <section class="lg:py-14 py-8">
     <div class="text-center">
-      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2 ">What our Customer says</h2>
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2">
+        What our Customers say
+      </h2>
     </div>
-
-
-
-    <div class="lg:pl-12 pl-4 pr-2  relative">
-
+  
+    <div class="lg:pl-12 pl-4 pr-2 relative">
+  
       <!-- Custom Navigation -->
       <div class="hidden lg:block">
         <div class="swiper-button-next absolute !text-black !-top-8 !right-5">
           <i class="fa-solid fa-arrow-right text-2xl"></i>
         </div>
-        <div class="swiper-button-prev absolute !text-black  !-top-8 !left-10">
+        <div class="swiper-button-prev absolute !text-black !-top-8 !left-10">
           <i class="fa-solid fa-arrow-left text-2xl"></i>
         </div>
       </div>
+  
       <!-- Swiper Container -->
       <div id="reviewSwiper" class="swiper mySwiper lg:mt-10 mt-6">
         <div class="swiper-wrapper">
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
+  
+          <% data?.customer.forEach((review) => { %>
+            <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+              <div class="flex justify-between items-center">
+                <div class="flex gap-3 items-center">
+                  <img
+                    class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover"
+                    src="<%= review.image %>"
+                    alt="<%= review.name %>"
+                  >
+                  <div>
+                    <h3 class="text-[14px] font-medium"><%= review.name %></h3>
+                    <h3 class="text-[13px] font-medium"><%= review.desination %></h3>
+                  </div>
+                </div>
+  
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-star text-yellow-400"></i>
+                  <p class="font-medium lg:text-[16px] text-[13px]"><%= review.rating %>/5</p>
                 </div>
               </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
+  
+              <p class="text-[#00000066] font-medium text-[13px] mt-5">
+                <%= review.content %>
+              </p>
             </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
-          <!-- Slide 1 -->
-          <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3 items-center">
-                <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="./images/user-1.png" alt="">
-                <div>
-                  <h3 class="text-[14px] font-medium">Ashley Cook</h3>
-                  <h3 class="text-[13px] font-medium">CEO, Company</h3>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-star"></i>
-                <p class="font-medium lg:text-[16px] text-[13px]">5/5</p>
-              </div>
-
-            </div>
-
-            <p class="text-[#00000066] font-medium text-[13px] mt-5">
-              I’ve tried many platforms, but UI Wiki stands out for its attention to detail and clean aesthetics. Highly recommend!
-            </p>
-
-
-          </div>
-
+          <% }) %>
+  
         </div>
-
       </div>
     </div>
   </section>
+  
 
 
   <section class="lg:py-14 px-4 lg:px-0 py-10 bg-[#F0F0F0] text-center lg:mt-20 mt-12">
-    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]">Ready to boost your brand with powerful content?</h2>
+    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]"><%= data?.bottom?.title  %></h2>
 
-    <p class="font-medium lg:text-[17px] text-[14px]">Let’s work together to create words that convert and stories that inspire.</p>
+    <p class="font-medium lg:text-[17px] text-[14px]"><%= data?.bottom?.subTitle  %></p>
 
     <a href="#" class="bg-black rounded-md py-2 px-8 text-white font-medium inline-block lg:mt-5 mt-3 text-[14px] lg:text-[16px]">Hire Us Today</a>
   </section>
 
-  <footer class="lg:pt-8 pt-6 bg-black text-white">
-    <div class="grid lg:grid-cols-6 lg:px-14 px-7  lg:mb-20 mb-10 lg:gap-12 gap-7">
-      <div class="col-span-2">
-        <img src="./images/logo.jpg" alt="" class="w-[120px] -ml-8">
-
-        <p class="text-white lg:text-[14px] text-[13px] lg:pr-10 -mt-8">Powerful words, impactful stories. We craft SEO-friendly content that builds trust and drives growth.</p>
-      </div>
-
-      <div class="col-span-1 lg:mt-5 mt-3">
-        <h2 class="font-medium lg:text-[17px] text-[15px]">Quick Links</h2>
-
-        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-          <li>
-            <a href="/about-us.html">About Us</a>
-          </li>
-
-          <li>
-            <a href="/services.html">Services</a>
-          </li>
-
-
-          <li>
-            <a href="/blogs.html">Blog</a>
-          </li>
-
-
-          <li>
-            <a href="/contact.html">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-span-1 lg:mt-5 mt-3">
-        <h2 class="font-medium lg:text-[17px] text-[15px]">Services</h2>
-
-        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-          <li>
-            <a href="/service-details.html">Blog & Article Writing</a>
-          </li>
-
-          <li>
-            <a href="/service-details.html">Website Content</a>
-          </li>
-
-
-          <li>
-            <a href="/service-details.html">SEO Content</a>
-          </li>
-
-
-          <li>
-            <a href="/service-details.html">Copywriting</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-span-2 lg:mt-5 mt-3 lg:pl-10">
-        <h2 class="font-medium lg:text-[17px] text-[15px]">Get in Touch</h2>
-
-        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-          <li>
-            <a href="#"><i class="fa-solid fa-envelope"></i> info@contentwhale.com</a>
-          </li>
-
-          <li>
-            <a href="#"><i class="fa-solid fa-phone text-[13px] lg:text-[15px]"></i> +91 98765 43210</a>
-          </li>
-
-
-          <li>
-            <a href="#"><i class="fa-solid fa-location-dot text-[13px] lg:text-[15px]"></i> Jaipur, Rajasthan, India</a>
-          </li>
-
-
-
-        </ul>
-
-        <ul class="mt-4 flex gap-3">
-          <li>
-            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-facebook-f text-[13px] lg:text-[16px] text-black"></i></a>
-          </li>
-
-          <li>
-            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-twitter text-[13px] lg:text-[16px] text-black"></i></a>
-          </li>
-          <li>
-            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-instagram text-[13px] lg:text-[16px] text-black"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="bottom-footer border-t-[rgba(255,255,255,.3)] py-7 border-t ">
-      <p class="text-[#FFFFFF78] text-[14px] text-center ">© 2025 ContentWhale. All rights reserved.</p>
-    </div>
-  </footer>
+  <%-include('partials/footer')%>
 
 
   <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
@@ -810,25 +446,4 @@
       }
     });
   </script>
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  </script>
-
-  <script>
-    const header = document.getElementById("main-header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 30) {
-        header.classList.add("bg-white", "shadow", );
-      } else {
-        header.classList.remove("bg-white", "shadow");
-      }
-    });
-  </script>
-</body>
-
-</html>
+ 

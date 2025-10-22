@@ -1,0 +1,248 @@
+<%- include("partials/aside") %>
+
+<main class="flex-1 p-6 overflow-auto">
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Blogs</h1>
+      <p class="mt-2 text-gray-700">Create, edit, or delete your blogs below.</p>
+    </div>
+
+    <!-- Add Blog Button -->
+    <div>
+      <button
+        id="openAddModalBtn"
+        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
+      >
+        + Add Blog
+      </button>
+    </div>
+  </div>
+
+  <!-- Blog Table -->
+  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Blogs List</h2>
+    <table class="min-w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="px-4 py-2 border">Title</th>
+          <th class="px-4 py-2 border">Author</th>
+          <th class="px-4 py-2 border">Content</th>
+          <th class="px-4 py-2 border">Image</th>
+          <th class="px-4 py-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="blogTableBody">
+        <tr>
+          <td class="px-4 py-2 border">How to Design a Website</td>
+          <td class="px-4 py-2 border">Arman Ali</td>
+          <td class="px-4 py-2 border truncate-text">
+            Step-by-step guide to creating modern websites using HTML, CSS, and JS.
+          </td>
+          <td class="px-4 py-2 border">
+            <img
+              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
+              class="h-16 w-16 object-cover rounded"
+              alt="Blog 1"
+            />
+          </td>
+          <td class="px-4 py-2 border space-x-2">
+            <button
+              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+            >
+              Edit
+            </button>
+            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="px-4 py-2 border">SEO Tips for Beginners</td>
+          <td class="px-4 py-2 border">Sara Khan</td>
+          <td class="px-4 py-2 border truncate-text">
+            Learn basic SEO techniques to improve website ranking on Google.
+          </td>
+          <td class="px-4 py-2 border">
+            <img
+              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
+              class="h-16 w-16 object-cover rounded"
+              alt="Blog 2"
+            />
+          </td>
+          <td class="px-4 py-2 border space-x-2">
+            <button
+              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+            >
+              Edit
+            </button>
+            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- Add Blog Modal -->
+<div
+  id="addBlogModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <button
+      id="closeAddModalBtn"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+    >
+      &times;
+    </button>
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Blog</h2>
+    <form id="addBlogForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="blogTitle"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="blogTitle"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="author"
+          >Author</label
+        >
+        <input
+          type="text"
+          id="author"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="content"
+          >Content</label
+        >
+        <textarea
+          id="content"
+          class="w-full border border-gray-300 rounded p-2"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="blogImage"
+          >Image</label
+        >
+        <input
+          type="file"
+          id="blogImage"
+          class="w-full cursor-pointer border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        Add Blog
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Blog Modal -->
+<div
+  id="editBlogModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <button
+      id="closeEditModalBtn"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+    >
+      &times;
+    </button>
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Blog</h2>
+    <form id="editBlogForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="editTitle"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editAuthor"
+          >Author</label
+        >
+        <input
+          type="text"
+          id="editAuthor"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editContent"
+          >Content</label
+        >
+        <textarea
+          id="editContent"
+          class="w-full border border-gray-300 rounded p-2"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editImage"
+          >Image</label
+        >
+        <input
+          type="file"
+          id="editImage"
+          class="w-full cursor-pointer border border-gray-300 rounded p-2"
+        />
+      </div>
+      <button
+        type="submit"
+        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        Save Changes
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Add Blog Modal
+  const openAddModalBtn = document.getElementById("openAddModalBtn");
+  const addBlogModal = document.getElementById("addBlogModal");
+  const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+
+  openAddModalBtn.addEventListener("click", () => {
+    addBlogModal.classList.remove("hidden");
+  });
+
+  closeAddModalBtn.addEventListener("click", () => {
+    addBlogModal.classList.add("hidden");
+  });
+
+  // Edit Blog Modal
+  const editBlogModal = document.getElementById("editBlogModal");
+  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+  const editButtons = document.querySelectorAll(".openEditModalBtn");
+
+  editButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      editBlogModal.classList.remove("hidden");
+    });
+  });
+
+  closeEditModalBtn.addEventListener("click", () => {
+    editBlogModal.classList.add("hidden");
+  });
+</script>

@@ -16,6 +16,6 @@ const bottomSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+bottomSchema.index({ createdAt: -1 });
 const Bottom = mongoose.model("bottom", bottomSchema)
 module.exports = Bottom 

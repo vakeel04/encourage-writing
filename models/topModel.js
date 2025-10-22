@@ -18,6 +18,7 @@ const topSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
+topSchema.index({ createdAt: -1 });
  
 const Top = mongoose.model("top", topSchema)
 module.exports = Top 

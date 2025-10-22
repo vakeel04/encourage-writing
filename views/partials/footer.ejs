@@ -1,0 +1,148 @@
+<footer class="lg:pt-8 pt-6 bg-black text-white">
+    <div class="grid lg:grid-cols-6 lg:px-14 px-7  lg:mb-20 mb-10 lg:gap-12 gap-7">
+      <div class="col-span-2">
+        <img src="./images/logo.jpg" alt="" class="w-[120px] -ml-8">
+
+        <p class="text-white lg:text-[14px] text-[13px] lg:pr-10 -mt-8">Powerful words, impactful stories. We craft SEO-friendly content that builds trust and drives growth.</p>
+      </div>
+
+      <div class="col-span-1 lg:mt-5 mt-3">
+        <h2 class="font-medium lg:text-[17px] text-[15px]">Quick Links</h2>
+
+        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+          <li>
+            <a href="/about-us.html">About Us</a>
+          </li>
+
+          <li>
+            <a href="/services.html">Services</a>
+          </li>
+
+
+          <li>
+            <a href="/blogs.html">Blog</a>
+          </li>
+
+
+          <li>
+            <a href="/contact.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-1 lg:mt-5 mt-3">
+        <h2 class="font-medium lg:text-[17px] text-[15px]">Services</h2>
+
+        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+          <li>
+            <a href="/service-details.html">Blog & Article Writing</a>
+          </li>
+
+          <li>
+            <a href="/service-details.html">Website Content</a>
+          </li>
+
+
+          <li>
+            <a href="/service-details.html">SEO Content</a>
+          </li>
+
+
+          <li>
+            <a href="/service-details.html">Copywriting</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-span-2 lg:mt-5 mt-3 lg:pl-10">
+        <h2 class="font-medium lg:text-[17px] text-[15px]">Get in Touch</h2>
+
+        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
+          <li>
+            <a href="#"><i class="fa-solid fa-envelope"></i> info@contentwhale.com</a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa-solid fa-phone text-[13px] lg:text-[15px]"></i> +91 98765 43210</a>
+          </li>
+
+
+          <li>
+            <a href="#"><i class="fa-solid fa-location-dot text-[13px] lg:text-[15px]"></i> Jaipur, Rajasthan, India</a>
+          </li>
+
+
+
+        </ul>
+
+        <ul class="mt-4 flex gap-3">
+          <li>
+            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-facebook-f text-[13px] lg:text-[16px] text-black"></i></a>
+          </li>
+
+          <li>
+            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-twitter text-[13px] lg:text-[16px] text-black"></i></a>
+          </li>
+          <li>
+            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-instagram text-[13px] lg:text-[16px] text-black"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-footer border-t-[rgba(255,255,255,.3)] py-7 border-t ">
+      <p class="text-[#FFFFFF78] text-[14px] text-center ">© 2025 ContentWhale. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+
+ <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+ <script>
+   const processSwiper = new Swiper('#process-slider', {
+     loop: true,
+     slidesPerView: 3, // ek time par 3 cards
+     spaceBetween: 20,
+     slidesPerGroup: 1,
+     navigation: {
+       nextEl: '#process-slider .swiper-button-next',
+       prevEl: '#process-slider .swiper-button-prev',
+     },
+     breakpoints: {
+       0: {
+         slidesPerView: 1.3
+       }, // Mobile
+       768: {
+         slidesPerView: 2
+       }, // Tablet
+       1024: {
+         slidesPerView: 3.8
+       } // Desktop
+     }
+   });
+ </script>
+
+
+ <script>
+   const menuBtn = document.getElementById("menu-btn");
+   const mobileMenu = document.getElementById("mobile-menu");
+
+   menuBtn.addEventListener("click", () => {
+     mobileMenu.classList.toggle("hidden");
+   });
+ </script>
+
+ <script>
+   const header = document.getElementById("main-header");
+   window.addEventListener("scroll", () => {
+     if (window.scrollY > 30) {
+       header.classList.add("bg-white", "shadow", );
+     } else {
+       header.classList.remove("bg-white", "shadow");
+     }
+   });
+ </script>
+</body>
+
+</html>

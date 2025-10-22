@@ -7,8 +7,11 @@ const purposeSchema = new mongoose.Schema({
         description: { type: String},
         icon: { type: String},}],
     usedBy:{type:String,enum:["about-us","service"]},
+    projectsDelivered:{type:String},
+    wordsWritten:{type:String},
+    avgTrafficGrowth:{type:String},
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+purposeSchema.index({ createdAt: -1 });
 const Purpose= mongoose.model("purpose", purposeSchema)
 module.exports = Purpose

@@ -16,6 +16,6 @@ const contactUsSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+contactUsSchema.index({ createdAt: -1 });
 const ContactUs = mongoose.model("contact-us", contactUsSchema)
 module.exports = ContactUs 

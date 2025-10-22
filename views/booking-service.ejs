@@ -1,0 +1,146 @@
+<%-include('partials/header')%>
+
+
+  <section class="lg:px-14 px-4 lg:py-[120px] py-20">
+    <div class="text-center lg:mb-10 mb-5">
+      <h2 class="lg:text-[32px] text-[20px] font-medium">Personal Details</h2>
+      <p class="font-medium -mt-1 text-[13px] lg:text-[16px]">Please provide traveller information</p>
+    </div>
+    <div class="grid lg:grid-cols-3 items-start gap-6">
+      <div class="col-span-1 lg:hidden bg-[#F6F6F6] lg:rounded-[30px] rounded-[8px] lg:py-7 p-5 lg:px-7">
+        <h2 class="lg:text-[22px] text-[17px] font-medium">Blog Writing</h2>
+        <p class="lg:text-[15px] text-[13px] lg:mt-2 mt-1">Transform your brand's voice with expertly crafted content that engages your audience and drives measurable results. From blog posts to website copy</p>
+
+        <ul class="lg:mt-4 mt-3 text-[13px] list-disc pl-4 lg:text-[15px]">
+          <li>Fast Delivery</li>
+          <li>Quality Assured</li>
+          <li>Expert Writers</li>
+        </ul>
+
+        <div class="lg:mt-4 mt-3 space-y-0.5">
+
+
+          <div class="flex justify-between ">
+            <p class="text-[#525252] lg:text-[15px] text-[13px]">Turnaround:</p>
+            <p class="lg:text-[15px] text-[13px]"> 3-5 days</p>
+          </div>
+
+          <div class="flex justify-between">
+            <p class="text-[#525252] lg:text-[15px] text-[13px]">Total Price:</p>
+            <p class="lg:text-[15px] text-[13px]"> $150</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-2 lg:px-7 px-5 lg:py-7 py-5 border-[#C6C6C6] border rounded-[8px] lg:rounded-[30px]">
+        <h2 class="olg:text-[22px] text-[17px]">Lead Traveler Information</h2>
+
+        <form id="bookingForm" class="mt-5">
+          <div class="lg:flex gap-8">
+            <div class="flex-1">
+              <label>First Name*</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter your First name"
+                class="w-full text-[15px] px-5 py-2 bg-[#F8F8F8] rounded-lg mt-1">
+            </div>
+        
+            <div class="flex-1 mt-4 lg:mt-0">
+              <label>Last Name*</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter your Last name"
+                class="w-full text-[15px] px-5 py-2 bg-[#F8F8F8] rounded-lg mt-1">
+            </div>
+          </div>
+        
+          <div class="lg:flex gap-8 mt-4 lg:mt-5">
+            <div class="flex-1">
+              <label>Email Address*</label>
+              <input type="email" id="email" name="email" placeholder="Enter your Email Address"
+                class="w-full text-[15px] px-5 py-2 bg-[#F8F8F8] rounded-lg mt-1">
+            </div>
+        
+            <div class="flex-1 mt-4 lg:mt-0">
+              <label>Phone Number*</label>
+              <input type="text" id="phone" name="phone" placeholder="Enter your Phone Number"
+                class="w-full text-[15px] px-5 py-2 bg-[#F8F8F8] rounded-lg mt-1">
+            </div>
+          </div>
+        
+          <div class="lg:mt-5 mt-4">
+            <label>Address</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter Address"
+              class="w-full text-[15px] resize-none px-5 py-2 bg-[#F8F8F8] rounded-lg mt-1"></textarea>
+          </div>
+        
+          <div class="lg:mt-7 mt-4 flex gap-3">
+            <button type="button" id="cancelBtn" class="rounded-md border-black border py-2 px-5 lg:px-10 text-[13px]">Cancel</button>
+            <button type="submit" class="rounded-md bg-black border-black border py-2 px-5 lg:px-10 text-white cursor-pointer lg:text-[15px] text-[13px]">Proceed to payment</button>
+          </div>
+        </form>
+        
+      </div>
+
+      <div class="col-span-1 hidden lg:block bg-[#F6F6F6] lg:rounded-[30px] rounded-[8px] lg:py-7 p-5 lg:px-7">
+        <h2 class="lg:text-[22px] text-[17px] font-medium">Blog Writing</h2>
+        <p class="lg:text-[15px] text-[13px] lg:mt-2 mt-1">Transform your brand's voice with expertly crafted content that engages your audience and drives measurable results. From blog posts to website copy</p>
+
+        <ul class="lg:mt-4 mt-3 text-[13px] list-disc pl-4 lg:text-[15px]">
+          <li>Fast Delivery</li>
+          <li>Quality Assured</li>
+          <li>Expert Writers</li>
+        </ul>
+
+        <div class="lg:mt-4 mt-3 space-y-0.5">
+
+
+          <div class="flex justify-between ">
+            <p class="text-[#525252] lg:text-[15px] text-[13px]">Turnaround:</p>
+            <p class="lg:text-[15px] text-[13px]"> 3-5 days</p>
+          </div>
+
+          <div class="flex justify-between">
+            <p class="text-[#525252] lg:text-[15px] text-[13px]">Total Price:</p>
+            <p class="lg:text-[15px] text-[13px]"> $150</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+
+  <%-include('partials/footer')%>
+ 
+
+<script>
+  document.getElementById("bookingForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const bookingData = {
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("address").value
+    };
+
+    try {
+      const response = await fetch("/api/booking-service", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bookingData)
+      });
+
+      const result = await response.json();
+
+      if (result.status) {
+        alert("Booking created successfully ✅");
+        document.getElementById("bookingForm").reset();
+      } else {
+        alert("Failed to create booking ❌: " + result.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error: " + error.message);
+    }
+  });
+</script>
+ 

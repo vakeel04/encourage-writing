@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const faqSchema = new mongoose.Schema({
-    usedBy: { type: String,enum:["home","service_detail"], required: true },
+    usedBy: { type: String,enum:["home","service-detail"], required: true },
     heading: { type: String, required: true },
     subHeading: { type: String, required: true },
     detail:[{question: { type: String, required: true },
@@ -16,6 +16,6 @@ const faqSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+faqSchema.index({ createdAt: -1 });
 const FAQ = mongoose.model("faq", faqSchema)
 module.exports = FAQ 

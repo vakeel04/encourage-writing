@@ -16,6 +16,6 @@ const contentPricingSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+contentPricingSchema.index({ createdAt: -1 });
 const ContentPricing = mongoose.model("contentPricing", contentPricingSchema)
 module.exports = ContentPricing 

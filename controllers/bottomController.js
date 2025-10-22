@@ -1,23 +1,50 @@
 const Bottom = require("../models/bottomModel");
 
-// Create Bottom with images
+
+
 const createBottom = async (req, res) => {
     try {
-        const body = req.body;
-
-        // Handle uploaded files
-        if (req.files) {
-            if (req.files.image) body.image = "uploads/"+ req.files.image[0].filename;
-            if (req.files.og_image) body.og_image = "uploads/"+ req.files.og_image[0].filename;
+      const body = req.body;
+  
+      // 🧩 Handle detail — convert stringified array → real array
+      if (body.detail) {
+        if (typeof body.detail === "string") {
+          try {
+            // Agar string JSON format me ho
+            const parsed = JSON.parse(body.detail);
+            body.detail = Array.isArray(parsed) ? parsed : [parsed];
+          } catch {
+            // Agar sirf ek string aayi ho
+            body.detail = [body.detail];
+          }
+        } else if (!Array.isArray(body.detail)) {
+          // Agar kisi aur type ki value aayi ho
+          body.detail = [body.detail];
         }
-
-        const bottom = await Bottom.create(body);
-        return res.status(201).send({ status: true, message: "Bottom created successfully", data: bottom });
+      } else {
+        body.detail = [];
+      }
+  
+      // 🧩 Handle uploaded files (multer)
+      if (req.files) {
+        if (req.files.image) body.image = "uploads/" + req.files.image[0].filename;
+        if (req.files.og_image) body.og_image = "uploads/" + req.files.og_image[0].filename;
+      }
+  
+      // 🧩 Create Bottom document
+      const bottom = await Bottom.create(body);
+  
+      return res.status(201).send({
+        status: true,
+        message: "Bottom created successfully",
+        data: bottom,
+      });
     } catch (error) {
-        res.status(400).send({ status: false, message: error.message });
+      console.error("Create Bottom Error:", error);
+      res.status(400).send({ status: false, message: error.message });
     }
-};
-
+  };
+  
 // Update Bottom with images
 const updateBottom = async (req, res) => {
     try {

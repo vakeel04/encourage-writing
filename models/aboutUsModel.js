@@ -16,6 +16,6 @@ const aboutUsSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+aboutUsSchema.index({ createdAt: -1 });
 const AboutUs = mongoose.model("about-us", aboutUsSchema)
 module.exports = AboutUs 

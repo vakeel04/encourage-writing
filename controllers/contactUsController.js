@@ -7,7 +7,6 @@ const createContactUs = async (req, res) => {
     if (req.files && req.files['og_image']) {
       req.body.og_image = "uploads/" + req.files['og_image'][0].filename;
     }
-
     const contact = await ContactUs.create(req.body);
     if (contact)
       return res.status(201).send({ status: true, message: "Contact message created successfully", data: contact });

@@ -9,7 +9,6 @@ const createHeroSection = async (req, res) => {
       if (!req.files || req.files.length === 0) {
         return res.status(400).send({ status: false, message: "Images are required" });
       }
-  
       // Map image paths
       req.body.images = req.files.map(file => "uploads/" + file.filename);
   

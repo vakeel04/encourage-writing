@@ -17,6 +17,7 @@ const teamSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+teamSchema.index({ createdAt: -1 });
+
 const Team = mongoose.model("team", teamSchema)
 module.exports = Team 

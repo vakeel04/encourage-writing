@@ -1,76 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encourage Writing</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="./css/style.css">
-  <style>
-    /* Default Swiper arrows hide */
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      display: none !important;
-      content: "" !important;
-    }
-  </style>
-</head>
-
-<body>
-  <header id="main-header" class="px-6 md:px-10 py-4 fixed flex justify-between items-center top-0 left-0 w-full z-50 transition-all duration-300">
-    <!-- Logo -->
-    <a href="/index.html">
-      <img class="w-[45px] md:w-[55px] rounded-full" src="./images/logo.jpg" alt="Logo">
-    </a>
-
-    <!-- Desktop Menu -->
-    <ul class="hidden md:flex font-medium gap-7">
-      <li><a href="/" class="hover:text-gray-600">Home</a></li>
-      <li><a href="/blog" class="hover:text-gray-600">Blog</a></li>
-      <li><a href="/service" class="hover:text-gray-600">Services</a></li>
-      <li><a href="/about-us" class="hover:text-gray-600">About Us</a></li>
-      <li><a href="/contact" class="hover:text-gray-600">Contact</a></li>
-    </ul>
-
-    <!-- Right Side (Desktop) -->
-    <div class="hidden md:flex gap-4 items-center">
-      <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
-        <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
-      </button>
-      <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
-        Let's Talk
-      </a>
-    </div>
-
-    <!-- Hamburger Icon (Mobile) -->
-    <button id="menu-btn" class="md:hidden text-2xl">
-      <img class="w-[25px]" src="./images/menu.svg" alt="">
-    </button>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 md:hidden">
-      <ul class="flex flex-col gap-4 font-medium">
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/service">Services</a></li>
-        <li><a href="/about-us">About Us</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-
-      <div class="flex gap-4 items-center mt-4">
-        <button class="border-black border h-[35px] w-[35px] flex justify-center items-center rounded-full">
-          <i class="fa-solid fa-right-from-bracket text-[14px]"></i>
-        </button>
-        <a href="#" class="inline-block px-7 py-2.5 rounded-full text-white bg-black text-[14px] font-medium border hover:bg-transparent hover:text-black transition-all duration-300">
-          Let's Talk
-        </a>
-      </div>
-    </div>
-  </header>
+<%-include('partials/header')%>
   <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[100px] mt-20 px-4 lg:px-0">
     <div class="text-center">
       <h2 class="lg:text-[44px] text-[20px] font-medium capitalize lg:w-[57%] mx-auto lg:leading-[50px] hero-heading"><%= data?.heroSection[0]?.title %></h2>
@@ -127,7 +55,11 @@
           <div class="relative w-full">
             <select class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
               <option value="">Service Type</option>
-
+              <option value="">Service Type</option>
+              <option value="">Service Type</option>
+              <option value="">Service Type</option>
+              <option value="">Service Type</option>
+              <option value="">Service Type</option>
             </select>
 
             <!-- Custom Icon -->
@@ -167,7 +99,7 @@
           </ul>
       
           <div class="mt-4">
-            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">
+            <a href="/booking-service" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">
               Get Started
             </a>
           </div>
@@ -215,117 +147,42 @@
   </section>
 
 
-  <section class="lg:py-12 py-10  lg:px-14 px-4 ">
+  <section class="lg:py-12 py-10 lg:px-14 px-4">
     <div class="text-center">
-      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
+      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full inline-block lg:py-2 py-1.5">
         <div class="flex items-center gap-2 text-[12px]">
           <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
           <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
         </div>
       </div>
-
+  
       <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Our Services</h2>
       <p class="lg:text-[18px] text-[12px] font-medium">End-to-end content solutions for every stage of the funnel.</p>
     </div>
-
+  
     <div class="grid lg:grid-cols-3 grid-cols-2 gap-4 mt-10">
-      <div class="col-span-1 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img src="./images/service1.png" class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+      <% data?.service?.forEach(service => { %>
+        <div class="col-span-1 rounded-b-[20px] shadow-lg">
+          <div class="relative">
+            <img src="<%= service.image %>" class="h-[100px] lg:h-auto object-cover rounded-t-[20px]" alt="<%= service.name %>">
+            <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+              <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+            </div>
+          </div>
+  
+          <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+            <h3 class="lg:text-[20px] text-[13px] font-medium"><%= service.name %></h3>
+            <p class="lg:text-[14px] text-[9px] font-medium mt-1"><%= service.title %></p>
+  
+            <a href="service/<%= service?._id  %>" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">
+              Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i>
+            </a>
           </div>
         </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Blog Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service2.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Article Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service3.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">SEO Content Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 lg:mt-2 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service4.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Case Study Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 mt-2 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service5.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Website Content Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
-
-      <div class="col-span-1 mt-2 rounded-b-[20px] shadow-lg">
-        <div class="relative">
-          <img class="h-[100px] lg:h-auto object-cover  rounded-t-[20px]" src="./images/service6.png" alt="">
-          <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-            <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-          </div>
-        </div>
-
-        <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-          <h3 class="lg:text-[20px] text-[13px] font-medium">Ebook Writing</h3>
-          <p class="lg:text-[14px] text-[9px] font-medium mt-1">High-quality blog & article writing tailored to your brand.End-to-end content solutions for every stage of the funnel.</p>
-
-          <a href="#" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i></a>
-        </div>
-      </div>
+      <% }) %>
     </div>
   </section>
+  
  
   <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -529,103 +386,7 @@
   </script>
   
 
-
-  <footer class="lg:pt-8 pt-6 bg-black text-white">
-    <div class="grid lg:grid-cols-6 lg:px-14 px-7  lg:mb-20 mb-10 lg:gap-12 gap-7">
-      <div class="col-span-2">
-        <img src="./images/logo.jpg" alt="" class="w-[120px] -ml-8">
-
-        <p class="text-white lg:text-[14px] text-[13px] lg:pr-10 -mt-8">Powerful words, impactful stories. We craft SEO-friendly content that builds trust and drives growth.</p>
-      </div>
-
-      <div class="col-span-1 lg:mt-5 mt-3">
-        <h2 class="font-medium lg:text-[17px] text-[15px]">Quick Links</h2>
-
-        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-          <li>
-            <a href="/about-us.html">About Us</a>
-          </li>
-
-          <li>
-            <a href="/services.html">Services</a>
-          </li>
-
-
-          <li>
-            <a href="/blogs.html">Blog</a>
-          </li>
-
-
-          <li>
-            <a href="/contact.html">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-span-1 lg:mt-5 mt-3">
-        <h2 class="font-medium lg:text-[17px] text-[15px]">Services</h2>
-
-        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-          <li>
-            <a href="/service-details.html">Blog & Article Writing</a>
-          </li>
-
-          <li>
-            <a href="/service-details.html">Website Content</a>
-          </li>
-
-
-          <li>
-            <a href="/service-details.html">SEO Content</a>
-          </li>
-
-
-          <li>
-            <a href="/service-details.html">Copywriting</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-span-2 lg:mt-5 mt-3 lg:pl-10">
-        <h2 class="font-medium lg:text-[17px] text-[15px]">Get in Touch</h2>
-
-        <ul class="mt-4 space-y-1.5 lg:text-[15px] text-[13px]">
-          <li>
-            <a href="#"><i class="fa-solid fa-envelope"></i> info@contentwhale.com</a>
-          </li>
-
-          <li>
-            <a href="#"><i class="fa-solid fa-phone text-[13px] lg:text-[15px]"></i> +91 98765 43210</a>
-          </li>
-
-
-          <li>
-            <a href="#"><i class="fa-solid fa-location-dot text-[13px] lg:text-[15px]"></i> Jaipur, Rajasthan, India</a>
-          </li>
-
-
-
-        </ul>
-
-        <ul class="mt-4 flex gap-3">
-          <li>
-            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-facebook-f text-[13px] lg:text-[16px] text-black"></i></a>
-          </li>
-
-          <li>
-            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-twitter text-[13px] lg:text-[16px] text-black"></i></a>
-          </li>
-          <li>
-            <a href="#" class="bg-white lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] flex justify-center items-center rounded-full"><i class="fa-brands fa-instagram text-[13px] lg:text-[16px] text-black"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="bottom-footer border-t-[rgba(255,255,255,.3)] py-7 border-t ">
-      <p class="text-[#FFFFFF78] text-[14px] text-center ">© 2025 ContentWhale. All rights reserved.</p>
-    </div>
-  </footer>
+  <%-include('partials/footer')%>
 
 
   <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
@@ -754,26 +515,4 @@
     }
   </script>
 
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  </script>
-
-  <script>
-    const header = document.getElementById("main-header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        header.classList.add("bg-white", "shadow");
-      } else {
-        header.classList.remove("bg-white", "shadow");
-      }
-    });
-  </script>
-
-</body>
-
-</html>
+  

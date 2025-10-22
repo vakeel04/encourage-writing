@@ -20,6 +20,6 @@ const blogSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+blogSchema.index({ createdAt: -1 });
 const Blog = mongoose.model("blog", blogSchema)
 module.exports = Blog 

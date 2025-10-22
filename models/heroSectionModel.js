@@ -6,6 +6,7 @@ const heroSectionSchema = new mongoose.Schema({
     images: { type: Array, required: true },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
+heroSectionSchema.index({ createdAt: -1 });
 
 const HeroSection = mongoose.model("hero-section", heroSectionSchema)
 module.exports = HeroSection 

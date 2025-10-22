@@ -7,10 +7,10 @@ const processSchema = new mongoose.Schema({
     description: { type: String},
     icon: { type: String},}],
     bgImg: { type: String},
-    usedBy:{type:String,enum:["about-us","service","blog_detail"],required:true},
+    usedBy:{type:String,enum:["about_us","service",],required:true},
     meta_title: { type: String },
     meta_description: { type: String },
-    keywords: { type: String },
+    keywords: { type: String }, 
     og_title: { type: String },
     og_description: { type: String },
     og_image: { type: String },
@@ -18,7 +18,7 @@ const processSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+processSchema.index({ createdAt: -1 });
 const Process = mongoose.model("process", processSchema)
 module.exports = Process 
 

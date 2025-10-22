@@ -7,3 +7,6 @@ serviceRouter.get('/:id',serviceDetailPageContoller)
 
 
 module.exports = serviceRouter
+
+
+

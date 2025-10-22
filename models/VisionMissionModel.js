@@ -15,6 +15,7 @@ const VisionMissionSchema = new mongoose.Schema({
     og_type: { type: String },
     status: { type: Boolean, default: true }
 }, { timestamps: true })
- 
+VisionMissionSchema.index({ createdAt: -1 });
+
 const VisionMission = mongoose.model("VisionMission", VisionMissionSchema)
 module.exports = VisionMission
