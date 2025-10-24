@@ -11,8 +11,6 @@ const dsBlogPageController = async (req, res) => {
       res.redired("/error?error=" + error.message);
     }
   };
-  
-
 
   module.exports = {dsBlogPageController,};
   

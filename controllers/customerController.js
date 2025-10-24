@@ -14,8 +14,7 @@ const createCustomer = async (req, res) => {
             req.body.og_image = "uploads/" + req.files['og_image'][0].filename;
         }
 
-        const customer = await Customer.create(req.body);
-        return res.status(201).send({ status: true, message: "Customer created successfully", data: customer });
+          return res.status(201).send({ status: true, message: "Customer created successfully", data: customer });
 
     } catch (error) {
         res.status(400).send({ status: false, message: error.message });

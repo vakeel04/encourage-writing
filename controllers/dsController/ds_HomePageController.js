@@ -2,7 +2,6 @@ const HeroSection = require("../../models/heroSectionModel")
    const dsHomePageController = async (req, res) => {
       try {
         const heroSection = await HeroSection.find({}).sort({createdAt:-1})
-        console.log(heroSection);
         res.render("dashboard/ds_manage_hero-section", {
           status: true,
           message: "home page successfully loaded",
@@ -43,5 +42,19 @@ const HeroSection = require("../../models/heroSectionModel")
       }
     };
 
-  module.exports = {dsHomePageController,dsAchievementsController,dsPartnerController };
+    const dsIdeasPageController = async (req, res) => {
+      try {
+        res.render("dashboard/ds_InsightsIdeas", {
+          status: true,
+          message: "ds-service page successfully loaded",
+          error: req.query.error,
+          data: {},
+          title: "ds-service-page",
+        });
+      } catch (error) {
+        res.redired("/error?error=" + error.message);
+      }
+    };
+
+  module.exports = {dsHomePageController,dsAchievementsController,dsPartnerController,dsIdeasPageController };
   

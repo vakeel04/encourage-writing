@@ -1,0 +1,221 @@
+<%- include("partials/aside") %>
+
+<main class="flex-1 p-6 overflow-auto">
+  <!-- Header -->
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
+      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+    </div>
+
+    <!-- Add Button -->
+    <div>
+      <button
+        id="openAddModalBtn"
+        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
+      >
+        + Add Service
+      </button>
+    </div>
+  </div>
+
+  <!-- Service Table -->
+  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Services List</h2>
+    <table class="min-w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="px-4 py-2 border">Title</th>
+          <th class="px-4 py-2 border">Description</th>
+          <th class="px-4 py-2 border">Image</th>
+          <th class="px-4 py-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="serviceTableBody">
+        <tr>
+          <td class="px-4 py-2 border">Web Design</td>
+          <td class="px-4 py-2 border">Professional website design services for businesses.</td>
+          <td class="px-4 py-2 border">
+            <img
+              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
+              class="h-16 w-16 object-cover rounded"
+              alt="Web Design"
+            />
+          </td>
+          <td class="px-4 py-2 border space-x-2">
+            <button
+              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+            >
+              Edit
+            </button>
+            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 border">SEO Optimization</td>
+          <td class="px-4 py-2 border">
+            Improve website visibility on search engines with our SEO services.
+          </td>
+          <td class="px-4 py-2 border">
+            <img
+              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
+              class="h-16 w-16 object-cover rounded"
+              alt="SEO Optimization"
+            />
+          </td>
+          <td class="px-4 py-2 border space-x-2">
+            <button
+              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+            >
+              Edit
+            </button>
+            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- Add Service Modal -->
+<div
+  id="addServiceModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <button
+      id="closeAddModalBtn"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+    >
+      &times;
+    </button>
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
+    <form id="addServiceForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="title"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="title"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="description"
+          >Description</label
+        >
+        <textarea
+          id="description"
+          class="w-full border border-gray-300 rounded p-2"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="image"
+          >Image</label
+        >
+        <input
+          type="file"
+          id="image"
+          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        Add Service
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Service Modal -->
+<div
+  id="editServiceModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <button
+      id="closeEditModalBtn"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+    >
+      &times;
+    </button>
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Service</h2>
+    <form id="editServiceForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="editTitle"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editDescription"
+          >Description</label
+        >
+        <textarea
+          id="editDescription"
+          class="w-full border border-gray-300 rounded p-2"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editImage"
+          >Image</label
+        >
+        <input
+          type="file"
+          id="editImage"
+          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+        />
+      </div>
+      <button
+        type="submit"
+        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        Save Changes
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Add Modal
+  const openAddModalBtn = document.getElementById("openAddModalBtn");
+  const addServiceModal = document.getElementById("addServiceModal");
+  const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+
+  openAddModalBtn.addEventListener("click", () => {
+    addServiceModal.classList.remove("hidden");
+  });
+
+  closeAddModalBtn.addEventListener("click", () => {
+    addServiceModal.classList.add("hidden");
+  });
+
+  // Edit Modal
+  const editServiceModal = document.getElementById("editServiceModal");
+  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+  const editButtons = document.querySelectorAll(".openEditModalBtn");
+
+  editButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      editServiceModal.classList.remove("hidden");
+    });
+  });
+
+  closeEditModalBtn.addEventListener("click", () => {
+    editServiceModal.classList.add("hidden");
+  });
+</script>
