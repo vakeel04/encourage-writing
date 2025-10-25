@@ -1,14 +1,16 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const ideasSchema = new mongoose.Schema({
+const ideasSchema = new mongoose.Schema(
+  {
     title: { type: String, required: true },
-    subTitle: { type: String},
-    detail:[{
+    subTitle: { type: String },
+    detail: [
+      {
         title: { type: String, required: true },
-        description: { type: String},
-        image: { type: String},
-        date: { type: String},
-      }
+        description: { type: String },
+        image: { type: String },
+        date: { type: String },
+      },
     ],
     meta_title: { type: String },
     meta_description: { type: String },
@@ -18,12 +20,11 @@ const ideasSchema = new mongoose.Schema({
     og_image: { type: String },
     og_url: { type: String },
     og_type: { type: String },
-    status: { type: Boolean, default: true }
-}, { timestamps: true })
+    status: { type: Boolean, default: true },
+  },
+  { timestamps: true }
+);
 ideasSchema.index({ createdAt: -1 });
 
-const Ideas = mongoose.models.ideas || mongoose.model("ideas", ideasSchema)
-module.exports = Ideas 
-
-
-
+const Ideas = mongoose.models.ideas || mongoose.model("ideas", ideasSchema);
+module.exports = Ideas;

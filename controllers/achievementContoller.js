@@ -4,9 +4,10 @@ const Achievement = require("../models/achievementModel.js");
 const createAchievement = async (req, res) => {
     try {
         const achievement = await Achievement.create(req.body);
+        console.log("req---->",req.body);
+        
         if (achievement)
-            return res.status(201).send({ status: true, message: "Achievement created successfully", data: achievement });
-
+         return res.status(201).send({ status: true, message: "Achievement created successfully", data: achievement });
         return res.status(400).send({ status: false, message: "Failed to create Achievement" });
     } catch (error) {
         res.status(400).send({ status: false, message: error.message });

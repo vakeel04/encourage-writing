@@ -21,7 +21,7 @@
   <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
     <h2 class="text-[#000] font-semibold text-xl mb-4">Hero Section List</h2>
 
-    <table class="min-w-full table-auto border-collapse">
+    <table  class="min-w-full table-auto border-collapse">
       <thead>
         <tr class="bg-gray-100 text-left">
           <th class="px-4 py-2 border">Title</th>
@@ -49,10 +49,16 @@
               </td>
                 <td class="px-4 py-8 flex border space-x-2 text-center">
                   <button
-                  class="border border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer editHeroBtn"
+                  class="border openEditModalBtn border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer"
+                  data-id="<%= hero._id %>"
+                  data-title="<%= hero.title %>"
+                  data-subtitle="<%= hero.subTitle %>"
+                  data-images='<%- JSON.stringify(hero.images || []) %>'
                 >
                   Edit
                 </button>
+                
+                
 
                 <form onsubmit="deleteHero('<%= hero._id %>'); return false;" method="post" class="inline">
                   <button type="submit" class="border border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer">Delete</button>
@@ -158,7 +164,7 @@
 
 <!-- =================== EDIT HERO SECTION MODAL =================== -->
 <div
-  id="editFormModal"
+id="editFormModal"
   class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50"
 >
   <div
@@ -214,11 +220,12 @@
           class="w-full cursor-pointer border border-gray-300 rounded p-2"
           accept="image/*"
           multiple
-          required
         />
         <p class="text-sm text-gray-500 mt-1">You can select multiple images</p>
       </div>
 
+    <!-- Existing Images Preview -->
+    <div id="editHeroImagePreview" class="flex flex-wrap gap-3 mt-3"></div>
 
       <!-- Buttons -->
       <div class="flex justify-end space-x-3 mt-4">
@@ -237,6 +244,8 @@
         </button>
       </div>
     </form>
+
+
   </div>
 </div>
 
@@ -365,22 +374,109 @@ editModal.addEventListener("click", (e) => {
   }
 </script>
 
-
 <script>
-  // Open Edit Modal & Populate Data
-  document.querySelector("editHeroBtn").addEventListener("click", function() {
-    const heroData = {
-      id: "<%= data?.heroSection?._id %>",
-      title: "<%= data?.heroSection?.title %>",
-      subTitle: "<%= data?.heroSection?.subTitle %>",
-    };
+  const editButtons = document.querySelectorAll(".openEditModalBtn");
 
-    document.getElementById("editHeroId").value = heroData.id;
-    document.getElementById("editHeroTitle").value = heroData.title;
-    document.getElementById("editHeroSubTitle").value = heroData.subTitle;
-  }); 
-  </script>
-  
+  editButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const heroId = btn.getAttribute("data-id");
+      const title = btn.getAttribute("data-title");
+      const subTitle = btn.getAttribute("data-subtitle");
+      const images = JSON.parse(btn.getAttribute("data-images") || "[]");
+
+      // Fill form data
+      document.getElementById("editHeroId").value = heroId;
+      document.getElementById("editHeroTitle").value = title;
+      document.getElementById("editHeroSubTitle").value = subTitle;
+
+      // Show existing images
+      const previewContainer = document.getElementById("editHeroImagePreview");
+      previewContainer.innerHTML = "";
+
+      images.forEach((img) => {
+        const imgWrapper = document.createElement("div");
+        imgWrapper.className = "relative inline-block";
+
+        const imageElement = document.createElement("img");
+        imageElement.src = "/" + img;
+        imageElement.className = "h-16 w-16 object-cover rounded border";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.innerHTML = "&times;";
+        removeBtn.className =
+          "absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600";
+
+  removeBtn.addEventListener("click", (e) => {
+    e.preventDefault(); 
+  imgWrapper.classList.add("removed");
+  imgWrapper.setAttribute("data-img", img);
+  imgWrapper.style.opacity = "0.4";
+});
+
+        imgWrapper.appendChild(imageElement);
+        imgWrapper.appendChild(removeBtn);
+        previewContainer.appendChild(imgWrapper);
+      });
+
+      // Open modal
+      document.getElementById("editFormModal").classList.remove("hidden");
+    });
+  });
+
+  // Close modal
+  document.getElementById("cancelEditFormModalBtn").addEventListener("click", () => {
+    document.getElementById("editFormModal").classList.add("hidden");
+  });
+
+  document.getElementById("closeEditFormModalBtn").addEventListener("click", () => {
+    document.getElementById("editFormModal").classList.add("hidden");
+  });
+
+  document.getElementById("heroEditForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  // 🟩 Get Hero ID
+  const heroId = document.getElementById("editHeroId").value;
+
+  // 🟩 Collect removed images
+  const removedImages = [];
+  document.querySelectorAll("#editHeroImagePreview .removed").forEach((el) => {
+    removedImages.push(el.getAttribute("data-img"));
+  });
+  formData.append("removedImages", JSON.stringify(removedImages));
+
+
+    // 🟩 Append new images
+    const newFiles = document.getElementById("editHeroimages").files;
+    console.log(newFiles);
+    
+  for (let i = 0; i < newFiles.length; i++) {
+    formData.append("images", newFiles[i]);
+  }
+  try {
+    const res = await fetch(`/api/hero-section/${heroId}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.status) {
+      alert("✅ Hero section updated successfully!");
+      location.reload();
+    } else {
+      alert("❌ Update failed: " + data.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("⚠️ Something went wrong!");
+  }
+});
+</script>
+
 
 </body>
 </html>

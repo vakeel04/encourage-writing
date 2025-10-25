@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 
 const achievementSchema = new mongoose.Schema({
-    title:{type:String},
+    title:{type:String,},
     subTitle:{type:String},
-    happy_clients: { type: String, required: true },
-    happy_serveds: { type: String, required: true },
+    happy_clients: { type: String},
+    happy_serveds: { type: String },
     expert_writers: { type: String},
     status: { type: Boolean, default: true }
 }, { timestamps: true })

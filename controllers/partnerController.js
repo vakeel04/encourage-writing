@@ -41,7 +41,6 @@ const getPartnerById = async (req, res) => {
         const partner = await Partner.findById(req.params.id);
         if (partner)
             return res.status(200).send({ status: true, message: "Partner fetched successfully", data: partner });
-
         return res.status(404).send({ status: false, message: "Partner not found" });
     } catch (error) {
         res.status(400).send({ status: false, message: error.message });
@@ -51,24 +50,38 @@ const getPartnerById = async (req, res) => {
  
 const updatePartner = async (req, res) => {
     try {
-        if (req.files && req.files["images"]) {
-            req.body.images = req.files["images"].map(file => "uploads/" + file.filename);
+        let currentImages = JSON.parse(req.body.existingImages || "[]"); // images that remain
+        if (req.body.removedImages) {
+          const removed = JSON.parse(req.body.removedImages);
+          currentImages = currentImages.filter(img => !removed.includes(img));
         }
-
-        if (req.files && req.files["og_image"]) {
-            req.body.og_image = "uploads/" + req.files["og_image"][0].filename;
-        }
-
-        const partner = await Partner.findByIdAndUpdate(req.params.id, req.body, { new: true });
-
-        if (partner)
-            return res.status(200).send({ status: true, message: "Partner updated successfully", data: partner });
-
-        return res.status(404).send({ status: false, message: "Partner not found" });
+  
+      // Add new uploaded images
+      if (req.files && req.files["images"]) {
+        const newImages = req.files["images"].map(file => "uploads/" + file.filename);
+        currentImages = [...currentImages, ...newImages];
+      }
+  
+      req.body.images = currentImages;
+  
+      // Handle OG Image
+      if (req.files && req.files["og_image"]) {
+        req.body.og_image = "uploads/" + req.files["og_image"][0].filename;
+      }
+  
+      // Convert status to boolean
+      req.body.status = req.body.status === "on" ? true : false;
+  
+      const partner = await Partner.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  
+      if (partner)
+        return res.status(200).send({ status: true, message: "Partner updated successfully", data: partner });
+  
+      return res.status(404).send({ status: false, message: "Partner not found" });
     } catch (error) {
-        res.status(400).send({ status: false, message: error.message });
+      res.status(400).send({ status: false, message: error.message });
     }
-};
+  };
 
  
 const deletePartner = async (req, res) => {

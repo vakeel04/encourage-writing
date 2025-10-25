@@ -11,147 +11,176 @@
     <!-- Add Button -->
     <div>
       <button
-        id="openAddModalBtn"
-        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
-      >
-        + Add Service
-      </button>
+      id="openAddModalBtn"
+      class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
+    >
+      + Add Partner
+    </button>
     </div>
   </div>
 
-  <!-- Service Table -->
-  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Services List</h2>
-    <table class="min-w-full table-auto border-collapse">
-      <thead>
-        <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Title</th>
-          <th class="px-4 py-2 border">Description</th>
-          <th class="px-4 py-2 border">Image</th>
-          <th class="px-4 py-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="serviceTableBody">
-        <tr>
-          <td class="px-4 py-2 border">Web Design</td>
-          <td class="px-4 py-2 border">Professional website design services for businesses.</td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="Web Design"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">SEO Optimization</td>
-          <td class="px-4 py-2 border">
-            Improve website visibility on search engines with our SEO services.
-          </td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="SEO Optimization"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<!-- partner Table -->
+<div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+  <h2 class="text-[#000] font-semibold text-xl mb-4">Partners List</h2>
+  <table class="min-w-full table-auto border-collapse">
+    <thead>
+      <tr class="bg-gray-100 text-left">
+        <th class="px-4 py-2 border">Title</th>
+        <th class="px-4 py-2 border">Subtitle</th>
+        <th class="px-4 py-2 border">Description</th>
+        <th class="px-4 py-2 border">Images</th>
+        <th class="px-4 py-2 border">Used By</th>
+        <th class="px-4 py-2 border">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="partnerTableBody">
+      <% data?.partner.forEach(partner => { %>
+      <tr>
+        <td class="px-4 py-2 border"><%= partner.title %></td>
+        <td class="px-4 py-2 border"><%= partner.subtitle %></td>
+        <td class="px-4 py-2 border"><%= partner.description || "-" %></td>
+        <td class="px-4 py-2 border">
+          <div class="flex gap-2 overflow-x-auto max-w-[200px]">
+            <% if(partner.images && partner.images.length > 0) { %>
+              <% partner.images.forEach(img => { %>
+                <img src="/<%= img %>" class="h-16 w-16 object-cover rounded flex-shrink-0" alt="Partner Image" />
+              <% }) %>
+            <% } else { %>
+              -
+            <% } %>
+          </div>
+        </td>
+        <td class="px-4 py-2 border"><%= partner.usedBy %></td>
+ 
+        <td class="px-4 py-2 border space-x-2">
+          <button
+            class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+            data-id="<%= partner._id %>"
+          >
+            Edit
+          </button>
+          <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= partner._id %>">
+            Delete
+          </button>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
 </main>
 
-<!-- Add Service Modal -->
-<div
-  id="addServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
-    <button
-      id="closeAddModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
-      &times;
-    </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
-    <form id="addServiceForm" class="space-y-4">
+<!-- Add Partner Modal -->
+<div id="addPartnerModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="h-[730px] overflow-y-scroll bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <button id="closeAddModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">&times;</button>
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Partner</h2>
+
+    <form id="addPartnerForm" class="space-y-4" enctype="multipart/form-data">
+      <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="title"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="title">Title</label>
+        <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required />
+      </div>
+
+      <!-- Subtitle -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="subtitle">Subtitle</label>
+        <input type="text" id="subtitle" name="subtitle" class="w-full border border-gray-300 rounded p-2" required />
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="description">Description</label>
+        <textarea id="description" name="description" class="w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+      </div>
+
+      <!-- Images -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="images">Images</label>
+        <input type="file" id="images" name="images" class="w-full border border-gray-300 rounded p-2 cursor-pointer" multiple />
+      </div>
+
+      <!-- Used By -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="usedBy">Used By</label>
+        <select id="usedBy" name="usedBy" class="w-full border border-gray-300 rounded p-2">
+          <option value="home">Home</option>
+          <option value="service">Service</option>
+        </select>
+      </div>
+
+      <!-- Meta Title -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="meta_title">Meta Title</label>
+        <input type="text" id="meta_title" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+
+      <!-- Meta Description -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="meta_description">Meta Description</label>
+        <textarea id="meta_description" name="meta_description" class="w-full border border-gray-300 rounded p-2" rows="2"></textarea>
+      </div>
+
+      <!-- Keywords -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="keywords">Keywords</label>
+        <input type="text" id="keywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+
+      <!-- OG Tags -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_title">OG Title</label>
+        <input type="text" id="og_title" name="og_title" class="w-full border border-gray-300 rounded p-2" />
       </div>
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="description"
-          >Description</label
-        >
-        <textarea
-          id="description"
-          class="w-full border border-gray-300 rounded p-2"
-          rows="3"
-          required
-        ></textarea>
+        <label class="block text-gray-700 font-medium mb-1" for="og_description">OG Description</label>
+        <textarea id="og_description" name="og_description" class="w-full border border-gray-300 rounded p-2" rows="2"></textarea>
       </div>
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="image"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="image"
-          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="og_image">OG Image</label>
+        <input type="file" id="og_image" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
       </div>
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
-        Add Service
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_url">OG URL</label>
+        <input type="text" id="og_url" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_type">OG Type</label>
+        <input type="text" id="og_type" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+ 
+      <!-- Submit -->
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+        Add Partner
       </button>
     </form>
   </div>
+ 
 </div>
 
-<!-- Edit Service Modal -->
+
+<!-- Edit partner Modal -->
 <div
-  id="editServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+  id="editPartnerForm"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50 overflow-auto"
 >
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+  <div class="h-[730px] overflow-y-scroll bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <!-- Close Button -->
     <button
       id="closeEditModalBtn"
       class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
     >
       &times;
     </button>
+
     <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Service</h2>
+
     <form id="editServiceForm" class="space-y-4">
+      <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
-          >Title</label
-        >
+        <label class="block text-gray-700 font-medium mb-1" for="editTitle">Title</label>
         <input
           type="text"
           id="editTitle"
@@ -159,27 +188,134 @@
           required
         />
       </div>
+
+      <!-- Subtitle -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editDescription"
-          >Description</label
-        >
+        <label class="block text-gray-700 font-medium mb-1" for="editSubtitle">Subtitle</label>
+        <input
+          type="text"
+          id="editSubtitle"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editDescription">Description</label>
         <textarea
           id="editDescription"
           class="w-full border border-gray-300 rounded p-2"
           rows="3"
-          required
         ></textarea>
       </div>
+
+      <!-- Images (multiple) -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editImage"
-          >Image</label
-        >
+        <label class="block text-gray-700 font-medium mb-1" for="editImages">Images</label>
         <input
           type="file"
-          id="editImage"
+          id="editImages"
+          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+          multiple
+        />
+      </div>
+
+      <!-- Used By -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editUsedBy">Used By</label>
+        <select
+          id="editUsedBy"
+          class="w-full border border-gray-300 rounded p-2"
+        >
+          <option value="home">Home</option>
+          <option value="service">Service</option>
+        </select>
+      </div>
+
+      <!-- Meta Title -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editMetaTitle">Meta Title</label>
+        <input
+          type="text"
+          id="editMetaTitle"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- Meta Description -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editMetaDescription">Meta Description</label>
+        <textarea
+          id="editMetaDescription"
+          class="w-full border border-gray-300 rounded p-2"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <!-- Keywords -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editKeywords">Keywords</label>
+        <input
+          type="text"
+          id="editKeywords"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- OG Fields -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgTitle">OG Title</label>
+        <input
+          type="text"
+          id="editOgTitle"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgDescription">OG Description</label>
+        <textarea
+          id="editOgDescription"
+          class="w-full border border-gray-300 rounded p-2"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgImage">OG Image</label>
+        <input
+          type="file"
+          id="editOgImage"
           class="w-full border border-gray-300 rounded p-2 cursor-pointer"
         />
       </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgUrl">OG URL</label>
+        <input
+          type="text"
+          id="editOgUrl"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgType">OG Type</label>
+        <input
+          type="text"
+          id="editOgType"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- Status -->
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="editStatus" class="cursor-pointer" />
+        <label for="editStatus" class="text-gray-700 font-medium">Active</label>
+      </div>
+
+      <!-- Submit Button -->
       <button
         type="submit"
         class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
@@ -189,33 +325,188 @@
     </form>
   </div>
 </div>
+ 
+
+
 
 <script>
-  // Add Modal
   const openAddModalBtn = document.getElementById("openAddModalBtn");
-  const addServiceModal = document.getElementById("addServiceModal");
+  const addPartnerModal = document.getElementById("addPartnerModal");
   const closeAddModalBtn = document.getElementById("closeAddModalBtn");
 
   openAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.remove("hidden");
+    addPartnerModal.classList.remove("hidden");
   });
 
   closeAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.add("hidden");
+    addPartnerModal.classList.add("hidden");
   });
 
-  // Edit Modal
-  const editServiceModal = document.getElementById("editServiceModal");
-  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
-  const editButtons = document.querySelectorAll(".openEditModalBtn");
+// Edit Modal
+const editPartnerForm = document.getElementById("editPartnerForm");
+var closeEditModalBtn = document.getElementById("closeEditModalBtn");
+const editButtons = document.querySelectorAll(".openEditModalBtn");
 
-  editButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      editServiceModal.classList.remove("hidden");
+editButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    editPartnerForm.classList.remove("hidden");
+  });
+});
+
+closeEditModalBtn.addEventListener("click", () => {
+  editPartnerForm.classList.add("hidden");
+});
+</script>
+
+<!-- add ki api  -->
+<script>
+  document.getElementById("addPartnerForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+  
+    const formData = new FormData(this);
+  
+    try {
+      const res = await fetch("/api/partner", {
+        method: "POST",
+        body: formData
+      });
+  
+      const result = await res.json();
+      if(result.status){
+        alert("Partner added successfully!");
+        document.getElementById("addPartnerModal").classList.add("hidden");
+        location.reload();
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong!");
+    }
+  });
+
+
+  // delte ki api 
+// Select all delete buttons
+document.querySelectorAll(".deleteBtn").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const id = btn.getAttribute("data-id");
+
+    if (!confirm("Are you sure you want to delete this achievement?")) return;
+
+    try {
+      const res = await fetch(`/api/partner/${id}`, {
+        method: "DELETE"
+      });
+
+      const data = await res.json();
+
+      if (data.status) {
+        alert("✅ partner deleted successfully!");
+        btn.closest("tr").remove(); // Table row remove
+      } else {
+        alert("❌ Delete failed: " + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("⚠️ Something went wrong!");
+    }
+  });
+});
+  </script>
+
+
+
+  
+<script>
+  const editModal = document.getElementById("editPartnerForm");
+  const editForm = document.getElementById("editServiceForm");
+
+  // Form fields
+  const editTitle = document.getElementById("editTitle");
+  const editSubtitle = document.getElementById("editSubtitle");
+  const editDescription = document.getElementById("editDescription");
+  const editUsedBy = document.getElementById("editUsedBy");
+  const editMetaTitle = document.getElementById("editMetaTitle");
+  const editMetaDescription = document.getElementById("editMetaDescription");
+  const editKeywords = document.getElementById("editKeywords");
+  const editOgTitle = document.getElementById("editOgTitle");
+  const editOgDescription = document.getElementById("editOgDescription");
+  const editOgUrl = document.getElementById("editOgUrl");
+  const editOgType = document.getElementById("editOgType");
+  const editStatus = document.getElementById("editStatus");
+
+  let selectedPartnerId = null;
+
+  document.querySelectorAll(".openEditModalBtn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const partnerId = e.target.getAttribute("data-id");
+      selectedPartnerId = partnerId;
+
+      // Find the closest table row
+      const row = e.target.closest("tr");
+      const cells = row.querySelectorAll("td");
+
+      // Fill form fields from table cells
+      editTitle.value = cells[0]?.innerText.trim() || "";
+      editSubtitle.value = cells[1]?.innerText.trim() || "";
+      editDescription.value = cells[2]?.innerText.trim() || "";
+      editUsedBy.value = cells[4]?.innerText.trim().toLowerCase() || "home";
+
+      // Optional: clear meta fields (if you don’t have them in table)
+      editMetaTitle.value = "";
+      editMetaDescription.value = "";
+      editKeywords.value = "";
+      editOgTitle.value = "";
+      editOgDescription.value = "";
+      editOgUrl.value = "";
+      editOgType.value = "";
+      editStatus.checked = true;
+
+      // Show modal
+      editModal.classList.remove("hidden");
     });
   });
 
+  // Close modal
   closeEditModalBtn.addEventListener("click", () => {
-    editServiceModal.classList.add("hidden");
+    editModal.classList.add("hidden");
+  });
+
+  // Handle form submission
+  editForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", editTitle.value);
+    formData.append("subtitle", editSubtitle.value);
+    formData.append("description", editDescription.value);
+    formData.append("usedBy", editUsedBy.value);
+    formData.append("status", editStatus.checked);
+
+    // Append new image files
+    const imageFiles = document.getElementById("editImages").files;
+    for (let i = 0; i < imageFiles.length; i++) {
+      formData.append("images", imageFiles[i]);
+    }
+
+    const ogImageFile = document.getElementById("editOgImage").files[0];
+    if (ogImageFile) {
+      formData.append("ogImage", ogImageFile);
+    }
+
+    // Send update request
+    const res = await fetch(`/api/partner/${selectedPartnerId}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      alert("Partner updated successfully!");
+      location.reload();
+    } else {
+      alert(result.message || "Error updating partner");
+    }
   });
 </script>

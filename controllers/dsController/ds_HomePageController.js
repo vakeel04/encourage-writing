@@ -1,4 +1,7 @@
 const HeroSection = require("../../models/heroSectionModel")
+const Achievement = require("../../models/achievementModel")
+const Partner = require("../../models/partnerModel")
+
    const dsHomePageController = async (req, res) => {
       try {
         const heroSection = await HeroSection.find({}).sort({createdAt:-1})
@@ -16,11 +19,14 @@ const HeroSection = require("../../models/heroSectionModel")
  
     const dsAchievementsController = async (req, res) => {
       try {
+        const achievement = await Achievement.find({}).sort({createdAt:-1})
+        console.log(achievement);
+        
         res.render("dashboard/ds_manage_achievements", {
           status: true,
           message: "ds-service page successfully loaded",
           error: req.query.error,
-          data: {},
+          data: {achievement},
           title: "ds-service-page",
         });
       } catch (error) {
@@ -30,11 +36,12 @@ const HeroSection = require("../../models/heroSectionModel")
 
     const dsPartnerController = async (req, res) => {
       try {
+        const partner= await Partner.find({}).sort({createdAt:-1})
         res.render("dashboard/ds_manage_partners", {
           status: true,
           message: "ds-service page successfully loaded",
           error: req.query.error,
-          data: {},
+          data: {partner},
           title: "ds-service-page",
         });
       } catch (error) {

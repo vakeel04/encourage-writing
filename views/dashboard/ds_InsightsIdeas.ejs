@@ -19,120 +19,188 @@
     </div>
   </div>
 
-  <!-- Service Table -->
-  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Services List</h2>
-    <table class="min-w-full table-auto border-collapse">
-      <thead>
-        <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Title</th>
-          <th class="px-4 py-2 border">Description</th>
-          <th class="px-4 py-2 border">Image</th>
-          <th class="px-4 py-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="serviceTableBody">
-        <tr>
-          <td class="px-4 py-2 border">Web Design</td>
-          <td class="px-4 py-2 border">Professional website design services for businesses.</td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="Web Design"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">SEO Optimization</td>
-          <td class="px-4 py-2 border">
-            Improve website visibility on search engines with our SEO services.
-          </td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="SEO Optimization"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<!-- Ideas Table -->
+<div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+  <h2 class="text-[#000] font-semibold text-xl mb-4">Ideas List</h2>
+  <table class="min-w-full table-auto border-collapse">
+    <thead>
+      <tr class="bg-gray-100 text-left">
+        <th class="px-4 py-2 border">Title</th>
+        <th class="px-4 py-2 border">Sub Title</th>
+        <th class="px-4 py-2 border">Detail Title</th>
+        <th class="px-4 py-2 border">Detail Description</th>
+        <th class="px-4 py-2 border">Detail Image</th>
+        <th class="px-4 py-2 border">Detail Date</th>
+        <th class="px-4 py-2 border">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody id="ideasTableBody">
+      <tr>
+        <td class="px-4 py-2 border">Creative Branding</td>
+        <td class="px-4 py-2 border">Build your brand identity</td>
+        <td class="px-4 py-2 border">Logo Design</td>
+        <td class="px-4 py-2 border">
+          Custom logos that match your business vision.
+        </td>
+        <td class="px-4 py-2 border">
+          <img
+            src="https://cdn.dribbble.com/users/1012566/screenshots/11873624/media/1b49c2361978ab0a10c26729f6da6f74.png"
+            alt="Logo Design"
+            class="h-16 w-16 object-cover rounded"
+          />
+        </td>
+        <td class="px-4 py-2 border text-green-600 font-medium">Active</td>
+        <td class="px-4 py-2 border space-x-2">
+          <button
+            class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+          >
+            Edit
+          </button>
+          <button class="border cursor-pointer px-2 py-1 rounded">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </main>
 
 <!-- Add Service Modal -->
+<!-- Add Idea Modal -->
 <div
-  id="addServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+  id="addIdeaModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50 overflow-auto"
 >
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+  <div class="bg-white w-[90%] h-[730px] overflow-y-scroll max-w-2xl rounded-lg shadow-lg p-6 relative">
+    <!-- Close Button -->
     <button
       id="closeAddModalBtn"
       class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
     >
       &times;
     </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
-    <form id="addServiceForm" class="space-y-4">
+
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Idea</h2>
+
+    <form id="addIdeaForm" class="space-y-4">
+      <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="title"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="title">Title</label>
+        <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required />
       </div>
+
+      <!-- Sub Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="description"
-          >Description</label
-        >
-        <textarea
-          id="description"
-          class="w-full border border-gray-300 rounded p-2"
-          rows="3"
-          required
-        ></textarea>
+        <label class="block text-gray-700 font-medium mb-1" for="subTitle">Sub Title</label>
+        <input type="text" id="subTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
       </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="image"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="image"
-          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          required
-        />
+
+      <!-- Detail Sections -->
+      <div id="detailsContainer" class="space-y-4">
+        <div class="detail-section border border-gray-300 rounded p-4">
+          <h3 class="text-[#000] font-semibold mb-2">Detail Section 1</h3>
+
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Detail Title</label>
+            <input type="text" name="detailTitle[]" class="w-full border border-gray-300 rounded p-2" required />
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Detail Description</label>
+            <textarea name="detailDescription[]" class="w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Detail Image</label>
+            <input type="file" name="detailImage[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Detail Date</label>
+            <input type="date" name="detailDate[]" class="w-full border border-gray-300 rounded p-2" />
+          </div>
+        </div>
       </div>
+
+      <!-- Add More Detail Section Button -->
       <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+        type="button"
+        id="addDetailSectionBtn"
+        class="mt-2 bg-gray-200 text-[#000] px-3 py-1 rounded hover:bg-gray-300 transition"
       >
-        Add Service
+        + Add Detail Section
+      </button>
+
+      <!-- Meta Information -->
+      <div class="border border-gray-300 rounded p-4">
+        <h3 class="text-[#000] font-semibold mb-2">Meta Information</h3>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="meta_title">Meta Title</label>
+          <input type="text" id="meta_title" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="meta_description">Meta Description</label>
+          <textarea id="meta_description" name="meta_description" class="w-full border border-gray-300 rounded p-2" rows="2"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="keywords">Keywords</label>
+          <input type="text" id="keywords" name="keywords" class="w-full border border-gray-300 rounded p-2" placeholder="e.g. idea, creativity, innovation" />
+        </div>
+      </div>
+
+      <!-- OG Section -->
+      <div class="border border-gray-300 rounded p-4">
+        <h3 class="text-[#000] font-semibold mb-2">OG (Open Graph) Data</h3>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="og_title">OG Title</label>
+          <input type="text" id="og_title" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="og_description">OG Description</label>
+          <textarea id="og_description" name="og_description" class="w-full border border-gray-300 rounded p-2" rows="2"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="og_image">OG Image</label>
+          <input type="file" id="og_image" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="og_url">OG URL</label>
+          <input type="text" id="og_url" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="og_type">OG Type</label>
+          <input type="text" id="og_type" name="og_type" class="w-full border border-gray-300 rounded p-2" placeholder="e.g. article, website" />
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="status">Status</label>
+        <select id="status" name="status" class="w-full border border-gray-300 rounded p-2">
+          <option value="true" selected>Active</option>
+          <option value="false">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+        Add Idea
       </button>
     </form>
   </div>
 </div>
+
 
 <!-- Edit Service Modal -->
 <div
@@ -193,7 +261,7 @@
 <script>
   // Add Modal
   const openAddModalBtn = document.getElementById("openAddModalBtn");
-  const addServiceModal = document.getElementById("addServiceModal");
+  const addServiceModal = document.getElementById("addIdeaModal");
   const closeAddModalBtn = document.getElementById("closeAddModalBtn");
 
   openAddModalBtn.addEventListener("click", () => {
@@ -219,3 +287,36 @@
     editServiceModal.classList.add("hidden");
   });
 </script>
+
+
+<script>
+  const addDetailBtn = document.getElementById("addDetailSectionBtn");
+  const detailsContainer = document.getElementById("detailsContainer");
+  let detailCount = 1;
+
+  addDetailBtn.addEventListener("click", () => {
+    detailCount++;
+    const newSection = document.createElement("div");
+    newSection.classList.add("detail-section", "border", "border-gray-300", "rounded", "p-4", "mt-4");
+    newSection.innerHTML = `
+      <h3 class="text-[#000] font-semibold mb-2">Detail Section ${detailCount}</h3>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Detail Title</label>
+        <input type="text" name="detailTitle[]" class="w-full border border-gray-300 rounded p-2" required />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Detail Description</label>
+        <textarea name="detailDescription[]" class="w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Detail Image</label>
+        <input type="file" name="detailImage[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Detail Date</label>
+        <input type="date" name="detailDate[]" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+    `;
+    detailsContainer.appendChild(newSection);
+  });
+</script> 

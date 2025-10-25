@@ -1,221 +1,336 @@
 <%- include("partials/aside") %>
 
-<main class="flex-1 p-6 overflow-auto">
-  <!-- Header -->
-  <div class="flex justify-between items-end">
-    <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+  <main class="flex-1 p-6 overflow-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-end">
+      <div>
+        <h1 class="text-3xl font-bold text-[#000]">Manage Achievement</h1>
+        <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+      </div>
+
+      <!-- Add Button -->
+      <div>
+        <button id="openAddModalBtn"
+          class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
+          + Add Achievement
+        </button>
+      </div>
     </div>
 
-    <!-- Add Button -->
-    <div>
-      <button
-        id="openAddModalBtn"
-        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
-      >
-        + Add Service
+    <!-- Service Table -->
+    <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+      <h2 class="text-[#000] font-semibold text-xl mb-4">Achievement List</h2>
+      <table class="min-w-full table-auto border-collapse">
+        <thead>
+          <tr class="bg-gray-100 text-left">
+            <th class="px-4 py-2 border">Title</th>
+            <th class="px-4 py-2 border">subTitle</th>
+            <th class="px-4 py-2 border">expert_writers</th>
+            <th class="px-4 py-2 border">happy_serveds</th>
+            <th class="px-4 py-2 border">happy_clients</th>
+            <th class="px-4 py-2 border">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody id="serviceTableBody">
+          <% data?.achievement?.forEach((achievement)=>{ %>
+            <tr>
+              <td class="px-4 py-2 border">
+                <%= achievement.title %>
+              </td>
+              <td class="px-4 py-2 border">
+                <%= achievement.subTitle %>
+              </td>
+              <td class="px-4 py-2 border">
+                <%= achievement.expert_writers %>
+              </td>
+              <td class="px-4 py-2 border">
+                <%= achievement.happy_serveds %>
+              </td>
+              <td class="px-4 py-2 border">
+                <%= achievement.happy_clients %>
+              </td>
+              <td class="px-4 py-2 border space-x-2">
+                <button class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn" data-id="<%= achievement._id %>">
+                  Edit
+                </button>
+                <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= achievement._id %>">Delete</button>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Add Service Modal -->
+  <div id="addServiceModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+      <button id="closeAddModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
+        &times;
       </button>
+      <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Achievement</h2>
+      <form id="addServiceForm" class="space-y-4" enctype="multipart/form-data">
+
+        <!-- Title -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="title">Title</label>
+          <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+
+        <!-- Sub Title -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="subTitle">Sub Title</label>
+          <input type="text" id="subTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+
+        <!-- Expert Writers -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="expert_writers">Expert Writers</label>
+          <input type="text" id="expert_writers" name="expert_writers"
+            class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+
+        <!-- Happy Serveds -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="happy_serveds">Happy Serveds</label>
+          <input type="text" id="happy_serveds" name="happy_serveds" class="w-full border border-gray-300 rounded p-2"
+            required />
+        </div>
+
+        <!-- Happy Clients -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="happy_clients">Happy Clients</label>
+          <input type="text" id="happy_clients" name="happy_clients" class="w-full border border-gray-300 rounded p-2"
+            required />
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+          Add Service
+        </button>
+
+      </form>
     </div>
   </div>
 
-  <!-- Service Table -->
-  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Services List</h2>
-    <table class="min-w-full table-auto border-collapse">
-      <thead>
-        <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Title</th>
-          <th class="px-4 py-2 border">Description</th>
-          <th class="px-4 py-2 border">Image</th>
-          <th class="px-4 py-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="serviceTableBody">
-        <tr>
-          <td class="px-4 py-2 border">Web Design</td>
-          <td class="px-4 py-2 border">Professional website design services for businesses.</td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="Web Design"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">SEO Optimization</td>
-          <td class="px-4 py-2 border">
-            Improve website visibility on search engines with our SEO services.
-          </td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="SEO Optimization"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</main>
 
-<!-- Add Service Modal -->
-<div
-  id="addServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
-    <button
-      id="closeAddModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
-      &times;
-    </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
-    <form id="addServiceForm" class="space-y-4">
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="title"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="description"
-          >Description</label
-        >
-        <textarea
-          id="description"
-          class="w-full border border-gray-300 rounded p-2"
-          rows="3"
-          required
-        ></textarea>
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="image"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="image"
-          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          required
-        />
-      </div>
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
-        Add Service
+  <!-- Edit Service Modal -->
+  <div id="editServiceModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+      <!-- Close Button -->
+      <button id="closeEditModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
+        &times;
       </button>
-    </form>
-  </div>
-</div>
 
-<!-- Edit Service Modal -->
-<div
-  id="editServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
-    <button
-      id="closeEditModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
-      &times;
-    </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Service</h2>
-    <form id="editServiceForm" class="space-y-4">
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="editTitle"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editDescription"
-          >Description</label
-        >
-        <textarea
-          id="editDescription"
-          class="w-full border border-gray-300 rounded p-2"
-          rows="3"
-          required
-        ></textarea>
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editImage"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="editImage"
-          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-        />
-      </div>
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
-        Save Changes
-      </button>
-    </form>
+      <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Achievement</h2>
+
+      <form id="editServiceForm" class="space-y-4" enctype="multipart/form-data">
+
+        <!-- Hidden field for service ID -->
+        <input type="hidden" id="editServiceId" name="id" />
+
+        <!-- Title -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="editTitle">Title</label>
+          <input type="text" id="editTitle" name="title" class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+
+        <!-- Sub Title -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="editSubTitle">Sub Title</label>
+          <input type="text" id="editSubTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2"
+            required />
+        </div>
+
+        <!-- Expert Writers -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="editExpertWriters">Expert Writers</label>
+          <input type="text" id="editExpertWriters" name="expert_writers"
+        
+            class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+
+        <!-- Happy Serveds -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="editHappyServeds">Happy Serveds</label>
+          <input type="text" id="editHappyServeds" name="happy_serveds"
+        
+            class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+
+        <!-- Happy Clients -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="editHappyClients">Happy Clients</label>
+          <input type="text" id="editHappyClients" name="happy_clients"
+        
+            class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+          Save Changes
+        </button>
+
+      </form>
+    </div>
   </div>
-</div>
+
+
+  <script>
+    // Add Modal
+    const openAddModalBtn = document.getElementById("openAddModalBtn");
+    const addServiceModal = document.getElementById("addServiceModal");
+    const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+
+    openAddModalBtn.addEventListener("click", () => {
+      addServiceModal.classList.remove("hidden");
+    });
+
+    closeAddModalBtn.addEventListener("click", () => {
+      addServiceModal.classList.add("hidden");
+    });
+
+    // Edit Modal
+    const editServiceModal = document.getElementById("editServiceModal");
+    const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+    const editButtons = document.querySelectorAll(".openEditModalBtn");
+
+    editButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        editServiceModal.classList.remove("hidden");
+      });
+    });
+
+    closeEditModalBtn.addEventListener("click", () => {
+      editServiceModal.classList.add("hidden");
+    });
+
+
+    // add ki api 
+    const achievementform = document.getElementById("addServiceForm");
+    achievementform.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(achievementform);
+  const data = {};
+
+  // Convert FormData entries to normal object
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  console.log("Payload:", data);
+
+  try {
+    const res = await fetch("/api/achievement", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)  // ab correct JSON ban gaya
+    });
+
+    const result = await res.json();
+    if (result.status) {
+      alert("✅ Achievement added successfully!");
+      location.reload();
+    } else {
+      alert("❌ Failed: " + result.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("⚠️ Something went wrong!");
+  }
+});
+
+// delte ki api 
+// Select all delete buttons
+document.querySelectorAll(".deleteBtn").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const id = btn.getAttribute("data-id");
+
+    if (!confirm("Are you sure you want to delete this achievement?")) return;
+
+    try {
+      const res = await fetch(`/api/achievement/${id}`, {
+        method: "DELETE"
+      });
+
+      const data = await res.json();
+
+      if (data.status) {
+        alert("✅ Achievement deleted successfully!");
+        btn.closest("tr").remove(); // Table row remove
+      } else {
+        alert("❌ Delete failed: " + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("⚠️ Something went wrong!");
+    }
+  });
+});
+
+
+  </script>
 
 <script>
-  // Add Modal
-  const openAddModalBtn = document.getElementById("openAddModalBtn");
-  const addServiceModal = document.getElementById("addServiceModal");
-  const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+  // Form submit
+  document.getElementById("editServiceForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-  openAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.remove("hidden");
+    const id = document.getElementById("editServiceId").value;
+    const data = {
+      title: document.getElementById("editTitle").value,
+      subTitle: document.getElementById("editSubTitle").value,
+      expert_writers: document.getElementById("editExpertWriters").value,
+      happy_serveds: document.getElementById("editHappyServeds").value,
+      happy_clients: document.getElementById("editHappyClients").value
+    };
+
+    try {
+      const res = await fetch(`/api/achievement/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (result.status) {
+        alert('Service updated successfully!');
+        document.getElementById("editServiceModal").classList.add("hidden");
+        location.reload(); // Optional: refresh page to show updated data
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Something went wrong!');
+    }
   });
+</script>
 
-  closeAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.add("hidden");
-  });
 
-  // Edit Modal
-  const editServiceModal = document.getElementById("editServiceModal");
-  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
-  const editButtons = document.querySelectorAll(".openEditModalBtn");
+<script>
 
   editButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      editServiceModal.classList.remove("hidden");
-    });
-  });
+    btn.addEventListener("click", async () => {
+      const serviceId = btn.getAttribute('data-id'); // har button me data-id set karein
+      const res = await fetch(`/api/achievement/${serviceId}`); // get service data
+      const service = await res.json();
 
-  closeEditModalBtn.addEventListener("click", () => {
-    editServiceModal.classList.add("hidden");
+      if(service.status) {
+        document.getElementById("editServiceId").value = service.data._id;
+        document.getElementById("editTitle").value = service.data.title;
+        document.getElementById("editSubTitle").value = service.data.subTitle;
+        document.getElementById("editExpertWriters").value = service.data.expert_writers;
+        document.getElementById("editHappyServeds").value = service.data.happy_serveds;
+        document.getElementById("editHappyClients").value = service.data.happy_clients;
+
+        document.getElementById("editServiceModal").classList.remove("hidden");
+      } else {
+        alert("Service not found!");
+      }
+    });
   });
 </script>
