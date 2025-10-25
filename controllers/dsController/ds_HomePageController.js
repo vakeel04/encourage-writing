@@ -1,6 +1,8 @@
 const HeroSection = require("../../models/heroSectionModel")
 const Achievement = require("../../models/achievementModel")
 const Partner = require("../../models/partnerModel")
+const Ideas = require("../../models/ideasModel")
+
 
    const dsHomePageController = async (req, res) => {
       try {
@@ -51,11 +53,14 @@ const Partner = require("../../models/partnerModel")
 
     const dsIdeasPageController = async (req, res) => {
       try {
+        const ideas = await Ideas.find({}).sort({createdAt:-1})
+        console.log(ideas);
+        
         res.render("dashboard/ds_InsightsIdeas", {
           status: true,
           message: "ds-service page successfully loaded",
           error: req.query.error,
-          data: {},
+          data: {ideas},
           title: "ds-service-page",
         });
       } catch (error) {

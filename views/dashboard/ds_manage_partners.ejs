@@ -4,8 +4,8 @@
   <!-- Header -->
   <div class="flex justify-between items-end">
     <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Partners</h1>
+      <p class="mt-2 text-gray-700">Create, edit, or delete your Partners below.</p>
     </div>
 
     <!-- Add Button -->
@@ -502,9 +502,11 @@ document.querySelectorAll(".deleteBtn").forEach(btn => {
     });
 
     const result = await res.json();
-    if (result.success) {
-      alert("Partner updated successfully!");
-      location.reload();
+    console.log(result);
+    
+    if (result.status) {
+    alert("Partner updated successfully!");
+    location.reload()
     } else {
       alert(result.message || "Error updating partner");
     }

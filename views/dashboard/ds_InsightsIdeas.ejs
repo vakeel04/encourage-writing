@@ -4,8 +4,8 @@
   <!-- Header -->
   <div class="flex justify-between items-end">
     <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Ideas</h1>
+      <p class="mt-2 text-gray-700">Create, edit, or delete your Ideas below.</p>
     </div>
 
     <!-- Add Button -->
@@ -36,39 +36,37 @@
     </thead>
 
     <tbody id="ideasTableBody">
-      <tr>
-        <td class="px-4 py-2 border">Creative Branding</td>
-        <td class="px-4 py-2 border">Build your brand identity</td>
-        <td class="px-4 py-2 border">Logo Design</td>
-        <td class="px-4 py-2 border">
-          Custom logos that match your business vision.
-        </td>
-        <td class="px-4 py-2 border">
-          <img
-            src="https://cdn.dribbble.com/users/1012566/screenshots/11873624/media/1b49c2361978ab0a10c26729f6da6f74.png"
-            alt="Logo Design"
-            class="h-16 w-16 object-cover rounded"
-          />
-        </td>
-        <td class="px-4 py-2 border text-green-600 font-medium">Active</td>
-        <td class="px-4 py-2 border space-x-2">
-          <button
-            class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-          >
-            Edit
-          </button>
-          <button class="border cursor-pointer px-2 py-1 rounded">
-            Delete
-          </button>
-        </td>
-      </tr>
+      <% data?.ideas.forEach((idea) => { %>
+        <% idea.detail.forEach((d, index) => { %>
+          <tr>
+            <% if (index === 0) { %>
+              <td class="px-4 py-2 border" rowspan="<%= idea.detail.length %>"><%= idea.title %></td>
+              <td class="px-4 py-2 border" rowspan="<%= idea.detail.length %>"><%= idea.subTitle %></td>
+            <% } %>
+            <td class="px-4 py-2 border"><%= d.title %></td>
+            <td class="px-4 py-2 border"><%= d.description %></td>
+            <td class="px-4 py-2 border">
+              <% if(d.image){ %>
+                <img src="/<%= d.image %>" alt="<%= d.title %>" class="h-16 w-16 object-cover rounded" />
+              <% } %>
+            </td>
+            <td class="px-4 py-2 border"><%= d.date ? new Date(d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '' %></td>
+            <% if(index === 0){ %>
+              <td class="px-4 py-2 border space-x-2" rowspan="<%= idea.detail.length %>">
+                <button class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn">Edit</button>
+                <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= idea._id %>">Delete</button>
+              </td>
+            <% } %>
+          </tr>
+        <% }) %>
+      <% }) %>  
     </tbody>
+    
   </table>
 </div>
 
 </main>
-
-<!-- Add Service Modal -->
+ 
 <!-- Add Idea Modal -->
 <div
   id="addIdeaModal"
@@ -184,14 +182,6 @@
         </div>
       </div>
 
-      <!-- Status -->
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="status">Status</label>
-        <select id="status" name="status" class="w-full border border-gray-300 rounded p-2">
-          <option value="true" selected>Active</option>
-          <option value="false">Inactive</option>
-        </select>
-      </div>
 
       <!-- Submit Button -->
       <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
@@ -259,64 +249,197 @@
 </div>
 
 <script>
-  // Add Modal
+  // ===== Modal Controls =====
+  const addIdeaModal = document.getElementById("addIdeaModal");
   const openAddModalBtn = document.getElementById("openAddModalBtn");
-  const addServiceModal = document.getElementById("addIdeaModal");
   const closeAddModalBtn = document.getElementById("closeAddModalBtn");
-
-  openAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.remove("hidden");
-  });
-
-  closeAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.add("hidden");
-  });
-
-  // Edit Modal
   const editServiceModal = document.getElementById("editServiceModal");
   const closeEditModalBtn = document.getElementById("closeEditModalBtn");
   const editButtons = document.querySelectorAll(".openEditModalBtn");
 
+  // Open Add Modal
+  if (openAddModalBtn) {
+    openAddModalBtn.addEventListener("click", () => {
+      addIdeaModal.classList.remove("hidden");
+    });
+  }
+
+  // Close Add Modal
+  if (closeAddModalBtn) {
+    closeAddModalBtn.addEventListener("click", () => {
+      addIdeaModal.classList.add("hidden");
+    });
+  }
+
+  // Open Edit Modal
   editButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       editServiceModal.classList.remove("hidden");
     });
   });
 
-  closeEditModalBtn.addEventListener("click", () => {
-    editServiceModal.classList.add("hidden");
+  // Close Edit Modal
+  if (closeEditModalBtn) {
+    closeEditModalBtn.addEventListener("click", () => {
+      editServiceModal.classList.add("hidden");
+    });
+  }
+
+  // Close modals by clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === addIdeaModal) addIdeaModal.classList.add("hidden");
+    if (e.target === editServiceModal) editServiceModal.classList.add("hidden");
   });
-</script>
 
-
-<script>
+  // ===== Dynamic Detail Section =====
   const addDetailBtn = document.getElementById("addDetailSectionBtn");
   const detailsContainer = document.getElementById("detailsContainer");
   let detailCount = 1;
 
-  addDetailBtn.addEventListener("click", () => {
-    detailCount++;
-    const newSection = document.createElement("div");
-    newSection.classList.add("detail-section", "border", "border-gray-300", "rounded", "p-4", "mt-4");
-    newSection.innerHTML = `
-      <h3 class="text-[#000] font-semibold mb-2">Detail Section ${detailCount}</h3>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1">Detail Title</label>
-        <input type="text" name="detailTitle[]" class="w-full border border-gray-300 rounded p-2" required />
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1">Detail Description</label>
-        <textarea name="detailDescription[]" class="w-full border border-gray-300 rounded p-2" rows="3"></textarea>
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1">Detail Image</label>
-        <input type="file" name="detailImage[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
-      </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1">Detail Date</label>
-        <input type="date" name="detailDate[]" class="w-full border border-gray-300 rounded p-2" />
-      </div>
-    `;
-    detailsContainer.appendChild(newSection);
+  if (addDetailBtn) {
+    addDetailBtn.addEventListener("click", () => {
+      detailCount++;
+      const newSection = document.createElement("div");
+      newSection.classList.add(
+        "detail-section",
+        "border",
+        "border-gray-300",
+        "rounded",
+        "p-4",
+        "mt-4"
+      );
+
+      newSection.innerHTML = `
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-[#000] font-semibold">Detail Section ${detailCount}</h3>
+          <button type="button" class="remove-section text-red-600 hover:text-red-800 text-sm">Remove</button>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Detail Title</label>
+          <input type="text" name="detailTitle[]" class="w-full border border-gray-300 rounded p-2" required />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Detail Description</label>
+          <textarea name="detailDescription[]" class="w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Detail Image</label>
+          <input type="file" name="detailImage[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Detail Date</label>
+          <input type="date" name="detailDate[]" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+      `;
+
+      detailsContainer.appendChild(newSection);
+    });
+  }
+
+  // Remove detail section dynamically
+  if (detailsContainer) {
+    detailsContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-section")) {
+        e.target.closest(".detail-section").remove();
+      }
+    });
+  }
+</script>
+
+<script>
+  const addIdeaForm = document.getElementById("addIdeaForm");
+
+  addIdeaForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // prevent default form submit
+
+    try {
+      const formData = new FormData();
+
+      // Add basic fields
+      formData.append("title", addIdeaForm.title.value);
+      formData.append("subTitle", addIdeaForm.subTitle.value);
+      formData.append("meta_title", addIdeaForm.meta_title.value);
+      formData.append("meta_description", addIdeaForm.meta_description.value);
+      formData.append("keywords", addIdeaForm.keywords.value);
+      formData.append("og_title", addIdeaForm.og_title.value);
+      formData.append("og_description", addIdeaForm.og_description.value);
+      formData.append("og_url", addIdeaForm.og_url.value);
+      formData.append("og_type", addIdeaForm.og_type.value);
+ 
+
+      // Add OG image
+      if (addIdeaForm.og_image.files[0]) {
+        formData.append("og_image", addIdeaForm.og_image.files[0]);
+      }
+
+      // Add multiple detail sections
+      const detailSections = document.querySelectorAll(".detail-section");
+      detailSections.forEach((section, index) => {
+        const title = section.querySelector('input[name="detailTitle[]"]').value;
+        const description = section.querySelector('textarea[name="detailDescription[]"]').value;
+        const date = section.querySelector('input[name="detailDate[]"]').value;
+        const imageInput = section.querySelector('input[name="detailImage[]"]');
+
+        formData.append(`detail[${index}].title`, title);
+        formData.append(`detail[${index}].description`, description);
+        formData.append(`detail[${index}].date`, date);
+
+        if (imageInput.files[0]) {
+          formData.append(`detail[${index}].image`, imageInput.files[0]);
+        }
+      });
+
+      // Send POST request
+      const response = await fetch("/api/ideas", {
+        method: "POST",
+        body: formData
+      });
+
+      console.log(formData);
+      
+      const result = await response.json();
+
+      if (result.status) {
+        alert("Idea added successfully!");
+        addIdeaForm.reset();
+        addIdeaModal.classList.add("hidden");
+        window.location.reload();
+      } else {
+        alert("Error: " + result.message);
+      }
+    } catch (err) {
+      console.error("Add Idea Error:", err);
+      alert("Something went wrong. Check console for details.");
+    }
   });
-</script> 
+
+
+
+  // delete ki api 
+document.querySelectorAll(".deleteBtn").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const id = btn.getAttribute("data-id");
+
+    if (!confirm("Are you sure you want to delete this achievement?")) return;
+
+    try {
+      const res = await fetch(`/api/ideas/${id}`, {
+        method: "DELETE"
+      });
+
+      const data = await res.json();
+
+      if (data.status) {
+        alert("✅ partner deleted successfully!");
+        btn.closest("tr").remove(); // Table row remove
+      } else {
+        alert("❌ Delete failed: " + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("⚠️ Something went wrong!");
+    }
+  });
+});
+</script>
+
