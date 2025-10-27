@@ -1,0 +1,357 @@
+<%- include("partials/aside") %>
+
+<main class="flex-1 p-6 overflow-auto">
+  <!-- Header -->
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Customers</h1>
+      <p class="mt-2 text-gray-700">Add, edit, or delete customer testimonials below.</p>
+    </div>
+    <div>
+      <button id="openCustomerModalBtn" class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
+        + Add Customer
+      </button>
+    </div>
+  </div>
+
+  <!-- CUSTOMER TABLE -->
+  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Customer List</h2>
+    <table class="min-w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="px-4 py-2 border">Image</th>
+          <th class="px-4 py-2 border">Name</th>
+          <th class="px-4 py-2 border">Designation</th>
+          <th class="px-4 py-2 border">Used By</th>
+          <th class="px-4 py-2 border">Rating</th>
+          <th class="px-4 py-2 border">Content</th>
+          <th class="px-4 py-2 border">Status</th>
+          <th class="px-4 py-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="customerTableBody">
+        <% if (data && data.customers && data.customers.length > 0) { %>
+        <% data.customers.forEach(customer => { %>
+        <tr class="hover:bg-gray-50 transition">
+          <td class="px-4 py-2 border">
+            <img src="/<%= customer.image %>" alt="Customer" class="w-12 h-12 object-cover rounded-full" />
+          </td>
+          <td class="px-4 py-2 border"><%= customer.name %></td>
+          <td class="px-4 py-2 border"><%= customer.desination || '-' %></td>
+          <td class="px-4 py-2 border"><%= customer.usedBy %></td>
+          <td class="px-4 py-2 border"><%= customer.rating || 'N/A' %></td>
+          <td class="px-4 py-2 border max-w-[250px] truncate"><%= customer.content %></td>
+          <td class="px-4 py-2 border">
+            <span class="px-2 py-1 text-xs rounded <%= customer.status ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' %>">
+              <%= customer.status ? "Active" : "Inactive" %>
+            </span>
+          </td>
+          <td class="px-4 py-2 border text-center">
+            <div class="flex space-x-2 justify-center">
+              <button type="button" class="border border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer openEditCustomerModalBtn" data-id="<%= customer._id %>" data-name="<%- customer.name %>" data-desination="<%- customer.desination %>" data-content="<%- customer.content %>" data-rating="<%- customer.rating %>" data-usedby="<%- customer.usedBy %>" data-image="<%- customer.image %>">
+                Edit
+              </button>
+
+              <form onsubmit="deleteCustomer('<%= customer._id %>'); return false;" method="post" class="inline">
+                <button type="submit" class="border border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer hover:bg-gray-100">
+                  Delete
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+        <tr>
+          <td colspan="8" class="text-center py-4 text-gray-500">No Customers Found</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</main>
+<!-- =================== ADD CUSTOMER MODAL =================== -->
+<div id="customerModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="bg-white w-full max-w-3xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
+    <!-- Close Button -->
+    <button id="closeCustomerModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-2xl font-bold">&times;</button>
+
+    <h2 class="text-black font-semibold text-2xl mb-4">Add Customer</h2>
+
+    <form id="customerForm" enctype="multipart/form-data" class="space-y-4">
+      <!-- Used By -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Used By</label>
+        <select name="usedBy" id="usedBy" class="w-full border border-gray-300 rounded p-2" required>
+          <option value="">Select</option>
+          <option value="home">Home</option>
+          <option value="service">Service</option>
+        </select>
+      </div>
+
+      <!-- Name -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Name</label>
+        <input type="text" name="name" class="w-full border border-gray-300 rounded p-2" placeholder="Enter customer name" required />
+      </div>
+
+      <!-- Designation -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Designation</label>
+        <input type="text" name="desination" class="w-full border border-gray-300 rounded p-2" placeholder="Enter designation" />
+      </div>
+
+      <!-- Content -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Content</label>
+        <textarea name="content" rows="3" class="w-full border border-gray-300 rounded p-2" placeholder="Enter customer feedback or testimonial"></textarea>
+      </div>
+
+      <!-- Rating -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Rating (1 to 5)</label>
+        <input type="number" name="rating" min="1" max="5" step="0.1" class="w-full border border-gray-300 rounded p-2" placeholder="Enter rating (e.g. 4.5)" />
+      </div>
+
+      <!-- Image -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Image</label>
+        <input type="file" name="image" accept="image/*" class="w-full border border-gray-300 rounded p-2" required />
+      </div>
+
+      <!-- Meta Fields -->
+      <h3 class="font-semibold text-lg text-gray-800 mt-6">SEO Meta Fields</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Meta Title</label>
+          <input type="text" name="meta_title" class="w-full border border-gray-300 rounded p-2" placeholder="Enter meta title" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Meta Description</label>
+          <input type="text" name="meta_description" class="w-full border border-gray-300 rounded p-2" placeholder="Enter meta description" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Keywords</label>
+          <input type="text" name="keywords" class="w-full border border-gray-300 rounded p-2" placeholder="Enter keywords (comma separated)" />
+        </div>
+      </div>
+
+      <!-- OG Fields -->
+      <h3 class="font-semibold text-lg text-gray-800 mt-6">Open Graph (OG) Fields</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">OG Title</label>
+          <input type="text" name="og_title" class="w-full border border-gray-300 rounded p-2" placeholder="Enter OG title" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">OG Description</label>
+          <input type="text" name="og_description" class="w-full border border-gray-300 rounded p-2" placeholder="Enter OG description" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">OG Image</label>
+          <input type="file" name="og_image" accept="image/*" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">OG URL</label>
+          <input type="text" name="og_url" class="w-full border border-gray-300 rounded p-2" placeholder="Enter OG URL" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">OG Type</label>
+          <input type="text" name="og_type" class="w-full border border-gray-300 rounded p-2" placeholder="Enter OG type (e.g., website)" />
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="mt-4">
+        <label class="block text-gray-700 font-medium mb-1">Status</label>
+        <select name="status" class="w-full border border-gray-300 rounded p-2">
+          <option value="true" selected>Active</option>
+          <option value="false">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Submit Buttons -->
+      <div class="flex justify-end space-x-3 mt-6">
+        <button type="button" id="cancelCustomerModalBtn" class="border border-black text-black px-4 py-2 rounded hover:bg-gray-100 transition cursor-pointer">Cancel</button>
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:opacity-90 transition cursor-pointer">Add Customer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- =================== EDIT CUSTOMER MODAL =================== -->
+<div id="editCustomerModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
+    <button id="closeEditCustomerModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-2xl font-bold">&times;</button>
+    <h2 class="text-black font-semibold text-2xl mb-4">Edit Customer</h2>
+
+    <form id="customerEditForm" enctype="multipart/form-data" class="space-y-4">
+      <input type="hidden" id="editCustomerId" name="id" />
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Used By</label>
+        <select id="editUsedBy" name="usedBy" class="w-full border border-gray-300 rounded p-2" required>
+          <option value="home">Home</option>
+          <option value="service">Service</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Name</label>
+        <input type="text" id="editCustomerName" name="name" class="w-full border border-gray-300 rounded p-2" required />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Designation</label>
+        <input type="text" id="editCustomerDesignation" name="desination" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Content</label>
+        <textarea id="editCustomerContent" name="content" rows="3" class="w-full border border-gray-300 rounded p-2"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Rating</label>
+        <input type="number" id="editCustomerRating" name="rating" min="1" max="5" step="0.1" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Image</label>
+        <input type="file" id="editCustomerImage" name="image" accept="image/*" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+
+      <div class="flex justify-end space-x-3 mt-4">
+        <button type="button" id="cancelEditCustomerModalBtn" class="border border-black text-black px-4 py-2 rounded hover:bg-gray-100 transition cursor-pointer">Cancel</button>
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:opacity-90 transition cursor-pointer">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const customerModal = document.getElementById("customerModal");
+    const openCustomerModalBtn = document.getElementById("openCustomerModalBtn");
+    const closeCustomerModalBtn = document.getElementById("closeCustomerModalBtn");
+    const cancelCustomerModalBtn = document.getElementById("cancelCustomerModalBtn");
+    const customerForm = document.getElementById("customerForm");
+
+    // ✅ OPEN MODAL
+    if (openCustomerModalBtn) {
+      openCustomerModalBtn.addEventListener("click", () => {
+        customerModal.classList.remove("hidden");
+      });
+    }
+
+    // ✅ CLOSE MODAL
+    const closeModal = () => customerModal.classList.add("hidden");
+    if (closeCustomerModalBtn) closeCustomerModalBtn.addEventListener("click", closeModal);
+    if (cancelCustomerModalBtn) cancelCustomerModalBtn.addEventListener("click", closeModal);
+
+    // ✅ FORM SUBMIT HANDLER
+    customerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(customerForm);
+
+      try {
+        const response = await fetch("/api/customer", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        alert("✅ Customer added successfully!");
+        closeModal();
+        customerForm.reset();
+        location.reload(); // reload to show updated table
+
+      } catch (err) {
+        console.error(err);
+        alert("❌ Something went wrong while adding customer.");
+      }
+    });
+  });
+</script>
+
+<script>
+  async function deleteCustomer(id) {
+    if (!confirm("Are you sure you want to delete this customer?")) return;
+
+    try {
+      const res = await fetch(`/api/customer/${id}`, {
+        method: "DELETE"
+      });
+      const data = await res.json(); // 👈 will now always be JSON
+
+      if (data.status) {
+        alert(data.message);
+        location.reload();
+      } else {
+        alert(data.message || "Failed to delete customer");
+      }
+    } catch (error) {
+      alert("Error deleting customer: " + error.message);
+    }
+  }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const editModal = document.getElementById("editCustomerModal");
+    const closeEditModalBtn = document.getElementById("closeEditCustomerModalBtn");
+    const cancelEditModalBtn = document.getElementById("cancelEditCustomerModalBtn");
+    const editForm = document.getElementById("customerEditForm");
+
+    // 🟢 Open Edit Modal and populate fields
+    document.querySelectorAll(".openEditCustomerModalBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        editModal.classList.remove("hidden");
+
+        document.getElementById("editCustomerId").value = button.dataset.id;
+        document.getElementById("editUsedBy").value = button.dataset.usedby;
+        document.getElementById("editCustomerName").value = button.dataset.name;
+        document.getElementById("editCustomerDesignation").value = button.dataset.desination;
+        document.getElementById("editCustomerContent").value = button.dataset.content;
+        document.getElementById("editCustomerRating").value = button.dataset.rating;
+      });
+    });
+
+    // 🔴 Close modal
+    [closeEditModalBtn, cancelEditModalBtn].forEach(btn => {
+      btn.addEventListener("click", () => editModal.classList.add("hidden"));
+    });
+
+    // 🟡 Submit Edit Form
+    editForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const id = document.getElementById("editCustomerId").value;
+      const formData = new FormData(editForm);
+
+      try {
+        const res = await fetch(`/api/customer/${id}`, {
+          method: "PUT",
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.status) {
+          alert("✅ Customer updated successfully!");
+          location.reload();
+        } else {
+          alert("❌ " + data.message);
+        }
+      } catch (error) {
+        alert("Error updating customer: " + error.message);
+      }
+    });
+  });
+</script>
