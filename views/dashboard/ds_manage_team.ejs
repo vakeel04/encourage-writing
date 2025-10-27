@@ -1,221 +1,458 @@
 <%- include("partials/aside") %>
 
-<main class="flex-1 p-6 overflow-auto">
-  <!-- Header -->
-  <div class="flex justify-between items-end">
-    <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
-    </div>
+  <main class="flex-1 p-6 overflow-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-end">
+      <div>
+        <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
+        <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+      </div>
 
-    <!-- Add Button -->
-    <div>
-      <button
-        id="openAddModalBtn"
-        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
-      >
-        + Add Service
-      </button>
+      <!-- Add Button -->
+      <div>
+        <button id="openAddModalBtn"
+          class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
+          + Add Service
+        </button>
+      </div>
     </div>
-  </div>
+<!-- Teams Table -->
+<div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+  <h2 class="text-[#000] font-semibold text-xl mb-4">Teams List</h2>
 
-  <!-- Service Table -->
-  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Services List</h2>
-    <table class="min-w-full table-auto border-collapse">
-      <thead>
-        <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Title</th>
-          <th class="px-4 py-2 border">Description</th>
-          <th class="px-4 py-2 border">Image</th>
+  <table class="min-w-full table-auto border-collapse">
+    <thead>
+      <tr class="bg-gray-100 text-left">
+        <th class="px-4 py-2 border">Title</th>
+        <th class="px-4 py-2 border">Sub Title</th>
+        <th class="px-4 py-2 border">Members</th>
           <th class="px-4 py-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="serviceTableBody">
-        <tr>
-          <td class="px-4 py-2 border">Web Design</td>
-          <td class="px-4 py-2 border">Professional website design services for businesses.</td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="Web Design"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">SEO Optimization</td>
-          <td class="px-4 py-2 border">
-            Improve website visibility on search engines with our SEO services.
-          </td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="SEO Optimization"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</main>
+      </tr>
+    </thead>
+    <tbody id="teamTableBody">
+      <% data?.team?.forEach(item => { %>
+      <tr>
+        <td class="px-4 py-2 border"><%= item.title %></td>
+        <td class="px-4 py-2 border"><%= item.subTitle %></td>
+        <td class="px-4 py-2 border align-top">
+          <div class="max-h-32 overflow-y-auto flex flex-col gap-2 pr-2">
+            <% item.info.forEach(member => { %>
+              <div class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded">
+                <img
+                  src="/<%= member.image %>"
+                  alt="<%= member.name %>"
+                  class="h-10 w-10 rounded-full object-cover"
+                />
+                <div>
+                  <p class="font-medium text-sm"><%= member.name %></p>
+                  <p class="text-xs text-gray-600"><%= member.desination %></p>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </td>
+        <td class="px-4 py-2 border space-x-2">
+          <button class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn" data-id="<%= item._id %>" data-title="<%= item.title %>" data-subtitle="<%= item.subTitle %>" data-meta_title="<%= item.meta_title %>" data-meta_description="<%= item.meta_description %>" data-keywords="<%= item.keywords %>" data-og_title="<%= item.og_title %>" data-og_description="<%= item.og_description %>" data-og_image="<%= item.og_image %>" data-og_url="<%= item.og_url %>" data-og_type="<%= item.og_type %>" data-status="<%= item.status %>">
+            Edit
+          </button>
+          <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= item._id %>">
+            Delete
+          </button>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 
-<!-- Add Service Modal -->
-<div
-  id="addServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
-    <button
-      id="closeAddModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
+  </main>
+
+
+  <!-- Add Team Modal -->
+   
+<div id="addTeamModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative h-[90vh] overflow-y-scroll">
+    <!-- Close Button -->
+    <button id="closeAddModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
       &times;
     </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
-    <form id="addServiceForm" class="space-y-4">
+
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Team</h2>
+
+    <form id="addTeamForm" class="space-y-4">
+      <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="title"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="title">Title</label>
+        <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required />
       </div>
+
+      <!-- Sub Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="description"
-          >Description</label
-        >
-        <textarea
-          id="description"
-          class="w-full border border-gray-300 rounded p-2"
-          rows="3"
-          required
-        ></textarea>
+        <label class="block text-gray-700 font-medium mb-1" for="subTitle">Sub Title</label>
+        <input type="text" id="subTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
       </div>
-      <div>
-        <label class="block text-gray-700 font-medium mb-1" for="image"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="image"
-          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          required
-        />
+
+      <!-- Info Section (Dynamic Members) -->
+      <div id="teamMembersContainer">
+        <h3 class="text-lg font-semibold text-[#000] mb-2">Team Members</h3>
+        <div class="team-member border p-3 rounded mb-3">
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Name</label>
+            <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
+          </div>
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Designation</label>
+            <input type="text" name="desination[]" class="w-full border border-gray-300 rounded p-2" />
+          </div>
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Image</label>
+            <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" required />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1">Links (comma separated)</label>
+            <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" placeholder="https://facebook.com, https://twitter.com" />
+          </div>
+        </div>
       </div>
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
-        Add Service
+
+      <!-- Add Member Button -->
+      <button type="button" id="addMemberBtn" class="border border-gray-400 text-gray-700 px-3 py-1 rounded hover:bg-gray-100">
+        + Add Another Member
+      </button>
+
+      <!-- Meta Fields -->
+      <div class="border-t pt-4 mt-4">
+        <h3 class="text-lg font-semibold text-[#000] mb-2">SEO Meta Info</h3>
+
+        <div>
+          <label class="block text-gray-700 mb-1">Meta Title</label>
+          <input type="text" id="meta_title" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">Meta Description</label>
+          <textarea id="meta_description" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">Keywords</label>
+          <input type="text" id="keywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+      </div>
+
+      <!-- OG Fields -->
+      <div class="border-t pt-4 mt-4">
+        <h3 class="text-lg font-semibold text-[#000] mb-2">Open Graph (OG) Info</h3>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Title</label>
+          <input type="text" id="og_title" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Description</label>
+          <textarea id="og_description" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Image</label>
+          <input type="file" id="og_image" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG URL</label>
+          <input type="text" id="og_url" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Type</label>
+          <input type="text" id="og_type" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
+        Add Team
       </button>
     </form>
   </div>
 </div>
 
-<!-- Edit Service Modal -->
-<div
-  id="editServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
-    <button
-      id="closeEditModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
+ 
+
+
+ <!-- Edit Team Modal -->
+<div id="editTeamModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
+    <!-- Close Button -->
+    <button id="closeEditModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
       &times;
     </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Service</h2>
-    <form id="editServiceForm" class="space-y-4">
+
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Team</h2>
+
+    <form id="editTeamForm" class="space-y-4">
+      <input type="hidden" id="editId" name="_id" />
+
+      <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="editTitle"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="editTitle">Title</label>
+        <input type="text" id="editTitle" name="title" class="w-full border border-gray-300 rounded p-2" required />
       </div>
+
+      <!-- Subtitle -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editDescription"
-          >Description</label
-        >
-        <textarea
-          id="editDescription"
-          class="w-full border border-gray-300 rounded p-2"
-          rows="3"
-          required
-        ></textarea>
+        <label class="block text-gray-700 font-medium mb-1" for="editSubTitle">Subtitle</label>
+        <input type="text" id="editSubTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
       </div>
+
+      <!-- Team Members -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editImage"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="editImage"
-          class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-        />
+        <label class="block text-gray-700 font-medium mb-1">Team Members</label>
+        <div id="teamMembersContainer">
+          <div class="team-member border p-3 rounded mb-3 relative">
+            <button type="button" class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">
+              ✕
+            </button>
+
+            <div class="mb-2">
+              <label class="block text-gray-700 mb-1">Name</label>
+              <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
+            </div>
+
+            <div class="mb-2">
+              <label class="block text-gray-700 mb-1">Designation</label>
+              <input type="text" name="designation[]" class="w-full border border-gray-300 rounded p-2" />
+            </div>
+
+            <div class="mb-2">
+              <label class="block text-gray-700 mb-1">Image</label>
+              <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+            </div>
+
+            <div class="mb-2">
+              <label class="block text-gray-700 mb-1">Links (comma separated)</label>
+              <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" />
+            </div>
+          </div>
+        </div>
+
+        <button type="button" id="addMemberBtn" class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100">
+          + Add Member
+        </button>
       </div>
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
+
+      <!-- Meta Fields -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-gray-700 mb-1">Meta Title</label>
+          <input type="text" id="editMetaTitle" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">Meta Description</label>
+          <textarea id="editMetaDescription" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">Keywords</label>
+          <input type="text" id="editKeywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Title</label>
+          <input type="text" id="editOgTitle" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Description</label>
+          <textarea id="editOgDescription" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Image</label>
+          <input type="file" id="editOgImage" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+          <img id="currentOgImagePreview" src="" alt="Current OG Image" class="w-24 h-24 mt-2 rounded object-cover hidden" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG URL</label>
+          <input type="text" id="editOgUrl" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-1">OG Type</label>
+          <input type="text" id="editOgType" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="editStatus" name="status" class="w-4 h-4" />
+        <label for="editStatus" class="text-gray-700">Active</label>
+      </div>
+
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
         Save Changes
       </button>
     </form>
   </div>
 </div>
 
-<script>
-  // Add Modal
+
+  <script>
+    // // Add Modal
+    // const openAddModalBtn = document.getElementById("openAddModalBtn");
+    // const addTeamModal = document.getElementById("addTeamModal");
+    // const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+
+    // openAddModalBtn.addEventListener("click", () => {
+    //   addTeamModal.classList.remove("hidden");
+    // });
+
+    // closeAddModalBtn.addEventListener("click", () => {
+    //   addTeamModal.classList.add("hidden");
+    // });
+
+    // Edit Modal
+    const editTeamModal = document.getElementById("editTeamModal");
+    const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+    const editButtons = document.querySelectorAll(".openEditModalBtn");
+
+    editButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        editTeamModal.classList.remove("hidden");
+      });
+    });
+
+    closeEditModalBtn.addEventListener("click", () => {
+      editTeamModal.classList.add("hidden");
+    });
+  </script>
+ 
+ <script>
+  // Modal Handling
   const openAddModalBtn = document.getElementById("openAddModalBtn");
-  const addServiceModal = document.getElementById("addServiceModal");
+  const addTeamModal = document.getElementById("addTeamModal");
   const closeAddModalBtn = document.getElementById("closeAddModalBtn");
 
   openAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.remove("hidden");
+    addTeamModal.classList.remove("hidden");
   });
 
   closeAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.add("hidden");
+    addTeamModal.classList.add("hidden");
   });
 
-  // Edit Modal
-  const editServiceModal = document.getElementById("editServiceModal");
-  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
-  const editButtons = document.querySelectorAll(".openEditModalBtn");
+  // Duplicate Team Member Section
+  const addMemberBtn = document.getElementById("addMemberBtn");
+  const teamMembersContainer = document.getElementById("teamMembersContainer");
 
-  editButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      editServiceModal.classList.remove("hidden");
+  addMemberBtn.addEventListener("click", () => {
+    const member = teamMembersContainer.querySelector(".team-member");
+    const clone = member.cloneNode(true);
+
+    // Clear all input values
+    clone.querySelectorAll("input").forEach((input) => {
+      if (input.type === "file") {
+        input.value = "";
+      } else {
+        input.value = "";
+      }
     });
+
+    teamMembersContainer.appendChild(clone);
   });
 
-  closeEditModalBtn.addEventListener("click", () => {
-    editServiceModal.classList.add("hidden");
+  // Form Submission
+  const addTeamForm = document.getElementById("addTeamForm");
+  addTeamForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    // Collect main fields
+    formData.append("title", document.getElementById("title").value);
+    formData.append("subTitle", document.getElementById("subTitle").value);
+    formData.append("meta_title", document.getElementById("meta_title").value);
+    formData.append("meta_description", document.getElementById("meta_description").value);
+    formData.append("keywords", document.getElementById("keywords").value);
+    formData.append("og_title", document.getElementById("og_title").value);
+    formData.append("og_description", document.getElementById("og_description").value);
+    formData.append("og_url", document.getElementById("og_url").value);
+    formData.append("og_type", document.getElementById("og_type").value);
+
+    // OG Image
+    const ogImage = document.getElementById("og_image").files[0];
+    if (ogImage) formData.append("og_image", ogImage);
+
+// Collect all team members
+const members = teamMembersContainer.querySelectorAll(".team-member");
+members.forEach((member, index) => {
+  formData.append(`info[${index}].name`, member.querySelector("input[name='name[]']").value);
+  formData.append(`info[${index}].desination`, member.querySelector("input[name='desination[]']").value); // fix typo if needed
+  formData.append(`info[${index}].links`, member.querySelector("input[name='links[]']").value);
+
+  const imageInput = member.querySelector("input[type='file']");
+  if (imageInput.files[0]) {
+    formData.append(`info[${index}].image`, imageInput.files[0]);
+  }
+});
+
+    try {
+      const response = await fetch("/api/team", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.status) {
+        alert("Team added successfully!");
+        addTeamForm.reset();
+        addTeamModal.classList.add("hidden");
+           location.reload() 
+        // Remove extra members
+        const members = teamMembersContainer.querySelectorAll(".team-member");
+        members.forEach((m, i) => { if (i > 0) m.remove(); });
+      } else {
+        alert("Error: " + result.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong.");
+    }
+  });
+</script>
+
+<!-- delte  -->
+<script>
+  // Attach delete event to all buttons
+  document.querySelectorAll(".deleteBtn").forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      const id = btn.dataset.id;
+
+      if (!confirm("Are you sure you want to delete this team?")) return;
+
+      try {
+        const response = await fetch(`/api/team/${id}`, {
+          method: "DELETE",
+        });
+
+        const result = await response.json();
+
+        if (result.status) {
+          alert("Team deleted successfully!");
+          
+          // Optionally remove the row from DOM
+          const row = btn.closest("tr"); // assuming inside a table row
+          if (row) row.remove();
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Something went wrong while deleting.");
+      }
+    });
   });
 </script>

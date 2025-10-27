@@ -4,8 +4,8 @@
   <!-- Header -->
   <div class="flex justify-between items-end">
     <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
+      <h1 class="text-3xl font-bold text-[#000]">Manage VisionMission</h1>
+      <p class="mt-2 text-gray-700">Create, edit, or delete your VisionMission below.</p>
     </div>
 
     <!-- Add Button -->
@@ -14,172 +14,458 @@
         id="openAddModalBtn"
         class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
       >
-        + Add Service
+        + Add VisionMission
       </button>
     </div>
   </div>
 
   <!-- Service Table -->
   <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Services List</h2>
+    <h2 class="text-[#000] font-semibold text-xl mb-4">VisionMission List</h2>
     <table class="min-w-full table-auto border-collapse">
       <thead>
         <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Title</th>
-          <th class="px-4 py-2 border">Description</th>
-          <th class="px-4 py-2 border">Image</th>
+          <th class="px-4 py-2 border">Heading</th>
+          <th class="px-4 py-2 border">SubHeading</th>
+          <th class="px-4 py-2 border">OurVision</th>
+          <th class="px-4 py-2 border">OurMission</th>
           <th class="px-4 py-2 border">Actions</th>
         </tr>
       </thead>
-      <tbody id="serviceTableBody">
-        <tr>
-          <td class="px-4 py-2 border">Web Design</td>
-          <td class="px-4 py-2 border">Professional website design services for businesses.</td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://www.proalley.com/blog/content/images/2022/11/web-design-concept-with-drawings.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="Web Design"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">SEO Optimization</td>
-          <td class="px-4 py-2 border">
-            Improve website visibility on search engines with our SEO services.
-          </td>
-          <td class="px-4 py-2 border">
-            <img
-              src="https://alreadysetup.com/wp-content/uploads/SEO-image1.jpg"
-              class="h-16 w-16 object-cover rounded"
-              alt="SEO Optimization"
-            />
-          </td>
-          <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            >
-              Edit
-            </button>
-            <button class="border cursor-pointer px-2 py-1 rounded">Delete</button>
-          </td>
-        </tr>
+      <tbody id="visionMissionTableBody">
+        <% if (data && data?.visionMission?.length > 0) { %>
+          <% data?.visionMission?.forEach((item) => { %>
+            <tr>
+              <!-- Heading -->
+              <td class="px-4 py-2 border"><%= item.heading %></td>
+      
+              <!-- Sub Heading -->
+              <td class="px-4 py-2 border"><%= item.subHeading %></td>
+      
+              <!-- Our Vision -->
+              <td class="px-4 py-2 border"><%= item.OurVision || "—" %></td>
+      
+              <!-- Our Mission -->
+              <td class="px-4 py-2 border"><%= item.OurMission || "—" %></td>
+      
+      
+              <!-- Actions -->
+              <td class="px-4 py-2 border space-x-2 text-center">
+                <button
+                  class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+                  data-id="<%= item._id %>"
+                  data-heading="<%= item.heading %>"
+                  data-subheading="<%= item.subHeading %>"
+                  data-ourvision="<%= item.OurVision %>"
+                  data-ourmission="<%= item.OurMission %>"
+                  data-metatitle="<%= item.meta_title %>"
+                  data-metadescription="<%= item.meta_description %>"
+                  data-keywords="<%= item.keywords %>"
+                  data-ogtitle="<%= item.og_title %>"
+                  data-ogdescription="<%= item.og_description %>"
+                  data-ogimage="<%= item.og_image %>"
+                  data-ogurl="<%= item.og_url %>"
+                  data-ogtype="<%= item.og_type %>"
+                  data-status="<%= item.status %>"
+                >
+                  Edit
+                </button>
+      
+                <button
+                  class="border cursor-pointer px-2 py-1 rounded deleteBtn"
+                  data-id="<%= item._id %>"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="7" class="text-center py-4 text-gray-500">
+              No Vision & Mission records found.
+            </td>
+          </tr>
+        <% } %>
       </tbody>
+      
     </table>
   </div>
 </main>
 
-<!-- Add Service Modal -->
+ 
+<!-- Add Vision & Mission Modal -->
 <div
-  id="addServiceModal"
+  id="addVisionMissionModal"
   class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
 >
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+  <div class="h-[700px] overflow-y-scroll bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <!-- Close Button -->
     <button
       id="closeAddModalBtn"
       class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
     >
       &times;
     </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
-    <form id="addServiceForm" class="space-y-4">
+
+    <h2 class="text-[#000] font-semibold text-xl mb-4">
+      Add Vision & Mission
+    </h2>
+
+    <form id="addVisionMissionForm" class="space-y-4">
+      <!-- Heading -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title"
-          >Title</label
+        <label class="block text-gray-700 font-medium mb-1" for="heading"
+          >Heading</label
         >
         <input
           type="text"
-          id="title"
+          id="heading"
+          name="heading"
           class="w-full border border-gray-300 rounded p-2"
           required
         />
       </div>
+
+      <!-- Sub Heading -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="description"
-          >Description</label
+        <label class="block text-gray-700 font-medium mb-1" for="subHeading"
+          >Sub Heading</label
+        >
+        <input
+          type="text"
+          id="subHeading"
+          name="subHeading"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+
+      <!-- Our Vision -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="OurVision"
+          >Our Vision</label
         >
         <textarea
-          id="description"
-          class="w-full border border-gray-300 rounded p-2"
+          id="OurVision"
+          name="OurVision"
           rows="3"
-          required
+          class="w-full border border-gray-300 rounded p-2"
         ></textarea>
       </div>
+
+      <!-- Our Mission -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="image"
-          >Image</label
+        <label class="block text-gray-700 font-medium mb-1" for="OurMission"
+          >Our Mission</label
+        >
+        <textarea
+          id="OurMission"
+          name="OurMission"
+          rows="3"
+          class="w-full border border-gray-300 rounded p-2"
+        ></textarea>
+      </div>
+
+      <!-- Meta Title -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="meta_title"
+          >Meta Title</label
+        >
+        <input
+          type="text"
+          id="meta_title"
+          name="meta_title"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- Meta Description -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="meta_description"
+          >Meta Description</label
+        >
+        <textarea
+          id="meta_description"
+          name="meta_description"
+          rows="2"
+          class="w-full border border-gray-300 rounded p-2"
+        ></textarea>
+      </div>
+
+      <!-- Keywords -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="keywords"
+          >Keywords</label
+        >
+        <input
+          type="text"
+          id="keywords"
+          name="keywords"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- OG Fields -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_title"
+          >OG Title</label
+        >
+        <input
+          type="text"
+          id="og_title"
+          name="og_title"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_description"
+          >OG Description</label
+        >
+        <textarea
+          id="og_description"
+          name="og_description"
+          rows="2"
+          class="w-full border border-gray-300 rounded p-2"
+        ></textarea>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_image"
+          >OG Image</label
         >
         <input
           type="file"
-          id="image"
+          id="og_image"
+          name="og_image"
           class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          required
         />
       </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_url"
+          >OG URL</label
+        >
+        <input
+          type="text"
+          id="og_url"
+          name="og_url"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="og_type"
+          >OG Type</label
+        >
+        <input
+          type="text"
+          id="og_type"
+          name="og_type"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- Submit -->
       <button
         type="submit"
         class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
       >
-        Add Service
+        Add Vision & Mission
       </button>
     </form>
   </div>
 </div>
 
-<!-- Edit Service Modal -->
+
+ 
+<!-- Edit Vision & Mission Modal -->
 <div
-  id="editServiceModal"
+  id="editVisionMissionModal"
   class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
 >
-  <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+  <div class="h-[700px] overflow-y-scroll bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative">
+    <!-- Close Button -->
     <button
       id="closeEditModalBtn"
       class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
     >
       &times;
     </button>
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Service</h2>
-    <form id="editServiceForm" class="space-y-4">
+
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Vision & Mission</h2>
+
+    <form id="editVisionMissionForm" class="space-y-4">
+      <input type="hidden" id="editId" name="id" />
+
+      <!-- Heading -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
-          >Title</label
+        <label class="block text-gray-700 font-medium mb-1" for="editHeading"
+          >Heading</label
         >
         <input
           type="text"
-          id="editTitle"
+          id="editHeading"
+          name="heading"
           class="w-full border border-gray-300 rounded p-2"
           required
         />
       </div>
+
+      <!-- Sub Heading -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editDescription"
-          >Description</label
+        <label class="block text-gray-700 font-medium mb-1" for="editSubHeading"
+          >Sub Heading</label
+        >
+        <input
+          type="text"
+          id="editSubHeading"
+          name="subHeading"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
+      </div>
+
+      <!-- Our Vision -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOurVision"
+          >Our Vision</label
         >
         <textarea
-          id="editDescription"
-          class="w-full border border-gray-300 rounded p-2"
+          id="editOurVision"
+          name="OurVision"
           rows="3"
-          required
+          class="w-full border border-gray-300 rounded p-2"
         ></textarea>
       </div>
+
+      <!-- Our Mission -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editImage"
-          >Image</label
+        <label class="block text-gray-700 font-medium mb-1" for="editOurMission"
+          >Our Mission</label
+        >
+        <textarea
+          id="editOurMission"
+          name="OurMission"
+          rows="3"
+          class="w-full border border-gray-300 rounded p-2"
+        ></textarea>
+      </div>
+
+      <!-- Meta Title -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editMetaTitle"
+          >Meta Title</label
+        >
+        <input
+          type="text"
+          id="editMetaTitle"
+          name="meta_title"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- Meta Description -->
+      <div>
+        <label
+          class="block text-gray-700 font-medium mb-1"
+          for="editMetaDescription"
+          >Meta Description</label
+        >
+        <textarea
+          id="editMetaDescription"
+          name="meta_description"
+          rows="2"
+          class="w-full border border-gray-300 rounded p-2"
+        ></textarea>
+      </div>
+
+      <!-- Keywords -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editKeywords"
+          >Keywords</label
+        >
+        <input
+          type="text"
+          id="editKeywords"
+          name="keywords"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <!-- OG Fields -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgTitle"
+          >OG Title</label
+        >
+        <input
+          type="text"
+          id="editOgTitle"
+          name="og_title"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <div>
+        <label
+          class="block text-gray-700 font-medium mb-1"
+          for="editOgDescription"
+          >OG Description</label
+        >
+        <textarea
+          id="editOgDescription"
+          name="og_description"
+          rows="2"
+          class="w-full border border-gray-300 rounded p-2"
+        ></textarea>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgImage"
+          >OG Image</label
         >
         <input
           type="file"
-          id="editImage"
+          id="editOgImage"
+          name="og_image"
           class="w-full border border-gray-300 rounded p-2 cursor-pointer"
         />
+        <!-- Show existing image preview -->
+        <img
+          id="currentOgImagePreview"
+          src=""
+          alt="Current OG Image"
+          class="w-24 h-24 mt-2 rounded object-cover hidden"
+        />
       </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgUrl"
+          >OG URL</label
+        >
+        <input
+          type="text"
+          id="editOgUrl"
+          name="og_url"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="editOgType"
+          >OG Type</label
+        >
+        <input
+          type="text"
+          id="editOgType"
+          name="og_type"
+          class="w-full border border-gray-300 rounded p-2"
+        />
+      </div>
+
+
+      <!-- Submit -->
       <button
         type="submit"
         class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
@@ -190,32 +476,153 @@
   </div>
 </div>
 
+
 <script>
   // Add Modal
   const openAddModalBtn = document.getElementById("openAddModalBtn");
-  const addServiceModal = document.getElementById("addServiceModal");
+  const addVisionMissionModal = document.getElementById("addVisionMissionModal");
   const closeAddModalBtn = document.getElementById("closeAddModalBtn");
 
   openAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.remove("hidden");
+    addVisionMissionModal.classList.remove("hidden");
   });
 
   closeAddModalBtn.addEventListener("click", () => {
-    addServiceModal.classList.add("hidden");
+    addVisionMissionModal.classList.add("hidden");
   });
 
   // Edit Modal
-  const editServiceModal = document.getElementById("editServiceModal");
+  const editVisionMissionModal = document.getElementById("editVisionMissionModal");
   const closeEditModalBtn = document.getElementById("closeEditModalBtn");
   const editButtons = document.querySelectorAll(".openEditModalBtn");
 
   editButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      editServiceModal.classList.remove("hidden");
+      editVisionMissionModal.classList.remove("hidden");
     });
   });
 
   closeEditModalBtn.addEventListener("click", () => {
-    editServiceModal.classList.add("hidden");
+    editVisionMissionModal.classList.add("hidden");
+  });
+
+ // --- Add Vision & Mission Form Submit ---
+ const addVisionMissionForm = document.getElementById("addVisionMissionForm");
+
+addVisionMissionForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(addVisionMissionForm);
+
+  try {
+    const response = await fetch("/api/vision-mission", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (result.status) {
+      alert("✅ Vision & Mission added successfully!");
+      addVisionMissionForm.reset();
+      addVisionMissionModal.classList.add("hidden");
+      // reload or dynamically update table
+      location.reload();
+    } else {
+      alert("❌ " + (result.message || "Something went wrong."));
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("⚠️ Server error. Please try again.");
+  }
+});
+
+</script>
+
+ <!-- Delete Vision & Mission Entry -->
+<script>
+
+  document.querySelectorAll(".deleteBtn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const id = btn.getAttribute("data-id");
+      if (!id) return alert("❌ Invalid ID");
+      if (!confirm("Are you sure you want to delete this record?")) return;
+      try {
+        const response = await fetch(`/api/vision-mission/${id}`, {
+          method: "DELETE",
+        });
+        const result = await response.json();
+        if (result.status) {
+          alert("✅ Deleted successfully!");
+          // Remove row from table instantly
+          btn.closest("tr").remove();
+        } else {
+          alert("❌ " + (result.message || "Delete failed"));
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("⚠️ Server error. Try again later.");
+      }
+    });
+  });
+</script>
+
+<!-- update ki api  -->
+<script>
+  // ========== OPEN EDIT MODAL ==========
+  document.querySelectorAll(".openEditModalBtn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const modal = document.getElementById("editVisionMissionModal");
+      modal.classList.remove("hidden");
+
+      // populate data
+      document.getElementById("editId").value = btn.dataset.id || "";
+      document.getElementById("editHeading").value = btn.dataset.heading || "";
+      document.getElementById("editSubHeading").value = btn.dataset.subheading || "";
+      document.getElementById("editOurVision").value = btn.dataset.ourvision || "";
+      document.getElementById("editOurMission").value = btn.dataset.ourmission || "";
+      document.getElementById("editMetaTitle").value = btn.dataset.metatitle || "";
+      document.getElementById("editMetaDescription").value = btn.dataset.metadescription || "";
+      document.getElementById("editKeywords").value = btn.dataset.keywords || "";
+      document.getElementById("editOgTitle").value = btn.dataset.ogtitle || "";
+      document.getElementById("editOgDescription").value = btn.dataset.ogdescription || "";
+      document.getElementById("editOgUrl").value = btn.dataset.ogurl || "";
+      document.getElementById("editOgType").value = btn.dataset.ogtype || "";
+ 
+    });
+  });
+
+  // ========== CLOSE EDIT MODAL ==========
+  document.getElementById("closeEditModalBtn").addEventListener("click", () => {
+    document.getElementById("editVisionMissionModal").classList.add("hidden");
+  });
+
+  // ========== UPDATE FORM SUBMIT ==========
+  document.getElementById("editVisionMissionForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const id = document.getElementById("editId").value;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(`/api/vision-mission/${id}`, {
+        method: "PUT",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.status) {
+        alert("✅ Vision & Mission updated successfully!");
+        document.getElementById("editVisionMissionModal").classList.add("hidden");
+        window.location.reload(); // reload table after update
+      } else {
+        alert("❌ " + (result.message || "Update failed"));
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Server error. Please try again later.");
+    }
   });
 </script>
