@@ -32,7 +32,7 @@ const servicePageContoller = async (req, res) => {
       Process.findOne({ usedBy: "service" }).sort({ createdAt: -1 }),
     ]);
 
-    console.log("✅ Service page data loaded successfully");
+    console.log("✅ Service page data loaded successfully",service);
 
     res.render("services", {
       status: true,
