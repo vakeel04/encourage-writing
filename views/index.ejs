@@ -193,10 +193,76 @@
       <!-- First Slider -->
       <div class="swiper auto-swiper">
         <div class="swiper-wrapper">
+<<<<<<< HEAD
           <% data?.partner?.images.forEach(img => { %>
           <div class="swiper-slide">
             <img class="lg:h-[55px] h-[30px] w-full object-contain" src="<%= img %>" alt="Brand Logo">
           </div>
+=======
+  
+          <% if (data && data.customer && data.customer.length > 0) { %>
+            <% data.customer.forEach((review) => { %>
+              <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+                <div class="flex justify-between items-center">
+                  <div class="flex gap-3 items-center">
+                    <img 
+                      class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" 
+                      src="<%= review.image %>" 
+                      alt="<%= review.name %>" 
+                    />
+                    <div>
+                      <h3 class="text-[14px] font-medium"><%= review.name %></h3>
+                      <h3 class="text-[13px] font-medium"><%= review.desination %></h3>
+                    </div>
+                  </div>
+  
+                  <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <p class="font-medium lg:text-[16px] text-[13px]"><%= review.rating %>/5</p>
+                  </div>
+                </div>
+  
+                <p class="text-[#00000066] font-medium text-[13px] mt-5">
+                  <%= review.content %>
+                </p>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p class="text-center text-gray-400">No testimonials available.</p>
+          <% } %>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="lg:py-20 py-10 mt-8 bg-[#F8F8F8] px-4 lg:px-20">
+    <div class="text-center">
+      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2"><%= data.ideas.title %></h2>
+      <p class="lg:text-[18px] text-[13px] font-medium"><%= data.ideas.subTitle %></p>
+    </div>
+  
+    <!-- Swiper Container -->
+    <div class="swiper myInsightSwiper lg:mt-10 mt-6">
+      <div class="swiper-wrapper">
+  
+        <% if (data.ideas.detail && data.ideas.detail.length > 0) { %>
+          <% data.ideas.detail.forEach((item) => { %>
+            <div class="swiper-slide col-span-1">
+              <div class="relative">
+                <img src="/<%= item.image %>" alt="<%= item.title %>" class="rounded-[28px] w-full lg:h-[240px] h-[150px] object-cover">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-[40px] rounded-full flex justify-center items-center bg-white">
+                  <img src="./images/share.png" alt="Share">
+                </div>
+              </div>
+              <div class="py-1">
+                <h3 class="text-[14px] font-bold"><%= item.title %></h3>
+                <p class="text-[#2B2B2B] font-semibold opacity-50 text-[11px] lg:text-[13px] mt-1"><%= item.description %></p>
+                <p class="lg:text-[13px] text-[11px] mt-1.5 font-semibold"><i class="fa-solid fa-calendar"></i> <%= item.date %></p>
+              </div>
+            </div>
+>>>>>>> 01bcc2aa8add3b4014cf6296ab7dde6cab8770da
           <% }) %>
         </div>
       </div>
