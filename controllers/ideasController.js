@@ -1,4 +1,4 @@
-const Ideas = require("../models/IdeasModel");
+const Ideas = require("../models/ideasModel");
 
 // ✅ Create Idea
 const createIdea = async (req, res) => {
@@ -68,36 +68,85 @@ const getIdeaById = async (req, res) => {
 };
 
 // ✅ Update Idea
+// ✅ Update Idea Controller
 const updateIdea = async (req, res) => {
   try {
-    const body = req.body;
+    const {
+      title,
+      subTitle,
+      metaTitle,
+      metaDescription,
+      keywords,
+      ogTitle,
+      ogDescription,
+      ogUrl,
+      ogType,
+      status,
+    } = req.body;
 
-    // Handle uploaded files
+    // ✅ Rebuild detail array
+    const detailTitles = req.body["detail_title[]"] || req.body.detail_title || [];
+    const detailDescriptions = req.body["detail_description[]"] || req.body.detail_description || [];
+    const detailDates = req.body["detail_date[]"] || req.body.detail_date || [];
+    const detailImages = [];
+
+    // ✅ Handle uploaded images
     if (req.files) {
-      if (req.files.og_image) {
-        body.og_image = "uploads/" + req.files.og_image[0].filename;
+      // OG image
+      if (req.files.editOgImage) {
+        req.body.ogImage = "uploads/" + req.files.editOgImage[0].filename;
       }
 
-      // Attach detail images
-      Object.keys(req.files).forEach((field) => {
-        const match = field.match(/^detail\[(\d+)\]\.image$/);
-        if (match) {
-          const index = parseInt(match[1]);
-          if (!body.detail || !Array.isArray(body.detail)) body.detail = [];
-          body.detail[index] = { ...(body.detail[index] || {}), image: "uploads/" + req.files[field][0].filename };
-        }
+      // Detail images
+      if (req.files["detail_image[]"]) {
+        req.files["detail_image[]"].forEach((file) => {
+          detailImages.push("uploads/" + file.filename);
+        });
+      }
+    }
+
+    // ✅ Merge details
+    const details = [];
+    const count = Math.max(detailTitles.length, detailDescriptions.length, detailImages.length, detailDates.length);
+
+    for (let i = 0; i < count; i++) {
+      details.push({
+        title: Array.isArray(detailTitles) ? detailTitles[i] : detailTitles,
+        description: Array.isArray(detailDescriptions) ? detailDescriptions[i] : detailDescriptions,
+        date: Array.isArray(detailDates) ? detailDates[i] : detailDates,
+        image: detailImages[i] || "", // keep old image if no new one uploaded
       });
     }
 
-    // Convert detail string to object if needed
-    if (body.detail && typeof body.detail === "string") {
-      body.detail = JSON.parse(body.detail);
+    // ✅ Construct update object
+    const updatedData = {
+      title,
+      subTitle,
+      metaTitle,
+      metaDescription,
+      keywords,
+      ogTitle,
+      ogDescription,
+      ogUrl,
+      ogType,
+      status: status === "true",
+      detail: details,
+    };
+
+    // ✅ Update DB
+    const idea = await Ideas.findByIdAndUpdate(req.params.id, updatedData, { new: true });
+
+    if (!idea) {
+      return res.status(404).send({ status: false, message: "Idea not found" });
     }
 
-    const idea = await Ideas.findByIdAndUpdate(req.params.id, body, { new: true });
-    if (!idea) return res.status(404).send({ status: false, message: "Idea not found" });
-    res.status(200).send({ status: true, message: "Idea updated successfully", data: idea });
+    res.status(200).send({
+      status: true,
+      message: "Idea updated successfully",
+      data: idea,
+    });
   } catch (error) {
+    console.error("Error updating idea:", error);
     res.status(400).send({ status: false, message: error.message });
   }
 };
