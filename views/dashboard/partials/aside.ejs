@@ -15,82 +15,89 @@
 
   <style>
     :root {
-        --primary-color : "#000"
+      --primary-color: "#000"
     }
   </style>
 </head>
 
 <body class="flex h-screen bg-gray-100">
 
-<!-- Sidebar -->
-<aside class="w-64 bg-white shadow-md flex flex-col">
-  <!-- Logo / Header -->
-  <div class="p-6 text-xl font-bold text-[var(--primary-color)] border-b">
-    EW Dashboard
-  </div>
-
-  <!-- Navigation -->
-  <nav class="flex-1 p-4 space-y-4 text-[var(--primary-color)]">
-
-    <!-- 🏠 HOME SECTION -->
-    <div>
-      <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Home</h3>
-      <a href="/dashboard" class="flex items-center p-2 rounded bg-gray-100">
-        <i class="fa-solid fa-image text-[14px]"></i>
-        <span class="ml-3">Manage Hero Section</span>
-      </a>
-      <a href="/dashboard/achievements" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-trophy text-[14px]"></i>
-        <span class="ml-3">Manage Achievements</span>
-      </a>
-      <a href="/dashboard/partners" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-trophy text-[14px]"></i>
-        <span class="ml-3">Partners</span>
-      </a>
-      <a href="/dashboard/ideas" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-trophy text-[14px]"></i>
-        <span class="ml-3">Insights & Ideas</span>
-      </a>
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-md flex flex-col">
+    <!-- Logo / Header -->
+    <div class="p-6 text-xl font-bold text-[var(--primary-color)] border-b">
+      EW Dashboard
     </div>
 
-    <!-- 👥 ABOUT US SECTION -->
-    <div>
-      <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">About Us</h3>
-      <a href="/dashboard/visionMision" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-info-circle text-[14px]"></i>
-        <span class="ml-3">Manage Vision-Mision</span>
-      </a>
-      <a href="/dashboard/team" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-users text-[14px]"></i>
-        <span class="ml-3">Manage Team</span>
-      </a>
-    </div>
+    <!-- Navigation -->
+    <nav class="flex-1 p-4 space-y-4 text-[var(--primary-color)]">
 
-    <!-- 🧰 SERVICES SECTION -->
-    <div>
-      <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Services</h3>
-      <a href="/dashboard/service" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-briefcase text-[14px]"></i>
-        <span class="ml-3">Manage Services</span>
-      </a>
-    </div>
+      <!-- 🏠 HOME SECTION -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Home</h3>
+        <a href="/dashboard" class="flex items-center p-2 rounded bg-gray-100">
+          <i class="fa-solid fa-image text-[14px]"></i>
+          <span class="ml-3">Manage Hero Section</span>
+        </a>
+        <a href="/dashboard/achievements" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-trophy text-[14px]"></i>
+          <span class="ml-3">Manage Achievements</span>
+        </a>
+        <a href="/dashboard/partners" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-trophy text-[14px]"></i>
+          <span class="ml-3">Partners</span>
+        </a>
+        <a href="/dashboard/ideas" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-trophy text-[14px]"></i>
+          <span class="ml-3">Insights & Ideas</span>
+        </a>
+      </div>
 
-    <!-- ✍️ BLOGS SECTION -->
-    <div>
-      <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Blogs</h3>
-      <a href="/dashboard/blog" class="flex items-center p-2 rounded hover:bg-gray-100">
-        <i class="fa-solid fa-pen text-[14px]"></i>
-        <span class="ml-3">Manage Blogs</span>
-      </a>
-    </div>
-        <!-- ✍️ COMMON SECTION -->
-        <div>
-          <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Common</h3>
-          <a href="/dashboard/blog" class="flex items-center p-2 rounded hover:bg-gray-100">
-            <i class="fa-solid fa-pen text-[14px]"></i>
-            <span class="ml-3">Manage Blogs</span>
-          </a>
-        </div>
+      <!-- 👥 ABOUT US SECTION -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">About Us</h3>
+        <a href="/dashboard/visionMision" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-info-circle text-[14px]"></i>
+          <span class="ml-3">Manage Vision-Mision</span>
+        </a>
+        <a href="/dashboard/team" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-users text-[14px]"></i>
+          <span class="ml-3">Manage Team</span>
+        </a>
+      </div>
 
-  </nav>
-</aside>
+      <!-- 🧰 SERVICES SECTION -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Services</h3>
+        <a href="/dashboard/service" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-briefcase text-[14px]"></i>
+          <span class="ml-3">Manage Services</span>
+        </a>
+      </div>
+
+      <!-- ✍️ BLOGS SECTION -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Blogs</h3>
+        <a href="/dashboard/blog" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-pen text-[14px]"></i>
+          <span class="ml-3">Manage Blogs</span>
+        </a>
+      </div>
+      <!-- ✍️ COMMON SECTION -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase text-gray-500 mb-2">Common</h3>
+
+
+        <a href="/dashboard/faqs" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-pen text-[14px]"></i>
+          <span class="ml-3">Manage FAQs</span>
+        </a>
+
+        <a href="/dashboard/customers" class="flex items-center p-2 rounded hover:bg-gray-100">
+          <i class="fa-solid fa-pen text-[14px]"></i>
+          <span class="ml-3">Manage Customers</span>
+        </a>
+      </div>
+
+    </nav>
+  </aside>
