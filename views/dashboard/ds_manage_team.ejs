@@ -1,43 +1,49 @@
 <%- include("partials/aside") %>
 
-  <main class="flex-1 p-6 overflow-auto">
-    <!-- Header -->
-    <div class="flex justify-between items-end">
-      <div>
-        <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-        <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
-      </div>
-
-      <!-- Add Button -->
-      <div>
-        <button id="openAddModalBtn"
-          class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
-          + Add Service
-        </button>
-      </div>
+<main class="flex-1 p-6 overflow-auto">
+  <!-- Header -->
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Team</h1>
+      <p class="mt-2 text-gray-700">
+        Create, edit, or delete your services below.
+      </p>
     </div>
-<!-- Teams Table -->
-<div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-  <h2 class="text-[#000] font-semibold text-xl mb-4">Teams List</h2>
 
-  <table class="min-w-full table-auto border-collapse">
-    <thead>
-      <tr class="bg-gray-100 text-left">
-        <th class="px-4 py-2 border">Title</th>
-        <th class="px-4 py-2 border">Sub Title</th>
-        <th class="px-4 py-2 border">Members</th>
+    <!-- Add Button -->
+    <div>
+      <button
+        id="openAddModalBtn"
+        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
+      >
+        + Add Team
+      </button>
+    </div>
+  </div>
+  <!-- Teams Table -->
+  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Teams List</h2>
+
+    <table class="min-w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="px-4 py-2 border">Title</th>
+          <th class="px-4 py-2 border">Sub Title</th>
+          <th class="px-4 py-2 border">Members</th>
           <th class="px-4 py-2 border">Actions</th>
-      </tr>
-    </thead>
-    <tbody id="teamTableBody">
-      <% data?.team?.forEach(item => { %>
-      <tr>
-        <td class="px-4 py-2 border"><%= item.title %></td>
-        <td class="px-4 py-2 border"><%= item.subTitle %></td>
-        <td class="px-4 py-2 border align-top">
-          <div class="max-h-32 overflow-y-auto flex flex-col gap-2 pr-2">
-            <% item.info.forEach(member => { %>
-              <div class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded">
+        </tr>
+      </thead>
+      <tbody id="teamTableBody">
+        <% data?.team?.forEach(item => { %>
+        <tr>
+          <td class="px-4 py-2 border"><%= item.title %></td>
+          <td class="px-4 py-2 border"><%= item.subTitle %></td>
+          <td class="px-4 py-2 border align-top">
+            <div class="max-h-32 overflow-y-auto flex flex-col gap-2 pr-2">
+              <% item.info.forEach(member => { %>
+              <div
+                class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded"
+              >
                 <img
                   src="/<%= member.image %>"
                   alt="<%= member.name %>"
@@ -48,32 +54,57 @@
                   <p class="text-xs text-gray-600"><%= member.desination %></p>
                 </div>
               </div>
-            <% }) %>
-          </div>
-        </td>
-        <td class="px-4 py-2 border space-x-2">
-          <button class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn" data-id="<%= item._id %>" data-title="<%= item.title %>" data-subtitle="<%= item.subTitle %>" data-meta_title="<%= item.meta_title %>" data-meta_description="<%= item.meta_description %>" data-keywords="<%= item.keywords %>" data-og_title="<%= item.og_title %>" data-og_description="<%= item.og_description %>" data-og_image="<%= item.og_image %>" data-og_url="<%= item.og_url %>" data-og_type="<%= item.og_type %>" data-status="<%= item.status %>">
-            Edit
-          </button>
-          <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= item._id %>">
-            Delete
-          </button>
-        </td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
-</div>
+              <% }) %>
+            </div>
+          </td>
+          <td class="px-4 py-2 border space-x-2">
+            <button
+              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+              data-id="<%= item._id %>"
+              data-title="<%= item.title %>"
+              data-subtitle="<%= item.subTitle %>"
+              data-meta_title="<%= item.meta_title %>"
+              data-meta_description="<%= item.meta_description %>"
+              data-keywords="<%= item.keywords %>"
+              data-og_title="<%= item.og_title %>"
+              data-og_description="<%= item.og_description %>"
+              data-og_image="<%= item.og_image %>"
+              data-og_url="<%= item.og_url %>"
+              data-og_type="<%= item.og_type %>"
+              data-status="<%= item.status %>"
+              data-info="<%- JSON.stringify(item.info) %>"
+            >
+              Edit
+            </button>
 
-  </main>
+            <button
+              class="border cursor-pointer px-2 py-1 rounded deleteBtn"
+              data-id="<%= item._id %>"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</main>
 
+<!-- Add Team Modal -->
 
-  <!-- Add Team Modal -->
-   
-<div id="addTeamModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-  <div class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative h-[90vh] overflow-y-scroll">
+<div
+  id="addTeamModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div
+    class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative h-[90vh] overflow-y-scroll"
+  >
     <!-- Close Button -->
-    <button id="closeAddModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
+    <button
+      id="closeAddModalBtn"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+    >
       &times;
     </button>
 
@@ -82,14 +113,29 @@
     <form id="addTeamForm" class="space-y-4">
       <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title">Title</label>
-        <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required />
+        <label class="block text-gray-700 font-medium mb-1" for="title"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
       </div>
 
       <!-- Sub Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="subTitle">Sub Title</label>
-        <input type="text" id="subTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
+        <label class="block text-gray-700 font-medium mb-1" for="subTitle"
+          >Sub Title</label
+        >
+        <input
+          type="text"
+          id="subTitle"
+          name="subTitle"
+          class="w-full border border-gray-300 rounded p-2"
+        />
       </div>
 
       <!-- Info Section (Dynamic Members) -->
@@ -98,25 +144,50 @@
         <div class="team-member border p-3 rounded mb-3">
           <div class="mb-2">
             <label class="block text-gray-700 mb-1">Name</label>
-            <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
+            <input
+              type="text"
+              name="name[]"
+              class="w-full border border-gray-300 rounded p-2"
+              required
+            />
           </div>
           <div class="mb-2">
             <label class="block text-gray-700 mb-1">Designation</label>
-            <input type="text" name="desination[]" class="w-full border border-gray-300 rounded p-2" />
+            <input
+              type="text"
+              name="desination[]"
+              class="w-full border border-gray-300 rounded p-2"
+            />
           </div>
           <div class="mb-2">
             <label class="block text-gray-700 mb-1">Image</label>
-            <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" required />
+            <input
+              type="file"
+              name="image[]"
+              class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+              required
+            />
           </div>
           <div>
-            <label class="block text-gray-700 mb-1">Links (comma separated)</label>
-            <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" placeholder="https://facebook.com, https://twitter.com" />
+            <label class="block text-gray-700 mb-1"
+              >Links (comma separated)</label
+            >
+            <input
+              type="text"
+              name="links[]"
+              class="w-full border border-gray-300 rounded p-2"
+              placeholder="https://facebook.com, https://twitter.com"
+            />
           </div>
         </div>
       </div>
 
       <!-- Add Member Button -->
-      <button type="button" id="addMemberBtn" class="border border-gray-400 text-gray-700 px-3 py-1 rounded hover:bg-gray-100">
+      <button
+        type="button"
+        id="addMemberBtn"
+        class="border border-gray-400 text-gray-700 px-3 py-1 rounded hover:bg-gray-100"
+      >
         + Add Another Member
       </button>
 
@@ -126,66 +197,116 @@
 
         <div>
           <label class="block text-gray-700 mb-1">Meta Title</label>
-          <input type="text" id="meta_title" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="meta_title"
+            name="meta_title"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Meta Description</label>
-          <textarea id="meta_description" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+          <textarea
+            id="meta_description"
+            name="meta_description"
+            rows="2"
+            class="w-full border border-gray-300 rounded p-2"
+          ></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Keywords</label>
-          <input type="text" id="keywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="keywords"
+            name="keywords"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
       </div>
 
       <!-- OG Fields -->
       <div class="border-t pt-4 mt-4">
-        <h3 class="text-lg font-semibold text-[#000] mb-2">Open Graph (OG) Info</h3>
+        <h3 class="text-lg font-semibold text-[#000] mb-2">
+          Open Graph (OG) Info
+        </h3>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Title</label>
-          <input type="text" id="og_title" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="og_title"
+            name="og_title"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Description</label>
-          <textarea id="og_description" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+          <textarea
+            id="og_description"
+            name="og_description"
+            rows="2"
+            class="w-full border border-gray-300 rounded p-2"
+          ></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Image</label>
-          <input type="file" id="og_image" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+          <input
+            type="file"
+            id="og_image"
+            name="og_image"
+            class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG URL</label>
-          <input type="text" id="og_url" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="og_url"
+            name="og_url"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Type</label>
-          <input type="text" id="og_type" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="og_type"
+            name="og_type"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
       </div>
 
       <!-- Submit -->
-      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
+      <button
+        type="submit"
+        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4"
+      >
         Add Team
       </button>
     </form>
   </div>
 </div>
 
- 
-
-
- <!-- Edit Team Modal -->
-<div id="editTeamModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-  <div class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
+<!-- Edit Team Modal -->
+<div
+  id="editTeamModal"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+>
+  <div
+    class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]"
+  >
     <!-- Close Button -->
-    <button id="closeEditModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
+    <button
+      id="closeEditModalBtn"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+    >
       &times;
     </button>
 
@@ -196,14 +317,29 @@
 
       <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editTitle">Title</label>
-        <input type="text" id="editTitle" name="title" class="w-full border border-gray-300 rounded p-2" required />
+        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="editTitle"
+          name="title"
+          class="w-full border border-gray-300 rounded p-2"
+          required
+        />
       </div>
 
       <!-- Subtitle -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editSubTitle">Subtitle</label>
-        <input type="text" id="editSubTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
+        <label class="block text-gray-700 font-medium mb-1" for="editSubTitle"
+          >Subtitle</label
+        >
+        <input
+          type="text"
+          id="editSubTitle"
+          name="subTitle"
+          class="w-full border border-gray-300 rounded p-2"
+        />
       </div>
 
       <!-- Team Members -->
@@ -211,33 +347,59 @@
         <label class="block text-gray-700 font-medium mb-1">Team Members</label>
         <div id="teamMembersContainer">
           <div class="team-member border p-3 rounded mb-3 relative">
-            <button type="button" class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">
+            <button
+              type="button"
+              class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm"
+            >
               ✕
             </button>
 
             <div class="mb-2">
               <label class="block text-gray-700 mb-1">Name</label>
-              <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
+              <input
+                type="text"
+                name="name[]"
+                class="w-full border border-gray-300 rounded p-2"
+                required
+              />
             </div>
 
             <div class="mb-2">
               <label class="block text-gray-700 mb-1">Designation</label>
-              <input type="text" name="designation[]" class="w-full border border-gray-300 rounded p-2" />
+              <input
+                type="text"
+                name="designation[]"
+                class="w-full border border-gray-300 rounded p-2"
+              />
             </div>
 
             <div class="mb-2">
               <label class="block text-gray-700 mb-1">Image</label>
-              <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+              <input
+                type="file"
+                name="image[]"
+                class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+              />
             </div>
 
             <div class="mb-2">
-              <label class="block text-gray-700 mb-1">Links (comma separated)</label>
-              <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" />
+              <label class="block text-gray-700 mb-1"
+                >Links (comma separated)</label
+              >
+              <input
+                type="text"
+                name="links[]"
+                class="w-full border border-gray-300 rounded p-2"
+              />
             </div>
           </div>
         </div>
 
-        <button type="button" id="addMemberBtn" class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100">
+        <button
+          type="button"
+          id="addMemberBtn"
+          class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100"
+        >
           + Add Member
         </button>
       </div>
@@ -246,43 +408,88 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block text-gray-700 mb-1">Meta Title</label>
-          <input type="text" id="editMetaTitle" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="editMetaTitle"
+            name="meta_title"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Meta Description</label>
-          <textarea id="editMetaDescription" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+          <textarea
+            id="editMetaDescription"
+            name="meta_description"
+            rows="2"
+            class="w-full border border-gray-300 rounded p-2"
+          ></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Keywords</label>
-          <input type="text" id="editKeywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="editKeywords"
+            name="keywords"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Title</label>
-          <input type="text" id="editOgTitle" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="editOgTitle"
+            name="og_title"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Description</label>
-          <textarea id="editOgDescription" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+          <textarea
+            id="editOgDescription"
+            name="og_description"
+            rows="2"
+            class="w-full border border-gray-300 rounded p-2"
+          ></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Image</label>
-          <input type="file" id="editOgImage" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
-          <img id="currentOgImagePreview" src="" alt="Current OG Image" class="w-24 h-24 mt-2 rounded object-cover hidden" />
+          <input
+            type="file"
+            id="editOgImage"
+            name="og_image"
+            class="w-full border border-gray-300 rounded p-2 cursor-pointer"
+          />
+          <img
+            id="currentOgImagePreview"
+            src=""
+            alt="Current OG Image"
+            class="w-24 h-24 mt-2 rounded object-cover hidden"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG URL</label>
-          <input type="text" id="editOgUrl" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="editOgUrl"
+            name="og_url"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Type</label>
-          <input type="text" id="editOgType" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+          <input
+            type="text"
+            id="editOgType"
+            name="og_type"
+            class="w-full border border-gray-300 rounded p-2"
+          />
         </div>
       </div>
 
@@ -292,45 +499,47 @@
         <label for="editStatus" class="text-gray-700">Active</label>
       </div>
 
-      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+      <button
+        type="submit"
+        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
         Save Changes
       </button>
     </form>
   </div>
 </div>
 
+<script>
+  // // Add Modal
+  // const openAddModalBtn = document.getElementById("openAddModalBtn");
+  // const addTeamModal = document.getElementById("addTeamModal");
+  // const closeAddModalBtn = document.getElementById("closeAddModalBtn");
 
-  <script>
-    // // Add Modal
-    // const openAddModalBtn = document.getElementById("openAddModalBtn");
-    // const addTeamModal = document.getElementById("addTeamModal");
-    // const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+  // openAddModalBtn.addEventListener("click", () => {
+  //   addTeamModal.classList.remove("hidden");
+  // });
 
-    // openAddModalBtn.addEventListener("click", () => {
-    //   addTeamModal.classList.remove("hidden");
-    // });
+  // closeAddModalBtn.addEventListener("click", () => {
+  //   addTeamModal.classList.add("hidden");
+  // });
 
-    // closeAddModalBtn.addEventListener("click", () => {
-    //   addTeamModal.classList.add("hidden");
-    // });
+  // Edit Modal
+  const editTeamModal = document.getElementById("editTeamModal");
+  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+  const editButtons = document.querySelectorAll(".openEditModalBtn");
 
-    // Edit Modal
-    const editTeamModal = document.getElementById("editTeamModal");
-    const closeEditModalBtn = document.getElementById("closeEditModalBtn");
-    const editButtons = document.querySelectorAll(".openEditModalBtn");
-
-    editButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        editTeamModal.classList.remove("hidden");
-      });
+  editButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      editTeamModal.classList.remove("hidden");
     });
+  });
 
-    closeEditModalBtn.addEventListener("click", () => {
-      editTeamModal.classList.add("hidden");
-    });
-  </script>
- 
- <script>
+  closeEditModalBtn.addEventListener("click", () => {
+    editTeamModal.classList.add("hidden");
+  });
+</script>
+
+<script>
   // Modal Handling
   const openAddModalBtn = document.getElementById("openAddModalBtn");
   const addTeamModal = document.getElementById("addTeamModal");
@@ -375,10 +584,16 @@
     formData.append("title", document.getElementById("title").value);
     formData.append("subTitle", document.getElementById("subTitle").value);
     formData.append("meta_title", document.getElementById("meta_title").value);
-    formData.append("meta_description", document.getElementById("meta_description").value);
+    formData.append(
+      "meta_description",
+      document.getElementById("meta_description").value
+    );
     formData.append("keywords", document.getElementById("keywords").value);
     formData.append("og_title", document.getElementById("og_title").value);
-    formData.append("og_description", document.getElementById("og_description").value);
+    formData.append(
+      "og_description",
+      document.getElementById("og_description").value
+    );
     formData.append("og_url", document.getElementById("og_url").value);
     formData.append("og_type", document.getElementById("og_type").value);
 
@@ -386,23 +601,32 @@
     const ogImage = document.getElementById("og_image").files[0];
     if (ogImage) formData.append("og_image", ogImage);
 
-// Collect all team members
-const members = teamMembersContainer.querySelectorAll(".team-member");
-members.forEach((member, index) => {
-  formData.append(`info[${index}].name`, member.querySelector("input[name='name[]']").value);
-  formData.append(`info[${index}].desination`, member.querySelector("input[name='desination[]']").value); // fix typo if needed
-  formData.append(`info[${index}].links`, member.querySelector("input[name='links[]']").value);
+    // Collect all team members
+    const members = teamMembersContainer.querySelectorAll(".team-member");
+    members.forEach((member, index) => {
+      formData.append(
+        `info[${index}].name`,
+        member.querySelector("input[name='name[]']").value
+      );
+      formData.append(
+        `info[${index}].desination`,
+        member.querySelector("input[name='desination[]']").value
+      ); // fix typo if needed
+      formData.append(
+        `info[${index}].links`,
+        member.querySelector("input[name='links[]']").value
+      );
 
-  const imageInput = member.querySelector("input[type='file']");
-  if (imageInput.files[0]) {
-    formData.append(`info[${index}].image`, imageInput.files[0]);
-  }
-});
+      const imageInput = member.querySelector("input[type='file']");
+      if (imageInput.files[0]) {
+        formData.append(`info[${index}].image`, imageInput.files[0]);
+      }
+    });
 
     try {
       const response = await fetch("/api/team", {
         method: "POST",
-        body: formData
+        body: formData,
       });
 
       const result = await response.json();
@@ -410,10 +634,12 @@ members.forEach((member, index) => {
         alert("Team added successfully!");
         addTeamForm.reset();
         addTeamModal.classList.add("hidden");
-           location.reload() 
+        location.reload();
         // Remove extra members
         const members = teamMembersContainer.querySelectorAll(".team-member");
-        members.forEach((m, i) => { if (i > 0) m.remove(); });
+        members.forEach((m, i) => {
+          if (i > 0) m.remove();
+        });
       } else {
         alert("Error: " + result.message);
       }
@@ -442,7 +668,7 @@ members.forEach((member, index) => {
 
         if (result.status) {
           alert("Team deleted successfully!");
-          
+
           // Optionally remove the row from DOM
           const row = btn.closest("tr"); // assuming inside a table row
           if (row) row.remove();
@@ -456,3 +682,134 @@ members.forEach((member, index) => {
     });
   });
 </script>
+
+<script>
+  const editModal = document.getElementById("editTeamModal");
+  const editForm = document.getElementById("editTeamForm");
+  const teamContainer = document.getElementById("teamMembersContainer");
+
+  // ✅ Open Edit Modal
+  document.querySelectorAll(".openEditModalBtn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const id = btn.getAttribute("data-id");
+      document.getElementById("editId").value = id;
+      document.getElementById("editTitle").value = btn.getAttribute("data-title") || "";
+      document.getElementById("editSubTitle").value = btn.getAttribute("data-subtitle") || "";
+      document.getElementById("editMetaTitle").value = btn.getAttribute("data-meta_title") || "";
+      document.getElementById("editMetaDescription").value = btn.getAttribute("data-meta_description") || "";
+      document.getElementById("editKeywords").value = btn.getAttribute("data-keywords") || "";
+      document.getElementById("editOgTitle").value = btn.getAttribute("data-og_title") || "";
+      document.getElementById("editOgDescription").value = btn.getAttribute("data-og_description") || "";
+      document.getElementById("editOgUrl").value = btn.getAttribute("data-og_url") || "";
+      document.getElementById("editOgType").value = btn.getAttribute("data-og_type") || "";
+
+      // ✅ OG Image preview
+      const ogImg = btn.getAttribute("data-og_image");
+      const preview = document.getElementById("currentOgImagePreview");
+      if (ogImg) {
+        preview.src = `/${ogImg}`;
+        preview.classList.remove("hidden");
+      } else {
+        preview.classList.add("hidden");
+      }
+
+      // ✅ Status checkbox
+      const isActive = btn.getAttribute("data-status") === "true";
+      document.getElementById("editStatus").checked = isActive;
+
+      // ✅ Load team members dynamically
+      const info = JSON.parse(btn.getAttribute("data-info") || "[]");
+      teamContainer.innerHTML = ""; // clear old
+      info.forEach((member, index) => {
+        const div = document.createElement("div");
+        div.className = "team-member border p-3 rounded mb-3 relative";
+        div.innerHTML = `
+          <button type="button" class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">✕</button>
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Name</label>
+            <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" value="${member.name || ""}" required />
+          </div>
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Designation</label>
+            <input type="text" name="designation[]" class="w-full border border-gray-300 rounded p-2" value="${member.designation || ""}" />
+          </div>
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Current Image</label>
+            <img src="/${member.image}" class="h-16 w-16 rounded object-cover mb-2" />
+            <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+          </div>
+          <div class="mb-2">
+            <label class="block text-gray-700 mb-1">Links (comma separated)</label>
+            <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" value="${(member.links || []).join(",")}" />
+          </div>
+        `;
+        teamContainer.appendChild(div);
+      });
+
+      editModal.classList.remove("hidden");
+    });
+  });
+
+  // ✅ Close Modal
+  closeEditModalBtn.addEventListener("click", () => editModal.classList.add("hidden"));
+
+  // ✅ Remove team member
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("removeMemberBtn")) {
+      e.target.closest(".team-member").remove();
+    }
+  });
+
+  // ✅ Add new member dynamically
+  document.getElementById("addMemberBtn").addEventListener("click", () => {
+    const div = document.createElement("div");
+    div.className = "team-member border p-3 rounded mb-3 relative";
+    div.innerHTML = `
+      <button type="button" class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">✕</button>
+      <div class="mb-2">
+        <label class="block text-gray-700 mb-1">Name</label>
+        <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
+      </div>
+      <div class="mb-2">
+        <label class="block text-gray-700 mb-1">Designation</label>
+        <input type="text" name="designation[]" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+      <div class="mb-2">
+        <label class="block text-gray-700 mb-1">Image</label>
+        <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+      </div>
+      <div class="mb-2">
+        <label class="block text-gray-700 mb-1">Links (comma separated)</label>
+        <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" />
+      </div>
+    `;
+    teamContainer.appendChild(div);
+  });
+
+  // ✅ Submit Update API
+  editForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("editId").value;
+    const formData = new FormData(editForm);
+
+    try {
+      const res = await fetch(`/api/team/${id}`, {
+        method: "PUT",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.status) {
+        alert("Team updated successfully!");
+        editModal.classList.add("hidden");
+        window.location.reload();
+      } else {
+        alert("Error: " + data.message);
+      }
+    } catch (err) {
+      alert("Failed to update team: " + err.message);
+    }
+  });
+</script>
+
