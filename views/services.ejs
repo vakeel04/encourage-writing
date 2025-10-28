@@ -1,449 +1,440 @@
 <%-include('partials/header')%>
 
-  <section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[80px] lg:mt-20 mt-10">
+<section style="background-image: url('./images/farme.png'); background-repeat: no-repeat; background-position: center; " class="pt-[50px] pb-[80px] lg:mt-20 mt-10">
 
-    <div>
-      <h2 class="lg:text-[32px] text-[22px] hero-heading text-center font-semibold capitalize  mx-auto ">Services</h2>
+  <div>
+    <h2 class="lg:text-[32px] text-[22px] hero-heading text-center font-semibold capitalize  mx-auto ">Services</h2>
 
-      <div class="lg:px-14 px-4 text-center">
-        <h2 class="lg:text-[32px] text-[22px] hero-heading  font-semibold capitalize lg:w-[65%] w-[80%] mx-auto lg:leading-[58px]"><%=  data?.top?.heading %></h2>
+    <div class="lg:px-14 px-4 text-center">
+      <h2 class="lg:text-[32px] text-[22px] hero-heading  font-semibold capitalize lg:w-[65%] w-[80%] mx-auto lg:leading-[58px]"><%=  data?.top?.heading %></h2>
 
-        <p class="lg:text-[20px] text-[12px]  font-medium"><%=  data?.top?.subHeading %></p>
-        <a href="#" class="lg:mt-5 mt-3 font-medium bg-black text-white px-7 lg:py-2.5 py-1.5 lg:text-[16px] text-[12px] inline-block  rounded-full">Contact us</a>
-      </div>
-
+      <p class="lg:text-[20px] text-[12px]  font-medium"><%=  data?.top?.subHeading %></p>
+      <a href="#" class="lg:mt-5 mt-3 font-medium bg-black text-white px-7 lg:py-2.5 py-1.5 lg:text-[16px] text-[12px] inline-block  rounded-full">Contact us</a>
     </div>
 
-    <div class="lg:px-14 px-4 mt-5">
-      <div class="grid lg:grid-cols-3 bg-[url('./images/banner-10.png')]  rounded-[40px] ">
-        <div class="lg:col-span-2 lg:py-10 py-8  px-7 lg:px-16">
-          <h2 class="text-white lg:text-[34px] text-[20px] lg:w-[65%] lg:leading-[45px]"><%=  data?.top?.title %></h2>
-          <p class="text-white lg:w-[60%] lg:text-[16px] text-[12px] mt-1"><%=  data?.top?.subTitle %></p>
+  </div>
 
-          <a href="#" class="text-[15px] lg:mt-5 mt-3 font-medium bg-white text-black px-7 lg:py-2.5 py-1.5 inline-block lg:text-[16px] text-[12px]  rounded-full">Get Started Today</a>
-        </div>
+  <div class="lg:px-14 px-4 mt-5">
+    <div class="grid lg:grid-cols-3 bg-[url('./images/banner-10.png')]  rounded-[40px] ">
+      <div class="lg:col-span-2 lg:py-10 py-8  px-7 lg:px-16">
+        <h2 class="text-white lg:text-[34px] text-[20px] lg:w-[65%] lg:leading-[45px]"><%=  data?.top?.title %></h2>
+        <p class="text-white lg:w-[60%] lg:text-[16px] text-[12px] mt-1"><%=  data?.top?.subTitle %></p>
 
-        <div class="col-span-1 p-5">
-          <img src="<%= data?.top?.image %>" alt="">
+        <a href="#" class="text-[15px] lg:mt-5 mt-3 font-medium bg-white text-black px-7 lg:py-2.5 py-1.5 inline-block lg:text-[16px] text-[12px]  rounded-full">Get Started Today</a>
+      </div>
+
+      <div class="col-span-1 p-5">
+        <img src="<%= data?.top?.image %>" alt="">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+    <div class="col-span-1">
+      <% if (data?.partner && data?.partner?.images && data?.partner?.images?.length > 0) { %>
+
+      <!-- First Slider -->
+      <div class="swiper auto-swiper">
+        <div class="swiper-wrapper">
+          <% data?.partner?.images.forEach(img => { %>
+          <div class="swiper-slide">
+            <img class="lg:h-[55px] h-[30px] w-full object-contain" src="<%= img %>" alt="Brand Logo">
+          </div>
+          <% }) %>
         </div>
+      </div>
+
+      <!-- Second Slider -->
+      <div class="swiper auto-swiper2 mt-5">
+        <div class="swiper-wrapper">
+          <% data?.partner?.images.forEach(img => { %>
+          <div class="swiper-slide">
+            <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <!-- Third Slider -->
+      <div class="swiper auto-swiper3 mt-5">
+        <div class="swiper-wrapper">
+          <% data?.partner?.images.forEach(img => { %>
+          <div class="swiper-slide">
+            <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <% } else { %>
+      <p class="text-gray-400 text-center">No partner logos available.</p>
+      <% } %>
+    </div>
+
+    <div class="col-span-1 lg:pl-10">
+      <p class="lg:text-[14px] text-[12px]"><%= data?.partner?.title %></p>
+      <h2 class="lg:text-[32px] text-[20px] font-semibold"><%= data?.partner?.subtitle %></h2>
+      <p class="lg:text-[16px] text-[13px] font-medium"><%= data?.partner?.description %></p>
+
+      <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">
+        Work With Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="lg:py-12 py-10 lg:px-14 px-4">
+  <div class="text-center">
+    <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full inline-block lg:py-2 py-1.5">
+      <div class="flex items-center gap-2 text-[12px]">
+        <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
+        <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
       </div>
     </div>
 
-  </section>
+    <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Our Services</h2>
+    <p class="lg:text-[18px] text-[12px] font-medium">End-to-end content solutions for every stage of the funnel.</p>
+  </div>
 
-  <section class="lg:px-12 px-4 bg-[#F8F8F8] lg:py-16 py-10 mt-7">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      
-      <div class="col-span-1">
-        <% if (data?.partner && data?.partner?.images && data?.partner?.images?.length > 0) { %>
-  
-          <!-- First Slider -->
-          <div class="swiper auto-swiper">
-            <div class="swiper-wrapper">
-              <% data?.partner?.images.forEach(img => { %>
-                <div class="swiper-slide">
-                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="<%= img %>" alt="Brand Logo">
-                </div>
-              <% }) %>
-            </div>
-          </div>
-  
-          <!-- Second Slider -->
-          <div class="swiper auto-swiper2 mt-5">
-            <div class="swiper-wrapper">
-              <% data?.partner?.images.forEach(img => { %>
-                <div class="swiper-slide">
-                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
-                </div>
-              <% }) %>
-            </div>
-          </div>
-  
-          <!-- Third Slider -->
-          <div class="swiper auto-swiper3 mt-5">
-            <div class="swiper-wrapper">
-              <% data?.partner?.images.forEach(img => { %>
-                <div class="swiper-slide">
-                  <img class="lg:h-[55px] h-[30px] w-full object-contain" src="/<%= img %>" alt="Brand Logo">
-                </div>
-              <% }) %>
-            </div>
-          </div>
-  
-        <% } else { %>
-          <p class="text-gray-400 text-center">No partner logos available.</p>
-        <% } %>
+  <div class="grid lg:grid-cols-3 grid-cols-2 gap-4 mt-10">
+    <% data?.service?.forEach(service => { %>
+    <div class="col-span-1 rounded-b-[20px] shadow-lg">
+      <div class="relative">
+        <img src="<%= service?.image %>" class="h-[100px] lg:h-auto object-cover rounded-t-[20px]" alt="<%= service.name %>">
+        <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
+          <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
+        </div>
       </div>
-  
-      <div class="col-span-1 lg:pl-10">
-        <p class="lg:text-[14px] text-[12px]"><%= data?.partner?.title %></p>
-        <h2 class="lg:text-[32px] text-[20px] font-semibold"><%= data?.partner?.subtitle %></h2>
-        <p class="lg:text-[16px] text-[13px] font-medium"><%= data?.partner?.description %></p>
-  
-        <a href="#" class="bg-black lg:text-[16px] text-[13px] text-white rounded-md px-10 py-3 font-medium lg:mt-4 mt-3 inline-block">
-          Work With Us
+
+      <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
+        <h3 class="lg:text-[20px] text-[13px] font-medium"><%= service?.name %></h3>
+        <p class="lg:text-[14px] text-[9px] font-medium mt-1"><%= service?.title %></p>
+
+        <a href="service/<%= service?._id  %>" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">
+          Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i>
         </a>
       </div>
     </div>
-  </section>
+    <% }) %>
+  </div>
+</section>
 
-  <section class="lg:py-12 py-10 lg:px-14 px-4">
-    <div class="text-center">
-      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full inline-block lg:py-2 py-1.5">
-        <div class="flex items-center gap-2 text-[12px]">
-          <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
-          <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
-        </div>
+<section class="py-12 lg:px-14 px-4 lg:mb-8">
+  <div class="text-center">
+    <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
+      <div class="flex items-center gap-2 text-[12px]">
+        <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
+        <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
       </div>
-  
-      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2">Our Services</h2>
-      <p class="lg:text-[18px] text-[12px] font-medium">End-to-end content solutions for every stage of the funnel.</p>
     </div>
-  
-    <div class="grid lg:grid-cols-3 grid-cols-2 gap-4 mt-10">
-      <% data?.service?.forEach(service => { %>
-        <div class="col-span-1 rounded-b-[20px] shadow-lg">
-          <div class="relative">
-            <img src="<%= service.image %>" class="h-[100px] lg:h-auto object-cover rounded-t-[20px]" alt="<%= service.name %>">
-            <div class="lg:h-[50px] h-[35px] w-[35px] lg:top-4 top-2 cursor-pointer lg:left-5 left-3 absolute flex justify-center items-center lg:w-[50px] bg-black rounded-full">
-              <img src="./images/blog.png" alt="" class="lg:w-[23px] w-[17px]">
-            </div>
-          </div>
-  
-          <div class="lg:pt-4 pt-2 lg:pb-7 pb-4 lg:px-4 px-3">
-            <h3 class="lg:text-[20px] text-[13px] font-medium"><%= service.name %></h3>
-            <p class="lg:text-[14px] text-[9px] font-medium mt-1"><%= service.title %></p>
-  
-            <a href="service/<%= service?._id  %>" class="lg:mt-5 mt-3 bg-black text-white text-[13px] lg:text-[15px] py-2.5 block w-full rounded-md text-center">
-              Read More <i class="fa-solid fa-arrow-right lg:text-[12px] text-[9px]"></i>
-            </a>
-          </div>
+
+
+    <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2"><%= data?.contentPricing?.heading %></h2>
+    <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.contentPricing?.subHeading %></p>
+  </div>
+
+  <div class="grid lg:grid-cols-2 border-[#C7C7C7] border rounded-[20px] mt-10 lg:px-8 px-4 lg:py-6 py-4">
+    <div class="col-span-1">
+      <h2 class="lg:text-[22px] text-[18px] font-medium">Calculate your pricing for content</h2>
+      <div class="mt-4">
+        <label class="font-medium lg:text-[17px] text-[15px]">Content Type</label>
+
+        <div class="relative w-full">
+          <select class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
+            <option value="">Service Type</option>
+
+          </select>
+
+          <!-- Custom Icon -->
+          <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <i class="fa-solid fa-angle-down text-[15px] text-gray-500"></i>
+          </span>
         </div>
-      <% }) %>
-    </div>
-  </section>
 
-  <section class="py-12 lg:px-14 px-4 lg:mb-8">
-    <div class="text-center">
-      <div class="border-[#C7C7C7] border lg:px-4 px-6 rounded-full  inline-block lg:py-2 py-1.5">
-        <div class="flex items-center gap-2 text-[12px]">
-          <img src="./images/star.png" alt="" class="lg:w-[12px] w-[10px]">
-          <p class="font-semibold lg:text-[16px] text-[13px]">Trusted By</p>
-        </div>
-      </div>
-
-
-      <h2 class="lg:text-[40px] text-[20px] font-semibold lg:mt-0 mt-2"><%= data?.contentPricing?.heading %></h2>
-      <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.contentPricing?.subHeading %></p>
-    </div>
-
-    <div class="grid lg:grid-cols-2 border-[#C7C7C7] border rounded-[20px] mt-10 lg:px-8 px-4 lg:py-6 py-4">
-      <div class="col-span-1">
-        <h2 class="lg:text-[22px] text-[18px] font-medium">Calculate your pricing for content</h2>
         <div class="mt-4">
-          <label class="font-medium lg:text-[17px] text-[15px]">Content Type</label>
+          <label class="font-medium lg:text-[17px] text-[15px]">Quantity</label>
+          <input value="500" type="text" class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
+        </div>
 
-          <div class="relative w-full">
-            <select class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
-              <option value="">Service Type</option>
+        <div class="mt-4">
+          <p class="font-medium lg:text-[17px] text-[15px]">Your Price</p>
+          <p class="font-medium lg:text-[36px] text-[26px]">₹ 0.00 <span class="lg:text-[16px] text-[13px]">Rupees</span></p>
+        </div>
 
-            </select>
+      </div>
+    </div>
 
-            <!-- Custom Icon -->
-            <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-              <i class="fa-solid fa-angle-down text-[15px] text-gray-500"></i>
-            </span>
-          </div>
+    <div class="col-span-1 lg:pl-16 mt-5 lg:mt-0">
+      <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4 lg:py-6 rounded-xl">
+        <h3 class="lg:text-[22px] text-[18px] font-medium"><%= data?.contentPricing?.title %></h3>
 
-          <div class="mt-4">
-            <label class="font-medium lg:text-[17px] text-[15px]">Quantity</label>
-            <input value="500" type="text" class="block w-full font-medium text-[15px] outline-0 cursor-pointer mt-1 border-[#c7c7c7] border py-3 rounded-md px-4 appearance-none pr-10">
-          </div>
+        <ul class="mt-4 space-y-2.5">
+          <% if (data?.contentPricing && data.contentPricing && data?.contentPricing?.detail) { %>
+          <% data?.contentPricing?.detail?.forEach(item => { %>
+          <li class="flex items-center gap-2.5">
+            <img class="lg:w-[24px] w-[20px]" src="/images/check.png" alt="check">
+            <span class="font-medium lg:text-[16px] text-[14px]"><%= item %></span>
+          </li>
+          <% }) %>
+          <% } else { %>
+          <p class="text-gray-400 text-sm">No items available.</p>
+          <% } %>
+        </ul>
 
-          <div class="mt-4">
-            <p class="font-medium lg:text-[17px] text-[15px]">Your Price</p>
-            <p class="font-medium lg:text-[36px] text-[26px]">₹ 0.00 <span class="lg:text-[16px] text-[13px]">Rupees</span></p>
-          </div>
-
+        <div class="mt-4">
+          <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">
+            Get Started
+          </a>
         </div>
       </div>
+    </div>
 
-      <div class="col-span-1 lg:pl-16 mt-5 lg:mt-0">
-        <div class="bg-[#F6F6F6] lg:px-8 px-6 py-4 lg:py-6 rounded-xl">
-          <h3 class="lg:text-[22px] text-[18px] font-medium"><%= data.contentPricing.title %></h3>
-      
-          <ul class="mt-4 space-y-2.5">
-            <% if (data.contentPricing && data.contentPricing && data.contentPricing.detail) { %>
-              <% data.contentPricing.detail.forEach(item => { %>
-                <li class="flex items-center gap-2.5">
-                  <img class="lg:w-[24px] w-[20px]" src="/images/check.png" alt="check">
-                  <span class="font-medium lg:text-[16px] text-[14px]"><%= item %></span>
-                </li>
-              <% }) %>
-            <% } else { %>
-              <p class="text-gray-400 text-sm">No items available.</p>
-            <% } %>
-          </ul>
-      
-          <div class="mt-4">
-            <a href="#" class="rounded-md text-white bg-black py-2.5 font-medium block w-full text-center lg:text-[16px] text-[14px]">
-              Get Started
-            </a>
-          </div>
+
+  </div>
+</section>
+
+<section class="lg:px-20 px-4 py-8 lg:py-12">
+  <div class="text-center">
+    <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">
+      Our Purpose
+    </span>
+
+    <h2 class="lg:text-[40px] text-[20px] font-semibold">
+      <%= data?.purpose?.heading %>
+    </h2>
+
+    <p class="lg:text-[18px] text-[12px]">
+      <%= data?.purpose?.subHeading %>
+    </p>
+  </div>
+
+  <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6 lg:mt-10">
+    <% data?.purpose?.details?.forEach((item, index) => { %>
+    <div class="col-span-1 text-center">
+      <img class="lg:w-[90px] w-[70px] mx-auto" src="<%= item.icon %>" alt="<%= item.title %>">
+      <h3 class="font-semibold lg:text-[18px] text-[16px]"><%= item.title %></h3>
+      <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]"><%= item.description %></p>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+
+<section class="lg:px-14 px-4 lg:py-14 py-8">
+  <div class="grid grid-cols-3 lg:py-16 py-8 bg-white rounded-2xl shadow-xl">
+    <div class="col-span-1  border-r-[rgba(0,0,0,.1)] border-r  text-center">
+      <h2 class="font-medium lg:text-[36px] text-[22px]"> <%= data?.purpose?.projectsDelivered %></h2>
+      <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Projects Delivered</p>
+    </div>
+
+    <div class="col-span-1 border-r-[rgba(0,0,0,.1)] border-r  text-center">
+      <h2 class="font-medium  lg:text-[36px] text-[22px]"> <%= data?.purpose?.wordsWritten %></h2>
+      <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Words Written</p>
+    </div>
+
+
+    <div class="col-span-1 text-center">
+      <h2 class="font-medium  lg:text-[36px] text-[22px]"> <%= data?.purpose?.avgTrafficGrowth %></h2>
+      <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Avg. Traffic Growth</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="lg:px-14 px-4 lg:py-[80px] py-7">
+  <div class="lg:w-[48%] text-center lg:text-left">
+    <h2 class="lg:text-[40px] text-[20px] font-semibold"><%= data?.process?.heading  %></h2>
+    <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.process?.subHeading %></p>
+  </div>
+
+  <div class="grid lg:grid-cols-2 lg:gap-14 gap-5 mt-7">
+    <div class="col-span-1">
+      <% data?.process?.details?.forEach((step, index) => { %>
+      <div class="flex gap-3 items-center mt-<%= index === 0 ? '0' : '10' %>">
+        <div class="lg:min-w-[62px] min-w-[50px] <%= index != data?.process?.details?.length-1 ? "nextStep" : " "; %> h-[50px] lg:h-[62px] rounded-full bg-black flex justify-center items-center">
+          <img src="/<%= step.icon %>" alt="" class="lg:w-[32px] w-[27px]" style=" filter: invert(1)">
+        </div>
+
+        <div>
+          <h3 class="lg:text-[18px] text-[15px] font-medium"><%= (index + 1) %>. <%= step.title %></h3>
+          <p class="text-[#666666] lg:text-[15px] text-[12px] font-medium"><%= step.description %></p>
         </div>
       </div>
-      
-
-    </div>
-  </section>
-
-  <section class="lg:px-20 px-4 py-8 lg:py-12">
-    <div class="text-center">
-      <span class="bg-white border text-black font-medium px-8 inline-block py-1.5 rounded-full text-[13px] lg:text-[14px]">
-        Our Purpose
-      </span>
-  
-      <h2 class="lg:text-[40px] text-[20px] font-semibold">
-        <%= data?.purpose?.heading %>
-      </h2>
-  
-      <p class="lg:text-[18px] text-[12px]">
-        <%= data?.purpose?.subHeading %>
-      </p>
-    </div>
-  
-    <div class="grid lg:gap-10 gap-5 lg:grid-cols-4 grid-cols-2 mt-6 lg:mt-10">
-      <% data?.purpose?.details?.forEach((item, index) => { %>
-        <div class="col-span-1 text-center">
-          <img 
-            class="lg:w-[90px] w-[70px] mx-auto" 
-            src="<%= item.icon %>" 
-            alt="<%= item.title %>"
-          >
-          <h3 class="font-semibold lg:text-[18px] text-[16px]"><%= item.title %></h3>
-          <p class="lg:text-[14px] text-[11px] font-medium leading-[18px]"><%= item.description %></p>
-        </div>
       <% }) %>
     </div>
-  </section>
-  
 
-  <section class="lg:px-14 px-4 lg:py-14 py-8">
-    <div class="grid grid-cols-3 lg:py-16 py-8 bg-white rounded-2xl shadow-xl">
-      <div class="col-span-1  border-r-[rgba(0,0,0,.1)] border-r  text-center">
-        <h2 class="font-medium lg:text-[36px] text-[22px]"> <%= data?.purpose?.projectsDelivered %></h2>
-        <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Projects Delivered</p>
+    <div class="col-span-1">
+      <img class="w-full lg:h-[440px] h-[300px] object-cover rounded-[8px] lg:rounded-[30px]" src="/<%= data?.process?.bgImg %>" alt="Blog Writing Process">
+    </div>
+  </div>
+</section>
+
+<section class="lg:py-14 py-8">
+  <div class="text-center">
+    <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2">
+      What our Customers say
+    </h2>
+  </div>
+
+  <div class="lg:pl-12 pl-4 pr-2 relative">
+
+    <!-- Custom Navigation -->
+    <div class="hidden lg:block">
+      <div class="swiper-button-next absolute !text-black !-top-8 !right-5">
+        <i class="fa-solid fa-arrow-right text-2xl"></i>
       </div>
-
-      <div class="col-span-1 border-r-[rgba(0,0,0,.1)] border-r  text-center">
-        <h2 class="font-medium  lg:text-[36px] text-[22px]"> <%= data?.purpose?.wordsWritten %></h2>
-        <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Words Written</p>
-      </div>
-
-
-      <div class="col-span-1 text-center">
-        <h2 class="font-medium  lg:text-[36px] text-[22px]"> <%= data?.purpose?.avgTrafficGrowth %></h2>
-        <p class="text-[#141219] font-medium -mt-1.5 lg:text-[16px] text-[11px]">Avg. Traffic Growth</p>
+      <div class="swiper-button-prev absolute !text-black !-top-8 !left-10">
+        <i class="fa-solid fa-arrow-left text-2xl"></i>
       </div>
     </div>
-  </section>
 
+    <!-- Swiper Container -->
+    <div id="reviewSwiper" class="swiper mySwiper lg:mt-10 mt-6">
+      <div class="swiper-wrapper">
 
-  <section class="lg:px-14 px-4 lg:py-[80px] py-7">
-    <div class="lg:w-[48%] text-center lg:text-left">
-      <h2 class="lg:text-[40px] text-[20px] font-semibold"><%= data?.process?.heading  %></h2>
-      <p class="lg:text-[18px] text-[12px] font-medium"><%= data?.process?.subHeading %></p>
-    </div>
-  
-    <div class="grid lg:grid-cols-2 lg:gap-14 gap-5 mt-7">
-      <div class="col-span-1">
-        <% data?.process?.details?.forEach((step, index) => { %>
-          <div class="flex gap-3 items-center mt-<%= index === 0 ? '0' : '10' %>">
-            <div class="lg:min-w-[62px] min-w-[50px] <%= index != data?.process?.details?.length-1 ? "nextStep" : " "; %> h-[50px] lg:h-[62px] rounded-full bg-black flex justify-center items-center">
-              <img src="/<%= step.icon %>" alt="" class="lg:w-[32px] w-[27px]" style=" filter: invert(1)">
+        <% data?.customer.forEach((review) => { %>
+        <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
+          <div class="flex justify-between items-center">
+            <div class="flex gap-3 items-center">
+              <img class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover" src="<%= review.image %>" alt="<%= review.name %>">
+              <div>
+                <h3 class="text-[14px] font-medium"><%= review.name %></h3>
+                <h3 class="text-[13px] font-medium"><%= review.desination %></h3>
+              </div>
             </div>
-  
-            <div>
-              <h3 class="lg:text-[18px] text-[15px] font-medium"><%= (index + 1) %>. <%= step.title %></h3>
-              <p class="text-[#666666] lg:text-[15px] text-[12px] font-medium"><%= step.description %></p>
+
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <p class="font-medium lg:text-[16px] text-[13px]"><%= review.rating %>/5</p>
             </div>
           </div>
+
+          <p class="text-[#00000066] font-medium text-[13px] mt-5">
+            <%= review.content %>
+          </p>
+        </div>
         <% }) %>
-      </div>
-  
-      <div class="col-span-1">
-        <img class="w-full lg:h-[440px] h-[300px] object-cover rounded-[8px] lg:rounded-[30px]" src="/<%= data?.process?.bgImg %>" alt="Blog Writing Process">
+
       </div>
     </div>
-  </section>
-
-  <section class="lg:py-14 py-8">
-    <div class="text-center">
-      <h2 class="lg:text-[40px] text-[20px] font-bold lg:mt-0 mt-2">
-        What our Customers say
-      </h2>
-    </div>
-  
-    <div class="lg:pl-12 pl-4 pr-2 relative">
-  
-      <!-- Custom Navigation -->
-      <div class="hidden lg:block">
-        <div class="swiper-button-next absolute !text-black !-top-8 !right-5">
-          <i class="fa-solid fa-arrow-right text-2xl"></i>
-        </div>
-        <div class="swiper-button-prev absolute !text-black !-top-8 !left-10">
-          <i class="fa-solid fa-arrow-left text-2xl"></i>
-        </div>
-      </div>
-  
-      <!-- Swiper Container -->
-      <div id="reviewSwiper" class="swiper mySwiper lg:mt-10 mt-6">
-        <div class="swiper-wrapper">
-  
-          <% data?.customer.forEach((review) => { %>
-            <div class="swiper-slide col-span-1 border-[#DCDCDC] border px-6 py-7 rounded-2xl">
-              <div class="flex justify-between items-center">
-                <div class="flex gap-3 items-center">
-                  <img
-                    class="h-[50px] pt-2 w-[50px] bg-[#E1E1E1] rounded-full object-cover"
-                    src="<%= review.image %>"
-                    alt="<%= review.name %>"
-                  >
-                  <div>
-                    <h3 class="text-[14px] font-medium"><%= review.name %></h3>
-                    <h3 class="text-[13px] font-medium"><%= review.desination %></h3>
-                  </div>
-                </div>
-  
-                <div class="flex items-center gap-2">
-                  <i class="fa-solid fa-star text-yellow-400"></i>
-                  <p class="font-medium lg:text-[16px] text-[13px]"><%= review.rating %>/5</p>
-                </div>
-              </div>
-  
-              <p class="text-[#00000066] font-medium text-[13px] mt-5">
-                <%= review.content %>
-              </p>
-            </div>
-          <% }) %>
-  
-        </div>
-      </div>
-    </div>
-  </section>
-  
+  </div>
+</section>
 
 
-  <section class="lg:py-14 px-4 lg:px-0 py-10 bg-[#F0F0F0] text-center lg:mt-20 mt-12">
-    <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]"><%= data?.bottom?.title  %></h2>
 
-    <p class="font-medium lg:text-[17px] text-[14px]"><%= data?.bottom?.subTitle  %></p>
+<section class="lg:py-14 px-4 lg:px-0 py-10 bg-[#F0F0F0] text-center lg:mt-20 mt-12">
+  <h2 class="font-semibold lg:text-[38px] text-[22px] lg:w-[60%] mx-auto lg:leading-[45px]"><%= data?.bottom?.title  %></h2>
 
-    <a href="#" class="bg-black rounded-md py-2 px-8 text-white font-medium inline-block lg:mt-5 mt-3 text-[14px] lg:text-[16px]">Hire Us Today</a>
-  </section>
+  <p class="font-medium lg:text-[17px] text-[14px]"><%= data?.bottom?.subTitle  %></p>
 
-  <%-include('partials/footer')%>
+  <a href="#" class="bg-black rounded-md py-2 px-8 text-white font-medium inline-block lg:mt-5 mt-3 text-[14px] lg:text-[16px]">Hire Us Today</a>
+</section>
+
+<%-include('partials/footer')%>
 
 
-  <script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
-  </script>
-  <script>
-    const swiper = new Swiper('.auto-swiper', {
-      loop: true, // infinite loop
-      spaceBetween: 20,
-      autoplay: {
-        delay: 2000, // 2 sec per slide
+<script src=" https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+</script>
+<script>
+  const swiper = new Swiper('.auto-swiper', {
+    loop: true, // infinite loop
+    spaceBetween: 20,
+    autoplay: {
+      delay: 2000, // 2 sec per slide
+    },
+    slidesPerView: 3.8, // ek time par 3 images dikhe
+    slidesPerGroup: 1, // ek slide me 1 hi image move ho
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+  });
+</script>
+
+<script>
+  const swiper2 = new Swiper('.auto-swiper2', {
+    loop: true,
+    spaceBetween: 20,
+
+    autoplay: {
+      delay: 2000,
+      reverseDirection: true
+    },
+    slidesPerView: 3.4,
+    slidesPerGroup: 1,
+  });
+</script>
+
+<script>
+  const swiper3 = new Swiper('.auto-swiper3', {
+    loop: true,
+    spaceBetween: 20,
+    autoplay: {
+      delay: 2000,
+    },
+    slidesPerView: 3.6,
+    slidesPerGroup: 1,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+  });
+</script>
+<script>
+  new Swiper("#reviewSwiper", {
+    slidesPerView: 1, // default (mobile)
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      640: { // tablet
+        slidesPerView: 1,
+        spaceBetween: 20,
       },
-      slidesPerView: 3.8, // ek time par 3 images dikhe
-      slidesPerGroup: 1, // ek slide me 1 hi image move ho
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
+      768: { // medium devices
+        slidesPerView: 2,
+        spaceBetween: 25,
       },
-
-    });
-  </script>
-
-  <script>
-    const swiper2 = new Swiper('.auto-swiper2', {
-      loop: true,
-      spaceBetween: 20,
-
-      autoplay: {
-        delay: 2000,
-        reverseDirection: true
+      1024: { // desktop
+        slidesPerView: 3,
+        spaceBetween: 30,
       },
-      slidesPerView: 3.4,
-      slidesPerGroup: 1,
-    });
-  </script>
-
-  <script>
-    const swiper3 = new Swiper('.auto-swiper3', {
-      loop: true,
-      spaceBetween: 20,
-      autoplay: {
-        delay: 2000,
-      },
-      slidesPerView: 3.6,
-      slidesPerGroup: 1,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-
-    });
-  </script>
-  <script>
-    new Swiper("#reviewSwiper", {
-      slidesPerView: 1, // default (mobile)
-      spaceBetween: 20,
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      breakpoints: {
-        640: { // tablet
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        768: { // medium devices
-          slidesPerView: 2,
-          spaceBetween: 25,
-        },
-        1024: { // desktop
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
-      },
-    });
-  </script>
-  <script>
-    const processSwiper = new Swiper('#process-slider', {
-      loop: true,
-      slidesPerView: 3, // ek time par 3 cards
-      spaceBetween: 20,
-      slidesPerGroup: 1,
-      navigation: {
-        nextEl: '.next-process',
-        prevEl: '.prev-process',
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1.3
-        }, // Mobile
-        768: {
-          slidesPerView: 2
-        }, // Tablet
-        1024: {
-          slidesPerView: 3.8
-        } // Desktop
-      }
-    });
-  </script>
- 
+    },
+  });
+</script>
+<script>
+  const processSwiper = new Swiper('#process-slider', {
+    loop: true,
+    slidesPerView: 3, // ek time par 3 cards
+    spaceBetween: 20,
+    slidesPerGroup: 1,
+    navigation: {
+      nextEl: '.next-process',
+      prevEl: '.prev-process',
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1.3
+      }, // Mobile
+      768: {
+        slidesPerView: 2
+      }, // Tablet
+      1024: {
+        slidesPerView: 3.8
+      } // Desktop
+    }
+  });
+</script>

@@ -1,482 +1,400 @@
  <%- include("partials/aside") %>
 
-<main class="flex-1 p-6 overflow-auto">
-  <!-- Header -->
-  <div class="flex justify-between items-end">
-    <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Hero Section</h1>
-      <p class="mt-2 text-gray-700">Add, edit, or delete hero banners below.</p>
-    </div>
-    <div>
-      <button
-        id="openHeroModalBtn"
-        class="font-medium text-[#000] border border-[#000] px-6  py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
-      >
-        + Add Hero Section
-      </button>
-    </div>
-  </div>
+ <main class="flex-1 p-6 overflow-auto">
+   <!-- Header -->
+   <div class="flex justify-between items-end">
+     <div>
+       <h1 class="text-3xl font-bold text-[#000]">Manage Hero Section</h1>
+       <p class="mt-2 text-gray-700">Add, edit, or delete hero banners below.</p>
+     </div>
+     <div>
+       <button id="openHeroModalBtn" class="font-medium text-[#000] border border-[#000] px-6  py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
+         + Add Hero Section
+       </button>
+     </div>
+   </div>
 
-  <!-- Hero Table -->
-  <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
-    <h2 class="text-[#000] font-semibold text-xl mb-4">Hero Section List</h2>
+   <!-- Hero Table -->
+   <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+     <h2 class="text-[#000] font-semibold text-xl mb-4">Hero Section List</h2>
 
-    <table  class="min-w-full table-auto border-collapse">
-      <thead>
-        <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Title</th>
-          <th class="px-4 py-2 border">Sub Title</th>
-          <th class="px-4 py-2 border">Images</th>
-          <th class="px-4 py-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="heroTableBody">
-        <% if (data && data.heroSection && data.heroSection.length > 0) { %>
-          <% data.heroSection.forEach(hero => { %>
-            <tr>
-              <td class="px-4 py-2 border"><%= hero.title %></td>
-              <td class="px-4 py-2 !width-[40px] border"><%= hero.subTitle %></td>
-              <td class="px-4 py-2 border">
-                <div class="flex space-x-2 overflow-x-auto w-[200px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-                  <% if (hero.images && hero.images.length > 0) { %>
-                    <% hero.images.forEach(img => { %>
-                      <img src="/<%= img %>" class="h-16 w-16 object-cover rounded flex-shrink-0" alt="Hero Image">
-                    <% }) %>
-                  <% } else { %>
-                    <span class="text-gray-400">No Image</span>
-                  <% } %>
-                </div>
-              </td>
-                <td class="px-4 py-8 flex border space-x-2 text-center">
-                  <button
-                  class="border openEditModalBtn border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer"
-                  data-id="<%= hero._id %>"
-                  data-title="<%= hero.title %>"
-                  data-subtitle="<%= hero.subTitle %>"
-                  data-images='<%- JSON.stringify(hero.images || []) %>'
-                >
-                  Edit
-                </button>
-                
-                
-
-                <form onsubmit="deleteHero('<%= hero._id %>'); return false;" method="post" class="inline">
-                  <button type="submit" class="border border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer">Delete</button>
-                </form>
-              </td>
-            </tr>
-          <% }) %>
-        <% } else { %>
-          <tr>
-            <td colspan="5" class="text-center py-4 text-gray-500">No Hero Sections Found</td>
-          </tr>
-        <% } %>
-      </tbody>
-      
-    </table>
-  </div>
-</main>
-
-<!-- =================== ADD HERO SECTION MODAL =================== -->
-<div
-  id="heroModal"
-  class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50"
->
-  <div
-    class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative animate-[fadeIn_0.3s_ease]"
-  >
-    <!-- Close Button -->
-    <button
-      id="closeHeroModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-[#000] text-2xl font-bold cursor-pointer"
-    >
-      &times;
-    </button>
-
-    <!-- Modal Title -->
-    <h2 class="text-[#000] font-semibold text-2xl mb-4">Add Hero Section</h2>
-
-    <!-- Add Hero Section Form -->
-    <form id="heroForm" class="space-y-4" enctype="multipart/form-data">
-      <!-- Title -->
-      <div>
-        <label for="title" class="block text-gray-700 font-medium mb-1">Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          class="w-full border border-gray-300 rounded p-2"
-          placeholder="Enter main heading"
-          required
-        />
-      </div>
-
-      <!-- Sub Title -->
-      <div>
-        <label for="subTitle" class="block text-gray-700 font-medium mb-1">Sub Title</label>
-        <input
-          type="text"
-          id="subTitle"
-          name="subTitle"
-          class="w-full border border-gray-300 rounded p-2"
-          placeholder="Enter sub heading"
-          required
-        />
-      </div>
-
-      <!-- Images (Array / Multiple Uploads) -->
-      <div>
-        <label for="images" class="block text-gray-700 font-medium mb-1">Upload Images</label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          class="w-full cursor-pointer border border-gray-300 rounded p-2"
-          accept="image/*"
-          multiple
-          required
-        />
-        <p class="text-sm text-gray-500 mt-1">You can select multiple images</p>
-      </div>
-
- 
-
-      <!-- Buttons -->
-      <div class="flex justify-end space-x-3 mt-4">
-        <button
-          type="button"
-          id="cancelHeroModalBtn"
-          class="border border-[#000] text-[#000] px-4 py-2 rounded hover:bg-gray-100 transition cursor-pointer"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          class="bg-[#000] text-white px-4 py-2 rounded hover:opacity-90 transition cursor-pointer"
-        >
-          Add Hero Section
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-
-<!-- =================== EDIT HERO SECTION MODAL =================== -->
-<div
-id="editFormModal"
-  class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50"
->
-  <div
-    class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative animate-[fadeIn_0.3s_ease]"
-  >
-    <!-- Close Button -->
-    <button
-      id="closeEditFormModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-[#000] text-2xl font-bold cursor-pointer"
-    >
-      &times;
-    </button>
-
-    <!-- Modal Title -->
-    <h2 class="text-[#000] font-semibold text-2xl mb-4">Edit Hero Section</h2>
-
-    <!-- Edit Hero Section Form -->
-    <form id="heroEditForm" class="space-y-4" enctype="multipart/form-data">
-      <!-- Title -->
-      <input type="hidden" id="editHeroId" name="id" />
-      <div>
-        <label for="title" class="block text-gray-700 font-medium mb-1">Title</label>
-        <input
-          type="text"
-          id="editHeroTitle"
-          name="title"
-          class="w-full border border-gray-300 rounded p-2"
-          placeholder="Enter main heading"
-          required
-        />
-      </div>
-
-      <!-- Sub Title -->
-      <div>
-        <label for="subTitle" class="block text-gray-700 font-medium mb-1">Sub Title</label>
-        <input
-          type="text"
-          id="editHeroSubTitle"
-          name="subTitle"
-          class="w-full border border-gray-300 rounded p-2"
-          placeholder="Enter sub heading"
-          required
-        />
-      </div>
-
-      <!-- Images (Array / Multiple Uploads) -->
-      <div>
-        <label for="images" class="block text-gray-700 font-medium mb-1">Upload Images</label>
-        <input
-          type="file"
-          id="editHeroimages"
-          name="images"
-          class="w-full cursor-pointer border border-gray-300 rounded p-2"
-          accept="image/*"
-          multiple
-        />
-        <p class="text-sm text-gray-500 mt-1">You can select multiple images</p>
-      </div>
-
-    <!-- Existing Images Preview -->
-    <div id="editHeroImagePreview" class="flex flex-wrap gap-3 mt-3"></div>
-
-      <!-- Buttons -->
-      <div class="flex justify-end space-x-3 mt-4">
-        <button
-          type="button"
-          id="cancelEditFormModalBtn"
-          class="border border-[#000] text-[#000] px-4 py-2 rounded hover:bg-gray-100 transition cursor-pointer"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          class="bg-[#000] text-white px-4 py-2 rounded cursor-pointer hover:opacity-90 transition"
-        >
-          Save Changes
-        </button>
-      </div>
-    </form>
-
-
-  </div>
-</div>
+     <table class="min-w-full table-auto border-collapse">
+       <thead>
+         <tr class="bg-gray-100 text-left">
+           <th class="px-4 py-2 border">Title</th>
+           <th class="px-4 py-2 border">Sub Title</th>
+           <th class="px-4 py-2 border">Images</th>
+           <th class="px-4 py-2 border">Actions</th>
+         </tr>
+       </thead>
+       <tbody id="heroTableBody">
+         <% if (data && data.heroSection && data.heroSection.length > 0) { %>
+         <% data.heroSection.forEach(hero => { %>
+         <tr>
+           <td class="px-4 py-2 border"><%= hero.title %></td>
+           <td class="px-4 py-2 !width-[40px] border"><%= hero.subTitle %></td>
+           <td class="px-4 py-2 border">
+             <div class="flex space-x-2 overflow-x-auto w-[200px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+               <% if (hero.images && hero.images.length > 0) { %>
+               <% hero.images.forEach(img => { %>
+               <img src="/<%= img %>" class="h-16 w-16 object-cover rounded flex-shrink-0" alt="Hero Image">
+               <% }) %>
+               <% } else { %>
+               <span class="text-gray-400">No Image</span>
+               <% } %>
+             </div>
+           </td>
+           <td class="px-4 py-8 flex border space-x-2 text-center">
+             <button class="border openEditModalBtn border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer" data-id="<%= hero._id %>" data-title="<%= hero.title %>" data-subtitle="<%= hero.subTitle %>" data-images='<%- JSON.stringify(hero.images || []) %>'>
+               Edit
+             </button>
 
 
 
-<!-- =================== JS =================== -->
-<script>
-  const openHeroModalBtn = document.getElementById("openHeroModalBtn");
-  const heroModal = document.getElementById("heroModal");
-  const closeHeroModalBtn = document.getElementById("closeHeroModalBtn");
-  const cancelHeroModalBtn = document.getElementById("cancelHeroModalBtn");
+             <form onsubmit="deleteHero('<%= hero._id %>'); return false;" method="post" class="inline">
+               <button type="submit" class="border border-[#000] text-[#000] px-2 py-1 rounded cursor-pointer">Delete</button>
+             </form>
+           </td>
+         </tr>
+         <% }) %>
+         <% } else { %>
+         <tr>
+           <td colspan="5" class="text-center py-4 text-gray-500">No Hero Sections Found</td>
+         </tr>
+         <% } %>
+       </tbody>
 
-  openHeroModalBtn.addEventListener("click", () => {
-    heroModal.classList.remove("hidden");
-  });
+     </table>
+   </div>
+ </main>
 
-  closeHeroModalBtn.addEventListener("click", () => {
-    heroModal.classList.add("hidden");
-  });
+ <!-- =================== ADD HERO SECTION MODAL =================== -->
+ <div id="heroModal" class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50">
+   <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative animate-[fadeIn_0.3s_ease]">
+     <!-- Close Button -->
+     <button id="closeHeroModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-[#000] text-2xl font-bold cursor-pointer">
+       &times;
+     </button>
 
-  cancelHeroModalBtn.addEventListener("click", () => {
-    heroModal.classList.add("hidden");
-  });
+     <!-- Modal Title -->
+     <h2 class="text-[#000] font-semibold text-2xl mb-4">Add Hero Section</h2>
 
-  // Close modal when clicking outside the form
-  heroModal.addEventListener("click", (e) => {
-    if (e.target === heroModal) heroModal.classList.add("hidden");
-  });
-</script>
+     <!-- Add Hero Section Form -->
+     <form id="heroForm" class="space-y-4" enctype="multipart/form-data">
+       <!-- Title -->
+       <div>
+         <label for="title" class="block text-gray-700 font-medium mb-1">Title</label>
+         <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" placeholder="Enter main heading" required />
+       </div>
 
-<!-- =================== Animation =================== -->
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-</style>
+       <!-- Sub Title -->
+       <div>
+         <label for="subTitle" class="block text-gray-700 font-medium mb-1">Sub Title</label>
+         <input type="text" id="subTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" placeholder="Enter sub heading" required />
+       </div>
 
-<script>
-  const editModal = document.getElementById("editFormModal");
-const openEditBtn = document.querySelectorAll(".openEditModalBtn"); // Add this class to your Edit buttons
-const closeEditBtn = document.getElementById("closeEditFormModalBtn");
-const cancelEditBtn = document.getElementById("cancelEditFormModalBtn");
-
-// Open modal
-openEditBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    editModal.classList.remove("hidden");
-    editModal.classList.add("flex");
-  });
-});
-
-// Close modal
-const closeEditModal = () => {
-  editModal.classList.add("hidden");
-  editModal.classList.remove("flex");
-};
-
-closeEditBtn.addEventListener("click", closeEditModal);
-cancelEditBtn.addEventListener("click", closeEditModal);
-
-editModal.addEventListener("click", (e) => {
-  if (e.target === editModal) closeEditModal();
-});
-
-</script>
+       <!-- Images (Array / Multiple Uploads) -->
+       <div>
+         <label for="images" class="block text-gray-700 font-medium mb-1">Upload Images</label>
+         <input type="file" id="images" name="images" class="w-full cursor-pointer border border-gray-300 rounded p-2" accept="image/*" multiple required />
+         <p class="text-sm text-gray-500 mt-1">You can select multiple images</p>
+       </div>
 
 
-<!-- add ki api  -->
-<script>
-  const heroForm = document.getElementById("heroForm");
-  const heroModal1 = document.getElementById("heroModal");
-  
-  heroForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
 
-    const formData = new FormData(heroForm);
-        
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-    try {
-      const response = await fetch("api/hero-section", {
-        method: "POST",
-        body: formData,
-      });
-   
-      const result = await response.json();
-      if (result) {
-        alert("✅ Hero Section Added Successfully!");
-        heroModal1.classList.add("hidden");
-        window.location.reload();
-      }  
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Server error, please try again!");
-    }
-  });
- 
-</script>
-
-<!-- delete ki api -->
-<script>
-  async function deleteHero(id) {
-    if (!confirm("Are you sure you want to delete this hero section?")) return;
-
-    try {
-      const response = await fetch(`/api/hero-section/${id}`, {
-        method: "DELETE",
-      });
-      const result = await response.json();
-      if (result) {
-        alert("✅ Hero section deleted successfully!");
-        window.location.reload();
-      } 
-    } catch (error) {
-      console.error(error);
-      alert("Server error!");
-    }
-  }
-</script>
-
-<script>
-  const editButtons = document.querySelectorAll(".openEditModalBtn");
-
-  editButtons.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const heroId = btn.getAttribute("data-id");
-      const title = btn.getAttribute("data-title");
-      const subTitle = btn.getAttribute("data-subtitle");
-      const images = JSON.parse(btn.getAttribute("data-images") || "[]");
-
-      // Fill form data
-      document.getElementById("editHeroId").value = heroId;
-      document.getElementById("editHeroTitle").value = title;
-      document.getElementById("editHeroSubTitle").value = subTitle;
-
-      // Show existing images
-      const previewContainer = document.getElementById("editHeroImagePreview");
-      previewContainer.innerHTML = "";
-
-      images.forEach((img) => {
-        const imgWrapper = document.createElement("div");
-        imgWrapper.className = "relative inline-block";
-
-        const imageElement = document.createElement("img");
-        imageElement.src = "/" + img;
-        imageElement.className = "h-16 w-16 object-cover rounded border";
-
-        const removeBtn = document.createElement("button");
-        removeBtn.innerHTML = "&times;";
-        removeBtn.className =
-          "absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600";
-
-  removeBtn.addEventListener("click", (e) => {
-    e.preventDefault(); 
-  imgWrapper.classList.add("removed");
-  imgWrapper.setAttribute("data-img", img);
-  imgWrapper.style.opacity = "0.4";
-});
-
-        imgWrapper.appendChild(imageElement);
-        imgWrapper.appendChild(removeBtn);
-        previewContainer.appendChild(imgWrapper);
-      });
-
-      // Open modal
-      document.getElementById("editFormModal").classList.remove("hidden");
-    });
-  });
-
-  // Close modal
-  document.getElementById("cancelEditFormModalBtn").addEventListener("click", () => {
-    document.getElementById("editFormModal").classList.add("hidden");
-  });
-
-  document.getElementById("closeEditFormModalBtn").addEventListener("click", () => {
-    document.getElementById("editFormModal").classList.add("hidden");
-  });
-
-  document.getElementById("heroEditForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const form = e.target;
-  const formData = new FormData(form);
-
-  // 🟩 Get Hero ID
-  const heroId = document.getElementById("editHeroId").value;
-
-  // 🟩 Collect removed images
-  const removedImages = [];
-  document.querySelectorAll("#editHeroImagePreview .removed").forEach((el) => {
-    removedImages.push(el.getAttribute("data-img"));
-  });
-  formData.append("removedImages", JSON.stringify(removedImages));
+       <!-- Buttons -->
+       <div class="flex justify-end space-x-3 mt-4">
+         <button type="button" id="cancelHeroModalBtn" class="border border-[#000] text-[#000] px-4 py-2 rounded hover:bg-gray-100 transition cursor-pointer">
+           Cancel
+         </button>
+         <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:opacity-90 transition cursor-pointer">
+           Add Hero Section
+         </button>
+       </div>
+     </form>
+   </div>
+ </div>
 
 
-    // 🟩 Append new images
-    const newFiles = document.getElementById("editHeroimages").files;
-    console.log(newFiles);
-    
-  for (let i = 0; i < newFiles.length; i++) {
-    formData.append("images", newFiles[i]);
-  }
-  try {
-    const res = await fetch(`/api/hero-section/${heroId}`, {
-      method: "PUT",
-      body: formData,
-    });
+ <!-- =================== EDIT HERO SECTION MODAL =================== -->
+ <div id="editFormModal" class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50">
+   <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative animate-[fadeIn_0.3s_ease]">
+     <!-- Close Button -->
+     <button id="closeEditFormModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-[#000] text-2xl font-bold cursor-pointer">
+       &times;
+     </button>
 
-    const data = await res.json();
+     <!-- Modal Title -->
+     <h2 class="text-[#000] font-semibold text-2xl mb-4">Edit Hero Section</h2>
 
-    if (data.status) {
-      alert("✅ Hero section updated successfully!");
-      location.reload();
-    } else {
-      alert("❌ Update failed: " + data.message);
-    }
-  } catch (err) {
-    console.error(err);
-    alert("⚠️ Something went wrong!");
-  }
-});
-</script>
+     <!-- Edit Hero Section Form -->
+     <form id="heroEditForm" class="space-y-4" enctype="multipart/form-data">
+       <!-- Title -->
+       <input type="hidden" id="editHeroId" name="id" />
+       <div>
+         <label for="title" class="block text-gray-700 font-medium mb-1">Title</label>
+         <input type="text" id="editHeroTitle" name="title" class="w-full border border-gray-300 rounded p-2" placeholder="Enter main heading" required />
+       </div>
+
+       <!-- Sub Title -->
+       <div>
+         <label for="subTitle" class="block text-gray-700 font-medium mb-1">Sub Title</label>
+         <input type="text" id="editHeroSubTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" placeholder="Enter sub heading" required />
+       </div>
+
+       <!-- Images (Array / Multiple Uploads) -->
+       <div>
+         <label for="images" class="block text-gray-700 font-medium mb-1">Upload Images</label>
+         <input type="file" id="editHeroimages" name="images" class="w-full cursor-pointer border border-gray-300 rounded p-2" accept="image/*" multiple />
+         <p class="text-sm text-gray-500 mt-1">You can select multiple images</p>
+       </div>
+
+       <!-- Existing Images Preview -->
+       <div id="editHeroImagePreview" class="flex flex-wrap gap-3 mt-3"></div>
+
+       <!-- Buttons -->
+       <div class="flex justify-end space-x-3 mt-4">
+         <button type="button" id="cancelEditFormModalBtn" class="border border-[#000] text-[#000] px-4 py-2 rounded hover:bg-gray-100 transition cursor-pointer">
+           Cancel
+         </button>
+         <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded cursor-pointer hover:opacity-90 transition">
+           Save Changes
+         </button>
+       </div>
+     </form>
 
 
-</body>
-</html>
+   </div>
+ </div>
+
+
+
+ <!-- =================== JS =================== -->
+ <script>
+   const openHeroModalBtn = document.getElementById("openHeroModalBtn");
+   const heroModal = document.getElementById("heroModal");
+   const closeHeroModalBtn = document.getElementById("closeHeroModalBtn");
+   const cancelHeroModalBtn = document.getElementById("cancelHeroModalBtn");
+
+   openHeroModalBtn.addEventListener("click", () => {
+     heroModal.classList.remove("hidden");
+   });
+
+   closeHeroModalBtn.addEventListener("click", () => {
+     heroModal.classList.add("hidden");
+   });
+
+   cancelHeroModalBtn.addEventListener("click", () => {
+     heroModal.classList.add("hidden");
+   });
+
+   // Close modal when clicking outside the form
+   heroModal.addEventListener("click", (e) => {
+     if (e.target === heroModal) heroModal.classList.add("hidden");
+   });
+ </script>
+
+ <!-- =================== Animation =================== -->
+ <style>
+   @keyframes fadeIn {
+     from {
+       opacity: 0;
+       transform: scale(0.95);
+     }
+
+     to {
+       opacity: 1;
+       transform: scale(1);
+     }
+   }
+ </style>
+
+ <script>
+   const editModal = document.getElementById("editFormModal");
+   const openEditBtn = document.querySelectorAll(".openEditModalBtn"); // Add this class to your Edit buttons
+   const closeEditBtn = document.getElementById("closeEditFormModalBtn");
+   const cancelEditBtn = document.getElementById("cancelEditFormModalBtn");
+
+   // Open modal
+   openEditBtn.forEach((btn) => {
+     btn.addEventListener("click", () => {
+       editModal.classList.remove("hidden");
+       editModal.classList.add("flex");
+     });
+   });
+
+   // Close modal
+   const closeEditModal = () => {
+     editModal.classList.add("hidden");
+     editModal.classList.remove("flex");
+   };
+
+   closeEditBtn.addEventListener("click", closeEditModal);
+   cancelEditBtn.addEventListener("click", closeEditModal);
+
+   editModal.addEventListener("click", (e) => {
+     if (e.target === editModal) closeEditModal();
+   });
+ </script>
+
+
+ <!-- add ki api  -->
+ <script>
+   const heroForm = document.getElementById("heroForm");
+   const heroModal1 = document.getElementById("heroModal");
+
+   heroForm.addEventListener("submit", async (e) => {
+     e.preventDefault();
+
+     const formData = new FormData(heroForm);
+
+     for (let [key, value] of formData.entries()) {
+       console.log(key, value);
+     }
+     try {
+       const response = await fetch("/api/hero-section", {
+         method: "POST",
+         body: formData,
+       });
+
+       const result = await response.json();
+       if (result.status) {
+         alert("✅ Hero Section Added Successfully!");
+         heroModal1.classList.add("hidden");
+         window.location.reload();
+       }
+     } catch (error) {
+       console.error("Error:", error);
+       alert("Server error, please try again!");
+     }
+   });
+ </script>
+
+ <!-- delete ki api -->
+ <script>
+   async function deleteHero(id) {
+     if (!confirm("Are you sure you want to delete this hero section?")) return;
+
+     try {
+       const response = await fetch(`/api/hero-section/${id}`, {
+         method: "DELETE",
+       });
+       const result = await response.json();
+       if (result) {
+         alert("✅ Hero section deleted successfully!");
+         window.location.reload();
+       }
+     } catch (error) {
+       console.error(error);
+       alert("Server error!");
+     }
+   }
+ </script>
+
+ <script>
+   const editButtons = document.querySelectorAll(".openEditModalBtn");
+
+   editButtons.forEach((btn) => {
+     btn.addEventListener("click", function() {
+       const heroId = btn.getAttribute("data-id");
+       const title = btn.getAttribute("data-title");
+       const subTitle = btn.getAttribute("data-subtitle");
+       const images = JSON.parse(btn.getAttribute("data-images") || "[]");
+
+       // Fill form data
+       document.getElementById("editHeroId").value = heroId;
+       document.getElementById("editHeroTitle").value = title;
+       document.getElementById("editHeroSubTitle").value = subTitle;
+
+       // Show existing images
+       const previewContainer = document.getElementById("editHeroImagePreview");
+       previewContainer.innerHTML = "";
+
+       images.forEach((img) => {
+         const imgWrapper = document.createElement("div");
+         imgWrapper.className = "relative inline-block";
+
+         const imageElement = document.createElement("img");
+         imageElement.src = "/" + img;
+         imageElement.className = "h-16 w-16 object-cover rounded border";
+
+         const removeBtn = document.createElement("button");
+         removeBtn.innerHTML = "&times;";
+         removeBtn.className =
+           "absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600";
+
+         removeBtn.addEventListener("click", (e) => {
+           e.preventDefault();
+           imgWrapper.classList.add("removed");
+           imgWrapper.setAttribute("data-img", img);
+           imgWrapper.style.opacity = "0.4";
+         });
+
+         imgWrapper.appendChild(imageElement);
+         imgWrapper.appendChild(removeBtn);
+         previewContainer.appendChild(imgWrapper);
+       });
+
+       // Open modal
+       document.getElementById("editFormModal").classList.remove("hidden");
+     });
+   });
+
+   // Close modal
+   document.getElementById("cancelEditFormModalBtn").addEventListener("click", () => {
+     document.getElementById("editFormModal").classList.add("hidden");
+   });
+
+   document.getElementById("closeEditFormModalBtn").addEventListener("click", () => {
+     document.getElementById("editFormModal").classList.add("hidden");
+   });
+
+   document.getElementById("heroEditForm").addEventListener("submit", async (e) => {
+     e.preventDefault();
+
+     const form = e.target;
+     const formData = new FormData(form);
+
+     // 🟩 Get Hero ID
+     const heroId = document.getElementById("editHeroId").value;
+
+     // 🟩 Collect removed images
+     const removedImages = [];
+     document.querySelectorAll("#editHeroImagePreview .removed").forEach((el) => {
+       removedImages.push(el.getAttribute("data-img"));
+     });
+     formData.append("removedImages", JSON.stringify(removedImages));
+
+
+     // 🟩 Append new images
+     const newFiles = document.getElementById("editHeroimages").files;
+     console.log(newFiles);
+
+     for (let i = 0; i < newFiles.length; i++) {
+       formData.append("images", newFiles[i]);
+     }
+     try {
+       const res = await fetch(`/api/hero-section/${heroId}`, {
+         method: "PUT",
+         body: formData,
+       });
+
+       const data = await res.json();
+
+       if (data.status) {
+         alert("✅ Hero section updated successfully!");
+         location.reload();
+       } else {
+         alert("❌ Update failed: " + data.message);
+       }
+     } catch (err) {
+       console.error(err);
+       alert("⚠️ Something went wrong!");
+     }
+   });
+ </script>
+
+
+ </body>
+
+ </html>
