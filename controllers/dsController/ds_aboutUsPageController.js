@@ -5,8 +5,6 @@
  const dsVisionMisionPageController = async (req, res) => {
     try {
       const visionMission = await VisionMission.find({}).sort({createdAt:-1})
-      console.log(visionMission);
-      
       res.render("dashboard/ds_visionMission", {
         status: true,
         message: "ds-about-us page successfully loaded",
@@ -23,7 +21,6 @@
   const dsTeamaPageController = async (req, res) => {
     try {
       const team = await Team.find({}).sort({createdAt:-1})
-      console.log(team)
       res.render("dashboard/ds_manage_team", {
         status: true,
         message: "ds-about-us page successfully loaded",

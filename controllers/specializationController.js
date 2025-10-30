@@ -1,63 +1,75 @@
 const Specialization = require("../models/specializationModel");
 
-// 🟢 Create Specialization
 const createSpecialization = async (req, res) => {
-    try {
-      const body = req.body;
-      console.log(req.files);
-      
-      const specialization = [];
-  
-      // 🧩 Convert keys like 'specialization[0].title' → specialization array
-      Object.keys(body).forEach(key => {
-        const match = key.match(/^specialization\[(\d+)\]\.(.+)$/);
-        if (match) {
-          const index = Number(match[1]);
-          const field = match[2];
-          if (!specialization[index]) specialization[index] = {};
-          
-          // Try to parse includes array
-          if (field === "includes") {
-            try {
-              specialization[index][field] = JSON.parse(body[key]);
-            } catch {
-              specialization[index][field] = [body[key]];
-            }
-          } else {
-            specialization[index][field] = body[key];
-          }
-        }
+  try {
+    const body = req.body;
+
+    // 🟢 Build specialization array from multiple inputs
+    const titles = body.specialization_title || [];
+    const icons = body.specialization_icon || [];
+    const subTitles = body.specialization_subTitle || [];
+    const startingAt = body.startingAt || [];
+    const turnaround = body.turnaround || [];
+    const revisions = body.revisions || [];
+    const format = body.format || [];
+    const rushDelivery = body.rushDelivery || [];
+    const additionalRevisions = body.additionalRevisions || [];
+    const editorialCalendarCreation = body.editorialCalendarCreation || [];
+    const WordPressPublishing = body.WordPressPublishing || [];
+    const includes = body.includes || [];
+
+    const specialization = [];
+
+    for (let i = 0; i < titles.length; i++) {
+      specialization.push({
+        title: titles[i],
+        icon: icons[i] || "",
+        subTitle: subTitles[i] || "",
+        startingAt: startingAt[i] || "",
+        turnaround: turnaround[i] || "",
+        revisions: revisions[i] || "",
+        format: format[i] || "",
+        rushDelivery: rushDelivery[i] || "",
+        additionalRevisions: additionalRevisions[i] || "",
+        editorialCalendarCreation: editorialCalendarCreation[i] || "",
+        WordPressPublishing: WordPressPublishing[i] || "",
+        includes: includes[i] ? includes[i].split(",").map(x => x.trim()) : [],
       });
-  
-      body.specialization = specialization;
-  
-      if (req.files && req.files.length) {
-        req.files.forEach(file => {
-          const match = file.fieldname.match(/^specialization\[(\d+)\]\.icon$/);
-          if (match) {
-            const index = Number(match[1]);
-            if (!body.specialization[index]) body.specialization[index] = {};
-            body.specialization[index].icon = "uploads/" + file.filename;
-          }
-      
-          if (file.fieldname === "og_image") {
-            body.og_image = "uploads/" + file.filename;
-          }
-        });
-      }
-      const specializationDoc = await Specialization.create(body);
-  
-      res.status(201).send({
-        status: true,
-        message: "Specialization created successfully",
-        data: specializationDoc,
-      });
-    } catch (error) {
-      console.error("Create Specialization Error:", error);
-      res.status(400).send({ status: false, message: error.message });
     }
-  };
-  
+
+    body.specialization = specialization;
+
+// 🟢 Handle uploaded files
+if (req.files && req.files.length) {
+  req.files.forEach(file => {
+    // OG image
+    if (file.fieldname === "og_image") {
+      body.og_image = "uploads/" + file.filename;
+    }
+
+    // Icon files for specialization items
+    const match = file.fieldname.match(/^specialization\[(\d+)\]\.specialization_icon$/);
+    if (match) {
+      const index = Number(match[1]);
+      if (!body.specialization) body.specialization = [];
+      if (!body.specialization[index]) body.specialization[index] = {};
+      body.specialization[index].icon = "uploads/" + file.filename;
+    }
+  });
+}
+    const specializationDoc = await Specialization.create(body);
+
+    res.status(201).send({
+      status: true,
+      message: "Specialization created successfully",
+      data: specializationDoc,
+    });
+  } catch (error) {
+    console.error("Create Specialization Error:", error);
+    res.status(400).send({ status: false, message: error.message });
+  }
+};
+
 
 // 🟢 Update Specialization
 const updateSpecialization = async (req, res) => {

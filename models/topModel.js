@@ -21,4 +21,4 @@ const topSchema = new mongoose.Schema({
 topSchema.index({ createdAt: -1 });
  
 const Top = mongoose.model("top", topSchema)
-module.exports = Top 
+module.exports = Top   

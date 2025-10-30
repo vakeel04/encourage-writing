@@ -3,8 +3,6 @@ const Customer = require("../../models/customerModel");
 const dsCustomerController = async (req, res) => {
   try {
     const data = await Customer.find({});
-    console.log(data);
-
     res.render("dashboard/ds_manage_customers", {
       status: true,
       message: "Customer management page successfully loaded",

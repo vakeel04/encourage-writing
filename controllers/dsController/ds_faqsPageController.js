@@ -3,8 +3,6 @@ const FAQ = require("../../models/faqModel");
 const dsFaqController = async (req, res) => {
   try {
     const data = await FAQ.find({});
-    console.log(data);
-
     res.render("dashboard/ds_manage_faqs", {
       currentPage: "faqs",
       status: true,

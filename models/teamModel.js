@@ -4,7 +4,7 @@ const teamSchema = new mongoose.Schema({
     title: { type: String},
     subTitle: { type: String},
     info:[{ name: { type: String, required: true },
-        image: { type: String, required: true },
+        image: { type: String, },
         desination: { type: String,},
         links: [String],}],
     meta_title: { type: String },

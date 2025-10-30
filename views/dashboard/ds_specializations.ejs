@@ -1,0 +1,593 @@
+<%- include("partials/aside") %>
+
+<main class="flex-1 p-6 overflow-auto">
+  <!-- Header -->
+  <div class="flex justify-between items-end">
+    <div>
+      <h1 class="text-3xl font-bold text-[#000]">Manage Specializations</h1>
+      <p class="mt-2 text-gray-700">Create, edit, or delete your Specializations below.</p>
+    </div>
+
+    <!-- Add Button -->
+    <div>
+      <button
+        id="openAddModalBtn"
+        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
+      >
+        + Add Specializations
+      </button>
+    </div>
+  </div>
+
+<!-- Specialization Table -->
+<div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
+    <h2 class="text-[#000] font-semibold text-xl mb-4">Specializations List</h2>
+    <table class="min-w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="px-4 py-2 border">Heading</th>
+          <th class="px-4 py-2 border">SubHeading</th>
+          <th class="px-4 py-2 border">Used By</th>
+          <th class="px-4 py-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="specializationTableBody">
+        <% if (data && data?.specialization?.length > 0) { %>
+          <% data?.specialization?.forEach((item) => { %>
+            <tr>
+              <td class="px-4 py-2 border"><%= item.heading %></td>
+              <td class="px-4 py-2 border"><%= item.subHeading %></td>
+              <td class="px-4 py-2 border"><%= item.usedBy %></td>
+              <!-- Actions -->
+              <td class="px-4 py-2 border space-x-2 text-center">
+                <button
+                  class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
+                  data-id="<%= item._id %>"
+                  data-heading="<%= item.heading %>"
+                  data-subheading="<%= item.subHeading %>"
+                  data-usedby="<%= item.usedBy %>"
+                  data-metatitle="<%= item.meta_title %>"
+                  data-metadescription="<%= item.meta_description %>"
+                  data-keywords="<%= item.keywords %>"
+                  data-ogtitle="<%= item.og_title %>"
+                  data-ogdescription="<%= item.og_description %>"
+                  data-ogimage="<%= item.og_image %>"
+                  data-ogurl="<%= item.og_url %>"
+                  data-ogtype="<%= item.og_type %>"
+                  data-status="<%= item.status %>"
+                >
+                  Edit
+                </button>
+  
+                <button
+                  class="border cursor-pointer px-2 py-1 rounded deleteBtn"
+                  data-id="<%= item._id %>"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" class="text-center py-4 text-gray-500">
+              No Specializations found.
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  
+</main>
+
+ <!-- Add Specialization Modal -->
+ <div id="addSpecializationModal" class="hidden fixed inset-0 bg-black/40 flex  items-center justify-center z-50">
+   <div class="h-[700px] overflow-y-scroll bg-white w-[90%] max-w-3xl rounded-lg shadow-lg p-6 relative">
+     <!-- Close Button -->
+     <button id="closeAddModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">&times;</button>
+
+     <h2 class="text-[#000] font-semibold text-xl mb-4">Add Specialization</h2>
+
+     <form id="addSpecializationForm" class="space-y-4" enctype="multipart/form-data">
+       <!-- Heading -->
+       <div>
+         <label class="block text-gray-700 font-medium mb-1" for="heading">Heading</label>
+         <input type="text" id="heading" name="heading" class="w-full border border-gray-300 rounded p-2" required />
+       </div>
+
+       <!-- Sub Heading -->
+       <div>
+         <label class="block text-gray-700 font-medium mb-1" for="subHeading">Sub Heading</label>
+         <input type="text" id="subHeading" name="subHeading" class="w-full border border-gray-300 rounded p-2" required />
+       </div>
+
+       <!-- Used By -->
+       <div>
+         <label class="block text-gray-700 font-medium mb-1" for="usedBy">Used By</label>
+         <select id="usedBy" name="usedBy" class="w-full border border-gray-300 rounded p-2" required>
+           <option value="">Select Category</option>
+           <option>Blog Writing</option>
+           <option>Case Study Writing</option>
+           <option>Ebook Writing</option>
+           <option>Website Content Writing</option>
+           <option>SEO Content Writing</option>
+           <option>Article Writing</option>
+         </select>
+       </div>
+
+       <!-- Specialization Items -->
+       <div id="specializationContainer">
+         <h3 class="text-lg font-semibold text-[#000] mb-2">Specialization Items</h3>
+         <div class="specialization-item relative border p-3 rounded mb-3">
+           <button type="button" class="removeItemBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">✕</button>
+
+           <div class="mb-2">
+             <label class="block text-gray-700 mb-1">Title</label>
+             <input type="text" name="specialization_title[]" class="w-full border border-gray-300 rounded p-2" required />
+           </div>
+
+           <div class="mb-2">
+             <label class="block text-gray-700 mb-1">Icon</label>
+             <input type="file" name="specialization_icon[]" class="w-full border border-gray-300 rounded p-2" />
+           </div>
+
+           <div class="mb-2">
+             <label class="block text-gray-700 mb-1">SubTitle</label>
+             <input type="text" name="specialization_subTitle[]" class="w-full border border-gray-300 rounded p-2" />
+           </div>
+
+           <div class="grid grid-cols-2 gap-2">
+             <div>
+               <label class="block text-gray-700 mb-1">Starting At</label>
+               <input type="text" name="startingAt[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">Turnaround</label>
+               <input type="text" name="turnaround[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">Revisions</label>
+               <input type="text" name="revisions[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">Format</label>
+               <input type="text" name="format[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">Rush Delivery</label>
+               <input type="text" name="rushDelivery[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">Additional Revisions</label>
+               <input type="text" name="additionalRevisions[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">Editorial Calendar Creation</label>
+               <input type="text" name="editorialCalendarCreation[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div>
+               <label class="block text-gray-700 mb-1">WordPress Publishing</label>
+               <input type="text" name="WordPressPublishing[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+             <div class="col-span-2">
+               <label class="block text-gray-700 mb-1">Includes (comma separated)</label>
+               <input type="text" name="includes[]" class="w-full border border-gray-300 rounded p-2" />
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <button type="button" id="addSpecializationItemBtn" class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100">
+         + Add Another Item
+       </button>
+
+       <!-- Meta & OG Fields -->
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+         <div>
+           <label class="block text-gray-700 mb-1">Meta Title</label>
+           <input type="text" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">Meta Description</label>
+           <textarea name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">Keywords</label>
+           <input type="text" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Title</label>
+           <input type="text" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Description</label>
+           <textarea name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Image</label>
+           <input type="file" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG URL</label>
+           <input type="text" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Type</label>
+           <input type="text" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+       </div>
+
+       <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
+         Add Specialization
+       </button>
+     </form>
+   </div>
+ </div>
+  
+
+
+ <!-- Edit Specialization / Vision & Mission Modal -->
+ <div id="editVisionMissionModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+   <div class="h-[700px] overflow-y-scroll bg-white w-[90%] max-w-3xl rounded-lg shadow-lg p-6 relative">
+     <!-- Close Button -->
+     <button id="closeEditModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">&times;</button>
+
+     <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Specialization / Vision & Mission</h2>
+
+     <form id="editVisionMissionForm" class="space-y-4">
+       <input type="hidden" id="editId" name="id" />
+
+       <!-- Heading & SubHeading -->
+       <div>
+         <label class="block text-gray-700 font-medium mb-1">Heading</label>
+         <input type="text" id="editHeading" name="heading" class="w-full border border-gray-300 rounded p-2" required />
+       </div>
+
+       <div>
+         <label class="block text-gray-700 font-medium mb-1">Sub Heading</label>
+         <input type="text" id="editSubHeading" name="subHeading" class="w-full border border-gray-300 rounded p-2" required />
+       </div>
+
+       <!-- Used By -->
+       <div>
+         <label class="block text-gray-700 font-medium mb-1">Used By</label>
+         <select id="editUsedBy" name="usedBy" class="w-full border border-gray-300 rounded p-2" required>
+           <option value="">Select</option>
+           <option value="Blog Writing">Blog Writing</option>
+           <option value="Case Study Writing">Case Study Writing</option>
+           <option value="Ebook Writing">Ebook Writing</option>
+           <option value="Website Content Writing">Website Content Writing</option>
+           <option value="SEO Content Writing">SEO Content Writing</option>
+           <option value="Article Writing">Article Writing</option>
+         </select>
+       </div>
+
+       <!-- Specializations Container -->
+       <div>
+         <label class="block text-gray-700 font-medium mb-1">Specializations</label>
+         <div id="specializationContainer">
+           <!-- One specialization item template -->
+           <div style="position: relative !important;" class="!relative specialization-item border p-3 rounded mb-3 ">
+             <button type="button" class="removeItemBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">✕</button>
+
+             <input type="text" name="specialization_title[]" placeholder="Title" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_icon[]" placeholder="Icon" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_subTitle[]" placeholder="Sub Title" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_startingAt[]" placeholder="Starting At" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_turnaround[]" placeholder="Turnaround" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_revisions[]" placeholder="Revisions" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_format[]" placeholder="Format" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_rushDelivery[]" placeholder="Rush Delivery" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_additionalRevisions[]" placeholder="Additional Revisions" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_editorialCalendarCreation[]" placeholder="Editorial Calendar Creation" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_WordPressPublishing[]" placeholder="WordPress Publishing" class="w-full border border-gray-300 rounded p-2 mb-2" />
+             <input type="text" name="specialization_includes[]" placeholder="Includes (comma separated)" class="w-full border border-gray-300 rounded p-2 mb-2" />
+           </div>
+         </div>
+
+         <button type="button" id="addSpecializationItemBtn" class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100">+ Add Another Specialization</button>
+       </div>
+
+       <!-- Meta & OG Fields -->
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+         <div>
+           <label class="block text-gray-700 mb-1">Meta Title</label>
+           <input type="text" id="editMetaTitle" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">Meta Description</label>
+           <textarea id="editMetaDescription" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">Keywords</label>
+           <input type="text" id="editKeywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Title</label>
+           <input type="text" id="editOgTitle" name="og_title" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Description</label>
+           <textarea id="editOgDescription" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Image</label>
+           <input type="file" id="editOgImage" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+           <img id="currentOgImagePreview" src="" alt="Current OG Image" class="w-24 h-24 mt-2 rounded object-cover hidden" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG URL</label>
+           <input type="text" id="editOgUrl" name="og_url" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+         <div>
+           <label class="block text-gray-700 mb-1">OG Type</label>
+           <input type="text" id="editOgType" name="og_type" class="w-full border border-gray-300 rounded p-2" />
+         </div>
+       </div>
+
+       <!-- Status -->
+       <div class="flex items-center space-x-2 mt-2">
+         <input type="checkbox" id="editStatus" name="status" class="w-4 h-4" />
+         <label for="editStatus" class="text-gray-700">Active</label>
+       </div>
+
+       <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
+         Save Changes
+       </button>
+     </form>
+   </div>
+ </div>
+  
+
+<script>
+  (() => {
+    const editVisionMissionModal = document.getElementById("editVisionMissionModal");
+    const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+    const editButtons = document.querySelectorAll(".openEditModalBtn");
+    const editForm = document.getElementById("editVisionMissionForm");
+    const editSpecializationContainer = document.getElementById("specializationContainer");
+    const editAddItemBtn = document.getElementById("addSpecializationItemBtn");
+    const currentOgImagePreview = document.getElementById("currentOgImagePreview");
+
+    // Open modal and fetch data
+    editButtons.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const id = btn.dataset.id;
+        try {
+          const res = await fetch(`/api/specialization/${id}`);
+          const data = await res.json();
+          if (!data.status || !data.data) throw new Error("Failed to fetch data");
+
+          const spec = data.data;
+
+          document.getElementById("editId").value = spec._id;
+          document.getElementById("editHeading").value = spec.heading || "";
+          document.getElementById("editSubHeading").value = spec.subHeading || "";
+          document.getElementById("editUsedBy").value = spec.usedBy || "";
+          document.getElementById("editMetaTitle").value = spec.meta_title || "";
+          document.getElementById("editMetaDescription").value = spec.meta_description || "";
+          document.getElementById("editKeywords").value = spec.keywords || "";
+          document.getElementById("editOgTitle").value = spec.og_title || "";
+          document.getElementById("editOgDescription").value = spec.og_description || "";
+          document.getElementById("editOgUrl").value = spec.og_url || "";
+          document.getElementById("editOgType").value = spec.og_type || "";
+          document.getElementById("editStatus").checked = spec.status;
+
+          // OG Image preview
+          if (spec.og_image) {
+            currentOgImagePreview.src = spec.og_image;
+            currentOgImagePreview.classList.remove("hidden");
+          } else {
+            currentOgImagePreview.classList.add("hidden");
+          }
+
+          // Clear previous specialization items
+          editSpecializationContainer.innerHTML = "";
+
+          // Populate specialization items
+          if (spec.specialization?.length) {
+            spec.specialization.forEach(item => {
+              const div = document.createElement("div");
+              div.className = "specialization-item border p-3 rounded mb-3 relative";
+              div.innerHTML = `
+                  <button type="button" class="removeItemBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">✕</button>
+                  <input type="text" name="specialization_title[]" placeholder="Title" value="${item.title || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_icon[]" placeholder="Icon" value="${item.icon || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_subTitle[]" placeholder="Sub Title" value="${item.subTitle || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_startingAt[]" placeholder="Starting At" value="${item.startingAt || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_turnaround[]" placeholder="Turnaround" value="${item.turnaround || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_revisions[]" placeholder="Revisions" value="${item.revisions || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_format[]" placeholder="Format" value="${item.format || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_rushDelivery[]" placeholder="Rush Delivery" value="${item.rushDelivery || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_additionalRevisions[]" placeholder="Additional Revisions" value="${item.additionalRevisions || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_editorialCalendarCreation[]" placeholder="Editorial Calendar Creation" value="${item.editorialCalendarCreation || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_WordPressPublishing[]" placeholder="WordPress Publishing" value="${item.WordPressPublishing || ""}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                  <input type="text" name="specialization_includes[]" placeholder="Includes (comma separated)" value="${(item.includes || []).join(", ")}" class="w-full border border-gray-300 rounded p-2 mb-2" />
+                `;
+              editSpecializationContainer.appendChild(div);
+            });
+          } else addEditSpecializationItem();
+
+          attachEditRemoveListeners();
+          editVisionMissionModal.classList.remove("hidden");
+
+        } catch (err) {
+          console.error(err);
+          alert("Failed to load specialization data.");
+        }
+      });
+    });
+
+    // Close modal
+    closeEditModalBtn.addEventListener("click", () => {
+      editVisionMissionModal.classList.add("hidden");
+    });
+
+    // Add new specialization item in edit modal
+    editAddItemBtn.addEventListener("click", addEditSpecializationItem);
+
+    function addEditSpecializationItem() {
+      const div = document.createElement("div");
+      div.className = "specialization-item border p-3 rounded mb-3 relative";
+      div.innerHTML = `
+          <button type="button" class="removeItemBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">✕</button>
+          <input type="text" name="specialization_title[]" placeholder="Title" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_icon[]" placeholder="Icon" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_subTitle[]" placeholder="Sub Title" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_startingAt[]" placeholder="Starting At" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_turnaround[]" placeholder="Turnaround" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_revisions[]" placeholder="Revisions" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_format[]" placeholder="Format" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_rushDelivery[]" placeholder="Rush Delivery" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_additionalRevisions[]" placeholder="Additional Revisions" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_editorialCalendarCreation[]" placeholder="Editorial Calendar Creation" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_WordPressPublishing[]" placeholder="WordPress Publishing" class="w-full border border-gray-300 rounded p-2 mb-2" />
+          <input type="text" name="specialization_includes[]" placeholder="Includes (comma separated)" class="w-full border border-gray-300 rounded p-2 mb-2" />
+        `;
+      editSpecializationContainer.appendChild(div);
+      attachEditRemoveListeners();
+    }
+
+    function attachEditRemoveListeners() {
+      editSpecializationContainer.querySelectorAll(".removeItemBtn").forEach(btn => {
+        btn.onclick = () => {
+          const items = editSpecializationContainer.querySelectorAll(".specialization-item");
+          if (items.length > 1) btn.parentElement.remove();
+          else alert("At least one specialization item is required.");
+        };
+      });
+    }
+
+  })();
+</script>
+    
+ 
+
+
+<!-- add ki api -->
+<script>
+  // ✅ Modal Open/Close
+  const openAddModalBtn = document.getElementById("openAddModalBtn");
+  const addSpecializationModal = document.getElementById("addSpecializationModal");
+  const closeAddModalBtn = document.getElementById("closeAddModalBtn");
+
+  openAddModalBtn?.addEventListener("click", () => {
+    addSpecializationModal.classList.remove("hidden");
+  });
+
+  closeAddModalBtn?.addEventListener("click", () => {
+    addSpecializationModal.classList.add("hidden");
+  });
+
+  // ✅ Add/Remove Specialization Items
+  const addItemBtn = document.getElementById("addSpecializationItemBtn");
+  const specializationContainer = document.getElementById("specializationContainer");
+
+  addItemBtn?.addEventListener("click", () => {
+    const firstItem = specializationContainer.querySelector(".specialization-item");
+    if (!firstItem) return;
+
+    const clone = firstItem.cloneNode(true);
+    clone.querySelectorAll("input, textarea").forEach(el => el.value = "");
+    specializationContainer.appendChild(clone);
+
+    attachRemoveListeners();
+  });
+
+  function attachRemoveListeners() {
+    specializationContainer.querySelectorAll(".removeItemBtn").forEach(btn => {
+      btn.onclick = () => {
+        const items = specializationContainer.querySelectorAll(".specialization-item");
+        if (items.length > 1) btn.parentElement.remove();
+        else alert("At least one specialization item is required.");
+      };
+    });
+  }
+
+  attachRemoveListeners();
+
+  // ✅ Submit Form
+  const addForm = document.getElementById("addSpecializationForm");
+
+  addForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(addForm);
+
+    // Build specialization fields in backend-friendly format
+    const specializationItems = specializationContainer.querySelectorAll(".specialization-item");
+    specializationItems.forEach((item, idx) => {
+      const fields = item.querySelectorAll("input, textarea");
+      fields.forEach(field => {
+        const name = field.name;
+        if (!name) return;
+
+        // Backend key like specialization[0].icon
+        const backendKey = `specialization[${idx}].${name.replace(/\[\]/, "")}`;
+
+        // ✅ Check if field is file
+        if (field.type === "file") {
+          if (field.files[0]) {
+            formData.append(backendKey, field.files[0]); // append the actual file
+          }
+        } else {
+          formData.append(backendKey, field.value);
+        }
+      });
+    });
+
+    try {
+      const res = await fetch("/api/specialization", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      if (data.status) {
+        alert("Specialization added successfully!");
+        location.reload();
+      } else {
+        alert("Failed: " + (data.message || ""));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong while adding specialization.");
+    }
+  });
+</script>
+  
+  
+
+
+ <!-- Delete Vision & Mission Entry -->
+<script>
+  document.querySelectorAll(".deleteBtn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const id = btn.getAttribute("data-id");
+      if (!id) return alert("❌ Invalid ID");
+      if (!confirm("Are you sure you want to delete this record?")) return;
+      try {
+        const response = await fetch(`/api/specialization/${id}`, {
+          method: "DELETE",
+        });
+        const result = await response.json();
+        if (result.status) {
+          alert("✅ Deleted successfully!");
+          // Remove row from table instantly
+          btn.closest("tr").remove();
+        } else {
+          alert("❌ " + (result.message || "Delete failed"));
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("⚠️ Server error. Try again later.");
+      }
+    });
+  });
+</script>
+
+ 
+
+
+ 

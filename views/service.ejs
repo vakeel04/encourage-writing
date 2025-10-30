@@ -143,7 +143,7 @@
         <h3 class="lg:text-[22px] text-[18px] font-medium"><%= data?.contentPricing?.title %></h3>
 
         <ul class="mt-4 space-y-2.5">
-          <% if (data?.contentPricing? && data?.contentPricing? && data?.contentPricing?.detail) { %>
+          <% if (data?.contentPricing && data?.contentPricing && data?.contentPricing?.detail) { %>
           <% data?.contentPricing?.detail?.forEach(item => { %>
           <li class="flex items-center gap-2.5">
             <img class="lg:w-[24px] w-[20px]" src="/images/check.png" alt="check">

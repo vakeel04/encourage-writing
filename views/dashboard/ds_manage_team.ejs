@@ -12,10 +12,7 @@
 
     <!-- Add Button -->
     <div>
-      <button
-        id="openAddModalBtn"
-        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
-      >
+      <button id="openAddModalBtn" class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
         + Add Team
       </button>
     </div>
@@ -41,14 +38,8 @@
           <td class="px-4 py-2 border align-top">
             <div class="max-h-32 overflow-y-auto flex flex-col gap-2 pr-2">
               <% item.info.forEach(member => { %>
-              <div
-                class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded"
-              >
-                <img
-                  src="/<%= member.image %>"
-                  alt="<%= member.name %>"
-                  class="h-10 w-10 rounded-full object-cover"
-                />
+              <div class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded">
+                <img src="/<%= member.image %>" alt="<%= member.name %>" class="h-10 w-10 rounded-full object-cover" />
                 <div>
                   <p class="font-medium text-sm"><%= member.name %></p>
                   <p class="text-xs text-gray-600"><%= member.desination %></p>
@@ -58,29 +49,11 @@
             </div>
           </td>
           <td class="px-4 py-2 border space-x-2">
-            <button
-              class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-              data-id="<%= item._id %>"
-              data-title="<%= item.title %>"
-              data-subtitle="<%= item.subTitle %>"
-              data-meta_title="<%= item.meta_title %>"
-              data-meta_description="<%= item.meta_description %>"
-              data-keywords="<%= item.keywords %>"
-              data-og_title="<%= item.og_title %>"
-              data-og_description="<%= item.og_description %>"
-              data-og_image="<%= item.og_image %>"
-              data-og_url="<%= item.og_url %>"
-              data-og_type="<%= item.og_type %>"
-              data-status="<%= item.status %>"
-              data-info="<%- JSON.stringify(item.info) %>"
-            >
+            <button class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn" data-id="<%= item._id %>" data-title="<%= item.title %>" data-subtitle="<%= item.subTitle %>" data-meta_title="<%= item.meta_title %>" data-meta_description="<%= item.meta_description %>" data-keywords="<%= item.keywords %>" data-og_title="<%= item.og_title %>" data-og_description="<%= item.og_description %>" data-og_image="<%= item.og_image %>" data-og_url="<%= item.og_url %>" data-og_type="<%= item.og_type %>" data-status="<%= item.status %>" data-info="<%- JSON.stringify(item.info) %>">
               Edit
             </button>
 
-            <button
-              class="border cursor-pointer px-2 py-1 rounded deleteBtn"
-              data-id="<%= item._id %>"
-            >
+            <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= item._id %>">
               Delete
             </button>
           </td>
@@ -90,21 +63,11 @@
     </table>
   </div>
 </main>
-
 <!-- Add Team Modal -->
-
-<div
-  id="addTeamModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div
-    class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative h-[90vh] overflow-y-scroll"
-  >
+<div id="addTeamModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative h-[90vh] overflow-y-scroll">
     <!-- Close Button -->
-    <button
-      id="closeAddModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
+    <button id="closeAddModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
       &times;
     </button>
 
@@ -113,29 +76,14 @@
     <form id="addTeamForm" class="space-y-4">
       <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="title"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="title"
-          name="title"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="title">Title</label>
+        <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required />
       </div>
 
       <!-- Sub Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="subTitle"
-          >Sub Title</label
-        >
-        <input
-          type="text"
-          id="subTitle"
-          name="subTitle"
-          class="w-full border border-gray-300 rounded p-2"
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="subTitle">Sub Title</label>
+        <input type="text" id="subTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
       </div>
 
       <!-- Info Section (Dynamic Members) -->
@@ -144,50 +92,25 @@
         <div class="team-member border p-3 rounded mb-3">
           <div class="mb-2">
             <label class="block text-gray-700 mb-1">Name</label>
-            <input
-              type="text"
-              name="name[]"
-              class="w-full border border-gray-300 rounded p-2"
-              required
-            />
+            <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
           </div>
           <div class="mb-2">
             <label class="block text-gray-700 mb-1">Designation</label>
-            <input
-              type="text"
-              name="desination[]"
-              class="w-full border border-gray-300 rounded p-2"
-            />
+            <input type="text" name="desination[]" class="w-full border border-gray-300 rounded p-2" />
           </div>
           <div class="mb-2">
             <label class="block text-gray-700 mb-1">Image</label>
-            <input
-              type="file"
-              name="image[]"
-              class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-              required
-            />
+            <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" required />
           </div>
           <div>
-            <label class="block text-gray-700 mb-1"
-              >Links (comma separated)</label
-            >
-            <input
-              type="text"
-              name="links[]"
-              class="w-full border border-gray-300 rounded p-2"
-              placeholder="https://facebook.com, https://twitter.com"
-            />
+            <label class="block text-gray-700 mb-1">Links (comma separated)</label>
+            <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" placeholder="https://facebook.com, https://twitter.com" />
           </div>
         </div>
       </div>
 
       <!-- Add Member Button -->
-      <button
-        type="button"
-        id="addMemberBtn"
-        class="border border-gray-400 text-gray-700 px-3 py-1 rounded hover:bg-gray-100"
-      >
+      <button type="button" id="addMemberBtn" class="border border-gray-400 text-gray-700 px-3 py-1 rounded hover:bg-gray-100">
         + Add Another Member
       </button>
 
@@ -197,32 +120,17 @@
 
         <div>
           <label class="block text-gray-700 mb-1">Meta Title</label>
-          <input
-            type="text"
-            id="meta_title"
-            name="meta_title"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="meta_title" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Meta Description</label>
-          <textarea
-            id="meta_description"
-            name="meta_description"
-            rows="2"
-            class="w-full border border-gray-300 rounded p-2"
-          ></textarea>
+          <textarea id="meta_description" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Keywords</label>
-          <input
-            type="text"
-            id="keywords"
-            name="keywords"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="keywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
         </div>
       </div>
 
@@ -234,60 +142,32 @@
 
         <div>
           <label class="block text-gray-700 mb-1">OG Title</label>
-          <input
-            type="text"
-            id="og_title"
-            name="og_title"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="og_title" name="og_title" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Description</label>
-          <textarea
-            id="og_description"
-            name="og_description"
-            rows="2"
-            class="w-full border border-gray-300 rounded p-2"
-          ></textarea>
+          <textarea id="og_description" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Image</label>
-          <input
-            type="file"
-            id="og_image"
-            name="og_image"
-            class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          />
+          <input type="file" id="og_image" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG URL</label>
-          <input
-            type="text"
-            id="og_url"
-            name="og_url"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="og_url" name="og_url" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Type</label>
-          <input
-            type="text"
-            id="og_type"
-            name="og_type"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="og_type" name="og_type" class="w-full border border-gray-300 rounded p-2" />
         </div>
       </div>
 
       <!-- Submit -->
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4"
-      >
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
         Add Team
       </button>
     </form>
@@ -295,18 +175,10 @@
 </div>
 
 <!-- Edit Team Modal -->
-<div
-  id="editTeamModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div
-    class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]"
-  >
+<div id="editTeamModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+<div class="bg-white w-[90%] max-w-2xl rounded-lg shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
     <!-- Close Button -->
-    <button
-      id="closeEditModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
+    <button id="closeEditModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
       &times;
     </button>
 
@@ -317,29 +189,14 @@
 
       <!-- Title -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editTitle"
-          >Title</label
-        >
-        <input
-          type="text"
-          id="editTitle"
-          name="title"
-          class="w-full border border-gray-300 rounded p-2"
-          required
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="editTitle">Title</label>
+        <input type="text" id="editTitle" name="title" class="w-full border border-gray-300 rounded p-2" required />
       </div>
 
       <!-- Subtitle -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1" for="editSubTitle"
-          >Subtitle</label
-        >
-        <input
-          type="text"
-          id="editSubTitle"
-          name="subTitle"
-          class="w-full border border-gray-300 rounded p-2"
-        />
+        <label class="block text-gray-700 font-medium mb-1" for="editSubTitle">Subtitle</label>
+        <input type="text" id="editSubTitle" name="subTitle" class="w-full border border-gray-300 rounded p-2" />
       </div>
 
       <!-- Team Members -->
@@ -347,59 +204,33 @@
         <label class="block text-gray-700 font-medium mb-1">Team Members</label>
         <div id="teamMembersContainer">
           <div class="team-member border p-3 rounded mb-3 relative">
-            <button
-              type="button"
-              class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm"
-            >
+            <button type="button" class="removeMemberBtn absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm">
               ✕
             </button>
 
             <div class="mb-2">
               <label class="block text-gray-700 mb-1">Name</label>
-              <input
-                type="text"
-                name="name[]"
-                class="w-full border border-gray-300 rounded p-2"
-                required
-              />
+              <input type="text" name="name[]" class="w-full border border-gray-300 rounded p-2" required />
             </div>
 
             <div class="mb-2">
               <label class="block text-gray-700 mb-1">Designation</label>
-              <input
-                type="text"
-                name="designation[]"
-                class="w-full border border-gray-300 rounded p-2"
-              />
+              <input type="text" name="designation[]" class="w-full border border-gray-300 rounded p-2" />
             </div>
 
             <div class="mb-2">
               <label class="block text-gray-700 mb-1">Image</label>
-              <input
-                type="file"
-                name="image[]"
-                class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-              />
+              <input type="file" name="image[]" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
             </div>
 
             <div class="mb-2">
-              <label class="block text-gray-700 mb-1"
-                >Links (comma separated)</label
-              >
-              <input
-                type="text"
-                name="links[]"
-                class="w-full border border-gray-300 rounded p-2"
-              />
+              <label class="block text-gray-700 mb-1">Links (comma separated)</label>
+              <input type="text" name="links[]" class="w-full border border-gray-300 rounded p-2" />
             </div>
           </div>
         </div>
 
-        <button
-          type="button"
-          id="addMemberBtn"
-          class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100"
-        >
+        <button type="button" id="addMemberBtn" class="border border-gray-400 px-3 py-1 rounded text-sm mt-2 hover:bg-gray-100">
           + Add Member
         </button>
       </div>
@@ -408,88 +239,43 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block text-gray-700 mb-1">Meta Title</label>
-          <input
-            type="text"
-            id="editMetaTitle"
-            name="meta_title"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="editMetaTitle" name="meta_title" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Meta Description</label>
-          <textarea
-            id="editMetaDescription"
-            name="meta_description"
-            rows="2"
-            class="w-full border border-gray-300 rounded p-2"
-          ></textarea>
+          <textarea id="editMetaDescription" name="meta_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">Keywords</label>
-          <input
-            type="text"
-            id="editKeywords"
-            name="keywords"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="editKeywords" name="keywords" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Title</label>
-          <input
-            type="text"
-            id="editOgTitle"
-            name="og_title"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="editOgTitle" name="og_title" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Description</label>
-          <textarea
-            id="editOgDescription"
-            name="og_description"
-            rows="2"
-            class="w-full border border-gray-300 rounded p-2"
-          ></textarea>
+          <textarea id="editOgDescription" name="og_description" rows="2" class="w-full border border-gray-300 rounded p-2"></textarea>
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Image</label>
-          <input
-            type="file"
-            id="editOgImage"
-            name="og_image"
-            class="w-full border border-gray-300 rounded p-2 cursor-pointer"
-          />
-          <img
-            id="currentOgImagePreview"
-            src=""
-            alt="Current OG Image"
-            class="w-24 h-24 mt-2 rounded object-cover hidden"
-          />
+          <input type="file" id="editOgImage" name="og_image" class="w-full border border-gray-300 rounded p-2 cursor-pointer" />
+          <img id="currentOgImagePreview" src="" alt="Current OG Image" class="w-24 h-24 mt-2 rounded object-cover hidden" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG URL</label>
-          <input
-            type="text"
-            id="editOgUrl"
-            name="og_url"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="editOgUrl" name="og_url" class="w-full border border-gray-300 rounded p-2" />
         </div>
 
         <div>
           <label class="block text-gray-700 mb-1">OG Type</label>
-          <input
-            type="text"
-            id="editOgType"
-            name="og_type"
-            class="w-full border border-gray-300 rounded p-2"
-          />
+          <input type="text" id="editOgType" name="og_type" class="w-full border border-gray-300 rounded p-2" />
         </div>
       </div>
 
@@ -499,10 +285,7 @@
         <label for="editStatus" class="text-gray-700">Active</label>
       </div>
 
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition">
         Save Changes
       </button>
     </form>
@@ -601,28 +384,27 @@
     const ogImage = document.getElementById("og_image").files[0];
     if (ogImage) formData.append("og_image", ogImage);
 
-    // Collect all team members
     const members = teamMembersContainer.querySelectorAll(".team-member");
-    members.forEach((member, index) => {
-      formData.append(
-        `info[${index}].name`,
-        member.querySelector("input[name='name[]']").value
-      );
-      formData.append(
-        `info[${index}].desination`,
-        member.querySelector("input[name='desination[]']").value
-      ); // fix typo if needed
-      formData.append(
-        `info[${index}].links`,
-        member.querySelector("input[name='links[]']").value
-      );
 
-      const imageInput = member.querySelector("input[type='file']");
-      if (imageInput.files[0]) {
-        formData.append(`info[${index}].image`, imageInput.files[0]);
-      }
-    });
+members.forEach((member, index) => {
+  const nameInput = member.querySelector("input[name='name[]']");
+  const designationInput = member.querySelector("input[name='designation[]']"); // fix typo
+  const linksInput = member.querySelector("input[name='links[]']");
+  const imageInput = member.querySelector("input[type='file']");
 
+  if (!nameInput || !designationInput || !linksInput) {
+    console.warn(`Missing input in member ${index}`);
+    return; // skip this member
+  }
+
+  formData.append(`info[${index}].name`, nameInput.value);
+  formData.append(`info[${index}].designation`, designationInput.value);
+  formData.append(`info[${index}].links`, linksInput.value);
+
+  if (imageInput && imageInput.files[0]) {
+    formData.append(`info[${index}].image`, imageInput.files[0]);
+  }
+});
     try {
       const response = await fetch("/api/team", {
         method: "POST",
@@ -682,7 +464,6 @@
     });
   });
 </script>
-
 <script>
   const editModal = document.getElementById("editTeamModal");
   const editForm = document.getElementById("editTeamForm");

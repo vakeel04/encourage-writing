@@ -1,23 +1,20 @@
 <%- include("partials/aside") %>
 
 <main class="flex-1 p-6 overflow-auto">
-  <!-- Header -->
-  <div class="flex justify-between items-end">
-    <div>
-      <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
-      <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
-    </div>
-
-    <!-- Add Button -->
-    <div>
-      <button
-        id="openAddModalBtn"
-        class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition"
-      >
-        + Add Service
-      </button>
-    </div>
+<!-- Header -->
+<div class="flex justify-between items-end">
+  <div>
+    <h1 class="text-3xl font-bold text-[#000]">Manage Services</h1>
+    <p class="mt-2 text-gray-700">Create, edit, or delete your services below.</p>
   </div>
+
+  <!-- Add Button -->
+  <div>
+    <button id="openAddModalBtn" class="font-medium text-[#000] border border-[#000] px-6 py-2 text-[14px] cursor-pointer rounded hover:bg-[#000] hover:text-white transition">
+      + Add Service
+    </button>
+  </div>
+</div>
 
 <!-- Service Table -->
 <div class="bg-white p-6 rounded shadow mt-6 overflow-x-auto">
@@ -34,66 +31,40 @@
     </thead>
     <tbody id="serviceTableBody">
       <% data?.service?.forEach((service) => { %>
-        <tr>
-          <td class="px-4 py-2 border"><%= service.name %></td>
-          <td class="px-4 py-2 border"><%= service.title %></td>
-          <td class="px-4 py-2 border"><%= service.description %></td>
-          <td class="px-4 py-2 border">
-            <% if(service.image){ %>
-              <img src="/<%= service.image %>" class="h-16 w-16 object-cover rounded" alt="<%= service.title %>" />
-            <% } else { %>
-              N/A
-            <% } %>
-          </td>
- 
-          <td class="px-4 py-2 border space-x-2">
-            <button
-            class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn"
-            data-id="<%= service._id %>"
-            data-name="<%= service.name %>"
-            data-title="<%= service.title %>"
-            data-description="<%= service.description %>"
-            data-fastdelivery="<%= service.fastDelivery %>"
-            data-qualityassured="<%= service.qualityAssured %>"
-            data-expertwriters="<%= service.expertWriters %>"
-            data-meta_title="<%= service.meta_title %>"
-            data-meta_description="<%= service.meta_description %>"
-            data-keywords="<%= service.keywords %>"
-            data-og_title="<%= service.og_title %>"
-            data-og_description="<%= service.og_description %>"
-            data-og_url="<%= service.og_url %>"
-            data-og_type="<%= service.og_type %>"
-            data-status="<%= service.status %>"
-          >
+      <tr>
+        <td class="px-4 py-2 border"><%= service.name %></td>
+        <td class="px-4 py-2 border"><%= service.title %></td>
+        <td class="px-4 py-2 border"><%= service.description %></td>
+        <td class="px-4 py-2 border">
+          <% if(service.image){ %>
+          <img src="/<%= service.image %>" class="h-16 w-16 object-cover rounded" alt="<%= service.title %>" />
+          <% } else { %>
+          N/A
+          <% } %>
+        </td>
+
+        <td class="px-4 py-2 border space-x-2">
+          <button class="bg-[#000] text-white px-2 py-1 rounded cursor-pointer openEditModalBtn" data-id="<%= service._id %>" data-name="<%= service.name %>" data-title="<%= service.title %>" data-description="<%= service.description %>" data-fastdelivery="<%= service.fastDelivery %>" data-qualityassured="<%= service.qualityAssured %>" data-expertwriters="<%= service.expertWriters %>" data-meta_title="<%= service.meta_title %>" data-meta_description="<%= service.meta_description %>" data-keywords="<%= service.keywords %>" data-og_title="<%= service.og_title %>" data-og_description="<%= service.og_description %>" data-og_url="<%= service.og_url %>" data-og_type="<%= service.og_type %>" data-status="<%= service.status %>">
             Edit
           </button>
-          
-            <button
-              class="border cursor-pointer px-2 py-1 rounded deleteBtn"
-              data-id="<%= service._id %>"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
+
+          <button class="border cursor-pointer px-2 py-1 rounded deleteBtn" data-id="<%= service._id %>">
+            Delete
+          </button>
+        </td>
+      </tr>
       <% }); %>
     </tbody>
-    
+
   </table>
 </div>
 
 </main>
 
 <!-- Add Service Modal -->
-<div
-  id="addServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
+<div id="addServiceModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
   <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative max-h-[90vh] overflow-y-auto">
-    <button
-      id="closeAddServiceModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
+    <button id="closeAddServiceModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
       &times;
     </button>
     <h2 class="text-[#000] font-semibold text-xl mb-4">Add New Service</h2>
@@ -148,10 +119,7 @@
         <input type="text" id="og_type" placeholder="OG Type" class="w-full border border-gray-300 rounded p-2" />
       </div>
 
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4"
-      >
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
         Add Service
       </button>
     </form>
@@ -160,20 +128,14 @@
 
 
 <!-- Edit Service Modal -->
-<div
-  id="editServiceModal"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
+<div id="editServiceModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
   <div class="bg-white w-[90%] max-w-lg rounded-lg shadow-lg p-6 relative max-h-[90vh] overflow-y-auto">
-    <button
-      id="closeEditServiceModalBtn"
-      class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-    >
+    <button id="closeEditServiceModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">
       &times;
     </button>
     <h2 class="text-[#000] font-semibold text-xl mb-4">Edit Service</h2>
     <form id="editServiceForm" class="space-y-4">
-      
+
       <!-- Name -->
       <div>
         <label class="block text-gray-700 font-medium mb-1" for="editName">Name</label>
@@ -224,12 +186,9 @@
         <input type="text" id="editOgType" placeholder="OG Type" class="w-full border border-gray-300 rounded p-2" />
       </div>
 
- 
 
-      <button
-        type="submit"
-        class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4"
-      >
+
+      <button type="submit" class="bg-[#000] text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
         Save Changes
       </button>
     </form>
@@ -314,6 +273,7 @@
 
 <!-- Delete Service -->
 <script>
+
   document.querySelectorAll(".deleteBtn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const serviceId = btn.getAttribute("data-id");

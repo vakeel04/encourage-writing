@@ -50,11 +50,12 @@ const updateBottom = async (req, res) => {
     try {
         const body = req.body;
 
-        if (req.files) {
-            if (req.files.image) body.image = req.files.image[0].path;
-            if (req.files.og_image) body.og_image = req.files.og_image[0].path;
-        }
-
+      // 🧩 Handle uploaded files (multer)
+      if (req.files) {
+        if (req.files.image) body.image = "uploads/" + req.files.image[0].filename;
+        if (req.files.og_image) body.og_image = "uploads/" + req.files.og_image[0].filename;
+      }
+  
         const bottom = await Bottom.findByIdAndUpdate(req.params.id, body, { new: true });
         if (!bottom) return res.status(404).send({ status: false, message: "Bottom not found" });
 

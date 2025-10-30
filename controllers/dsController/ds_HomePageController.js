@@ -22,8 +22,6 @@ const dsHomePageController = async (req, res) => {
 const dsAchievementsController = async (req, res) => {
   try {
     const achievement = await Achievement.find({}).sort({ createdAt: -1 });
-    console.log(achievement);
-
     res.render("dashboard/ds_manage_achievements", {
       status: true,
       message: "ds-service page successfully loaded",
@@ -54,8 +52,6 @@ const dsPartnerController = async (req, res) => {
 const dsIdeasPageController = async (req, res) => {
   try {
     const ideas = await Ideas.find({}).sort({ createdAt: -1 });
-    console.log(ideas);
-
     res.render("dashboard/ds_InsightsIdeas", {
       status: true,
       message: "ds-service page successfully loaded",
